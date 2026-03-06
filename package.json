@@ -1,0 +1,14 @@
+{
+  "name": "arxiv-daily",
+  "version": "1.0.0",
+  "description": "ArXiv Daily Papers - 自动爬取和整理 arXiv 论文",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "dependencies": {
+    "vitepress": "^1.0.0"
+  }
+}

@@ -314,14 +314,14 @@ def save_state(state_file, last_run_date):
 
 
 def save_last_update_time(update_time):
-    """保存最后更新时间到 jekyll 目录"""
-    # 获取 jekyll 目录路径
+    """保存最后更新时间到 docs 目录"""
+    # 获取 docs 目录路径
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    jekyll_dir = os.path.join(script_dir, '..', 'jekyll')
-    update_file = os.path.join(jekyll_dir, '_data', 'last_update.yml')
+    docs_dir = os.path.join(script_dir, '..', 'docs')
+    update_file = os.path.join(docs_dir, 'last_update.yml')
     
-    # 确保 _data 目录存在
-    os.makedirs(os.path.dirname(update_file), exist_ok=True)
+    # 确保 docs 目录存在
+    os.makedirs(docs_dir, exist_ok=True)
     
     # 保存更新时间
     with open(update_file, 'w', encoding='utf-8') as f:

@@ -15,11 +15,14 @@ build/
 # 忽略旧的 output 目录
 output/
 
-# Jekyll
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
+# Node.js
+node_modules/
+package-lock.json
+yarn.lock
+
+# VitePress
+docs/.vitepress/cache/
+docs/.vitepress/dist/
 
 # IDE
 .vscode/

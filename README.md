@@ -46,11 +46,10 @@ arxiv/
 ├── .github/
 │   └── workflows/
 │       └── arxiv-daily.yml              # GitHub Actions 工作流
-├── jekyll/                              # GitHub Pages 网站文件
-│   ├── _config.yml                      # Jekyll 配置
+├── docs/                                # VitePress 网站文件
+│   ├── .vitepress/
+│   │   └── config.mjs                   # VitePress 配置
 │   ├── index.md                         # 首页
-│   ├── _includes/
-│   │   └── sidebar.html                 # 侧栏导航
 │   └── docs/                            # 生成的论文文档
 │       ├── 2024-09/
 │       ├── 2024-10/
@@ -59,6 +58,7 @@ arxiv/
 │   └── arxiv_config.yaml                # 爬取配置文件
 ├── scripts/
 │   └── fetch_arxiv.py                   # 主爬取脚本
+├── package.json                         # Node.js 依赖
 ├── requirements.txt                     # Python 依赖
 ├── README.md                            # 项目说明文档
 └── .gitignore                           # Git 忽略文件
@@ -98,7 +98,7 @@ keywords:
   - neural network
 
 # 首次爬取的起始日期
-start_date: "2024-06-01" (默认)
+start_date: "2024-09-01" (默认)
 ```
 
 ### 4. 本地测试运行
@@ -107,7 +107,7 @@ start_date: "2024-06-01" (默认)
 python scripts/fetch_arxiv.py
 ```
 
-论文列表将按日期生成到 `jekyll/docs/` 目录中，每个日期一个文件。
+论文列表将按日期生成到 `docs/` 目录中，每个日期一个文件。
 
 ### 5. 启用 GitHub Pages
 
@@ -163,13 +163,13 @@ keywords: []
 
 ```yaml
 output:
-  dir: "jekyll/docs"                    # 输出目录（按日期分类）
+  dir: "docs"                          # 输出目录（用于 VitePress）
   max_papers_per_category: 1000         # 每个分类最大论文数
   include_summary: true                 # 是否包含摘要
   summary_max_length: 200               # 摘要最大长度
 ```
 
-论文将按日期组织，格式为 `jekyll/docs/YYYY-MM/YYYY-MM-DD.md`。
+论文将按日期组织，格式为 `docs/YYYY-MM/YYYY-MM-DD.md`。
 
 ### Markdown 格式配置
 
@@ -210,7 +210,7 @@ schedule:
 
 ## 📄 论文列表格式
 
-论文按日期分类存储，每个日期一个文件：`jekyll/docs/YYYY-MM/YYYY-MM-DD.md`
+论文按日期分类存储，每个日期一个文件：`docs/YYYY-MM/YYYY-MM-DD.md`
 
 文件格式如下：
 
