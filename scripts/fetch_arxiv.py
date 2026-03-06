@@ -8,6 +8,7 @@ import os
 import sys
 import yaml
 import arxiv
+import time
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -354,11 +355,17 @@ def main():
     max_results = config['output']['max_papers_per_category']
     keywords = config['keywords']
     
-    for category in config['categories']:
+    for i, category in enumerate(config['categories']):
         papers = fetch_papers_by_category(
             category, start_date, end_date, max_results, keywords
         )
         papers_by_category[category] = papers
+        
+        # ArXiv API 使用条款：每次请求之间必须至少间隔 10 秒
+        # 最后一个分类不需要等待
+        if i < len(config['categories']) - 1:
+            print(f"  等待 10 秒以遵守 API 使用条款...")
+            time.sleep(10)
     
     # 生成 Markdown（按日期分组）
     papers_by_date, new_count = generate_markdown(
