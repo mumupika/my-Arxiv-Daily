@@ -22,7 +22,7 @@ output:
   # 输出目录（用于 GitHub Pages）
   dir: "jekyll/docs"
   # 每次爬取的最大论文数（避免过多）
-  max_papers_per_category: 2500
+  max_papers_per_category: 5000
   # 是否包含论文摘要
   include_summary: true
   # 摘要最大长度（字符数）
