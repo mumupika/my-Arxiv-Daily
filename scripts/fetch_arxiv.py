@@ -79,20 +79,14 @@ def load_config(config_path):
 
 
 def get_existing_papers(docs_dir):
-    """从 docs/docs 文件夹中提取已爬取的论文 ID"""
+    """从 docs 文件夹中提取已爬取的论文 ID"""
     existing_ids = set()
-    
-    # 修正路径，只扫描 docs/docs 目录而不是整个 docs 目录
-    papers_dir = os.path.join(docs_dir, 'docs')
-    
-    if not os.path.exists(papers_dir):
-        return existing_ids
     
     import re
     pattern = r'arxiv\.org/abs/(\d+\.\d+)'
     
-    # 遍历 docs/docs 文件夹中的所有 .md 文件
-    for root, dirs, files in os.walk(papers_dir):
+    # 遍历 docs 文件夹中的所有 .md 文件
+    for root, dirs, files in os.walk(docs_dir):
         for file in files:
             if file.endswith('.md'):
                 file_path = os.path.join(root, file)
@@ -213,6 +207,38 @@ def get_template_path(output_file):
     return template_path
 
 
+def create_month_index(month_dir):
+    """为月份目录创建索引文件"""
+    # 读取该目录下的所有日期文件
+    date_files = []
+    for filename in sorted(os.listdir(month_dir)):
+        if filename.endswith('.md') and filename != 'index.md':
+            # 只取日期部分，去掉 .md
+            date_part = filename[:-3]
+            date_files.append(date_part)
+    
+    if not date_files:
+        return False
+    
+    # 生成索引内容
+    lines = []
+    month_name = os.path.basename(month_dir)
+    lines.append(f"# {month_name}\n")
+    lines.append(f"\n")
+    lines.append("## 日期列表\n")
+    lines.append("\n")
+    
+    # 按日期倒序排列
+    for date in sorted(date_files, reverse=True):
+        lines.append(f"- [{date}](./{date})\n")
+    
+    # 写入索引文件
+    index_path = os.path.join(month_dir, 'index.md')
+    with open(index_path, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(lines))
+    return True
+
+
 def update_markdown_files_by_date(papers_by_date, config):
     """按日期生成多个 Markdown 文件到 docs 文件夹"""
     docs_dir = config['output']['dir']
@@ -226,6 +252,7 @@ def update_markdown_files_by_date(papers_by_date, config):
     
     total_files_created = 0
     total_papers = 0
+    month_dirs = set()
     
     # 按日期生成文件
     for date in sorted(papers_by_date.keys(), reverse=True):
@@ -238,6 +265,7 @@ def update_markdown_files_by_date(papers_by_date, config):
         
         # 创建年月目录
         year_month_dir = os.path.join(docs_dir, year_month)
+        month_dirs.add(year_month_dir)
         if not os.path.exists(year_month_dir):
             os.makedirs(year_month_dir)
         
@@ -289,6 +317,11 @@ def update_markdown_files_by_date(papers_by_date, config):
         
         total_files_created += 1
         print(f"  创建文件: {file_path} ({len(papers_by_category)} 个分类)")
+    
+    # 为每个月创建索引文件
+    for month_dir in month_dirs:
+        if create_month_index(month_dir):
+            print(f"  创建索引文件: {os.path.join(month_dir, 'index.md')}")
     
     return total_files_created, total_papers
 
@@ -402,7 +435,7 @@ def main():
     # 保存状态
     save_state(state_file, end_date)
     
-    # 保存最后更新时间到 jekyll 目录
+    # 保存最后更新时间到 docs 目录
     save_last_update_time(end_date)
     
     print(f"\n完成！共爬取 {new_count} 篇新论文")

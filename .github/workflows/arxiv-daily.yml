@@ -51,7 +51,8 @@ jobs:
             echo "docs 目录已创建"
             echo "文件数量: $(find docs -name "*.md" | wc -l)"
             echo "目录结构:"
-            find docs -type f -name "*.md" | head -20 || true
+            # 使用 process substitution 避免管道，这种方法不会触发 broken pipe
+            find docs -type f -name "*.md" | head -20
             echo ""
             echo "论文数量: $(grep -r "arxiv.org/abs" docs/ | wc -l)"
           else
