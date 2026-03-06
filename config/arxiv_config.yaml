@@ -1,11 +1,12 @@
 # arxiv 爬取配置
 categories:
+  - cs.AI      # Computer Science - Artificial Intelligence
   - cs.AR      # Computer Science - Architecture
   - cs.DC      # Computer Science - Distributed, Parallel, and Cluster Computing
   - cs.NI      # Computer Science - Networking and Internet Architecture
   - cs.OS      # Computer Science - Operating Systems
-  - cs.DB      # Computer Science - Databases
   - cs.PF      # Computer Science - Performance
+  - cs.LG      # Computer Science - Machine Learning
 
 # 关键词过滤（可选）
 # 如果设置，只包含标题或摘要中包含这些关键词的论文
