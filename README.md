@@ -11,22 +11,26 @@
 - 🔄 **增量更新**：只爬取新增论文，避免重复
 - ⚙️ **灵活配置**：通过 YAML 配置文件轻松自定义
 
+## 📖 论文列表
+
+👉 **查看最新论文**: [output/arxiv_papers.md](output/arxiv_papers.md)
+
+论文列表会每天自动更新，包含以下分类的论文：
+- cs.AR - Architecture
+- cs.DC - Distributed, Parallel, and Cluster Computing
+- cs.NI - Networking and Internet Architecture
+- cs.OS - Operating Systems
+
 ## 📦 项目结构
 
 ```
 arxiv/
-├── .github/
-│   └── workflows/
-│       └── arxiv-daily.yml          # GitHub Actions 工作流
-├── config/
-│   └── arxiv_config.yaml            # 配置文件
-├── scripts/
-│   └── fetch_arxiv.py                # 主爬取脚本
-├── output/
-│   └── arxiv_papers.md               # 生成的 Markdown 文件
-├── requirements.txt                  # Python 依赖
-├── README.md                        # 项目说明
-└── .gitignore
+├── .github/workflows/arxiv-daily.yml    # GitHub Actions 工作流
+├── config/arxiv_config.yaml              # 配置文件
+├── scripts/fetch_arxiv.py                # 主爬取脚本
+├── requirements.txt                      # Python 依赖
+├── README.md                             # 项目说明文档
+└── output/arxiv_papers.md                # 生成的论文列表
 ```
 
 ## 🚀 快速开始
@@ -63,7 +67,7 @@ keywords:
   - neural network
 
 # 首次爬取的起始日期
-start_date: "2025-01-01"
+start_date: "2024-06-01" (默认)
 ```
 
 ### 4. 本地测试运行
@@ -72,7 +76,7 @@ start_date: "2025-01-01"
 python scripts/fetch_arxiv.py
 ```
 
-生成的 Markdown 文件将保存在 `output/arxiv_papers.md`。
+论文列表将生成到 `output/arxiv_papers.md` 文件中。
 
 ### 5. 推送到 GitHub
 
@@ -120,31 +124,31 @@ keywords: []
 
 ```yaml
 output:
-  file: "output/arxiv_papers.md"           # 输出文件路径
-  max_papers_per_category: 100             # 每个分类最大论文数
-  include_summary: true                    # 是否包含摘要
-  summary_max_length: 200                  # 摘要最大长度
+  file: "output/arxiv_papers.md"         # 输出文件路径
+  max_papers_per_category: 100           # 每个分类最大论文数
+  include_summary: true                  # 是否包含摘要
+  summary_max_length: 200                # 摘要最大长度
 ```
 
 ### Markdown 格式配置
 
 ```yaml
 markdown:
-  title: "ArXiv Daily Papers"              # 标题
-  description: "自动爬取的 arxiv 论文汇总"   # 描述
-  category_heading_level: 2                 # 分类标题级别
-  paper_heading_level: 3                   # 论文标题级别
+  title: "ArXiv Daily Papers"            # 标题
+  description: "自动爬取的 arxiv 论文汇总" # 描述
+  category_heading_level: 2              # 分类标题级别
+  paper_heading_level: 3                # 论文标题级别
 ```
 
 ## 🔄 GitHub Actions 自动化
 
 ### 定时执行
 
-工作流配置为每天 UTC 时间 00:00（北京时间 08:00）自动执行：
+工作流配置为每天 UTC 时间 19:00（北京时间凌晨 03:00）自动执行：
 
 ```yaml
 schedule:
-  - cron: '0 0 * * *'
+  - cron: '0 19 * * *'
 ```
 
 ### 手动触发
@@ -163,41 +167,13 @@ schedule:
 2. 手动触发工作流一次（首次运行会从 `start_date` 爬取到现在的所有论文）
 3. 之后每天自动增量更新
 
-## 📄 输出格式示例
+## 📄 论文列表格式
 
-生成的 Markdown 文件格式如下：
+论文列表会自动显示在 `output/arxiv_papers.md` 中，格式如下：
 
-```markdown
-# ArXiv Daily Papers
-
-自动爬取的 arxiv 论文汇总
-
-**最后更新时间**: 2026-03-06 12:00:00
-
----
-
-## cs.AR - Computer Science - Architecture
-
-### [A Novel Architecture for Deep Learning](https://arxiv.org/abs/2301.12345)
-
-- **作者**: John Doe, Jane Smith, Bob Johnson
-- **发布日期**: 2026-03-05
-- **PDF**: [下载链接](https://arxiv.org/pdf/2301.12345.pdf)
-- **摘要**: This paper presents a novel architecture for deep learning applications...
-
----
-
-## cs.DC - Computer Science - Distributed, Parallel, and Cluster Computing
-
-### [Scalable Distributed Systems](https://arxiv.org/abs/2301.67890)
-
-- **作者**: Alice Wang, Charlie Brown
-- **发布日期**: 2026-03-04
-- **PDF**: [下载链接](https://arxiv.org/pdf/2301.67890.pdf)
-- **摘要**: We propose a new approach to building scalable distributed systems...
-
----
-```
+| 标题 | 作者 | 发布日期 | PDF | 摘要 |
+|------|------|----------|-----|------|
+| [论文标题](链接) | 作者名 | 2026-03-05 | [下载](链接) | 论文摘要... |
 
 ## 🔧 高级用法
 

@@ -12,7 +12,12 @@ dist/
 build/
 
 # Output files
-output/*.md
+# 忽略 output 目录中的所有文件
+output/*
+
+# 但保留 markdown 文件
+!output/*.md
+!output/*.state
 
 # IDE
 .vscode/

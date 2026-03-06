@@ -1,9 +1,9 @@
 name: ArXiv Daily Crawler
 
 on:
-  # 每天 UTC 时间 00:00 执行（即北京时间 08:00）
+  # 每天 UTC 时间 19:00 执行（即北京时间凌晨 03:00）
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 19 * * *'
   
   # 允许手动触发
   workflow_dispatch:
@@ -25,7 +25,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.12'
           cache: 'pip'
       
       - name: Install dependencies
@@ -52,8 +52,8 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # 添加所有更改
-          git add output/
+          # 添加 output 目录中的 markdown 和 state 文件
+          git add output/*.md output/*.state
           
           # 提交更改
           git commit -m "Update arxiv papers $(date +'%Y-%m-%d')" || exit 0

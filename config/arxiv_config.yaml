@@ -4,26 +4,23 @@ categories:
   - cs.DC      # Computer Science - Distributed, Parallel, and Cluster Computing
   - cs.NI      # Computer Science - Networking and Internet Architecture
   - cs.OS      # Computer Science - Operating Systems
+  - cs.DB      # Computer Science - Databases
+  - cs.PF      # Computer Science - Performance
 
 # 关键词过滤（可选）
 # 如果设置，只包含标题或摘要中包含这些关键词的论文
 # 如果为空列表，不过滤关键词
-keywords:
-  - machine learning
-  - deep learning
-  - neural network
-  - AI
-  - artificial intelligence
+keywords: []
 
 # 首次爬取的起始日期（首次部署时使用）
 # 格式: YYYY-MM-DD
-start_date: "2025-01-01"
+start_date: "2024-06-01"
 
 # 输出配置
 output:
   file: "output/arxiv_papers.md"
   # 每次爬取的最大论文数（避免过多）
-  max_papers_per_category: 100
+  max_papers_per_category: 1000
   # 是否包含论文摘要
   include_summary: true
   # 摘要最大长度（字符数）
