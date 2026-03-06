@@ -47,15 +47,15 @@ jobs:
           echo ""
           echo "爬取完成！"
           
-          if [ -d "docs" ]; then
-            echo "docs 目录已创建"
-            echo "文件数量: $(find docs -name "*.md" | wc -l)"
+          if [ -d "jekyll/docs" ]; then
+            echo "jekyll/docs 目录已创建"
+            echo "文件数量: $(find jekyll/docs -name "*.md" | wc -l)"
             echo "目录结构:"
-            find docs -type f -name "*.md" | head -20
+            find jekyll/docs -type f -name "*.md" | head -20
             echo ""
-            echo "论文数量: $(grep -r "arxiv.org/abs" docs/ | wc -l)"
+            echo "论文数量: $(grep -r "arxiv.org/abs" jekyll/docs/ | wc -l)"
           else
-            echo "docs 目录未创建"
+            echo "jekyll/docs 目录未创建"
           fi
         continue-on-error: false
       
@@ -93,14 +93,14 @@ jobs:
           echo "## ArXiv Paper Crawler Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           
-          if [ -d "docs" ]; then
+          if [ -d "jekyll/docs" ]; then
             # 统计文件数量
-            FILE_COUNT=$(find docs -name "*.md" | wc -l)
+            FILE_COUNT=$(find jekyll/docs -name "*.md" | wc -l)
             # 统计论文数量 - 查找包含 arxiv.org/abs 的行
-            PAPER_COUNT=$(grep -r "arxiv.org/abs" docs/ | wc -l)
+            PAPER_COUNT=$(grep -r "arxiv.org/abs" jekyll/docs/ | wc -l)
             echo "✅ Successfully processed $FILE_COUNT files with $PAPER_COUNT papers" >> $GITHUB_STEP_SUMMARY
           else
-            echo "ℹ️ No papers found or docs directory not created" >> $GITHUB_STEP_SUMMARY
+            echo "ℹ️ No papers found or jekyll/docs directory not created" >> $GITHUB_STEP_SUMMARY
           fi
       
       - name: Deploy to GitHub Pages
