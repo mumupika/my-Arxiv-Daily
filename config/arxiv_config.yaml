@@ -1,0 +1,39 @@
+# arxiv 爬取配置
+categories:
+  - cs.AR      # Computer Science - Architecture
+  - cs.DC      # Computer Science - Distributed, Parallel, and Cluster Computing
+  - cs.NI      # Computer Science - Networking and Internet Architecture
+  - cs.OS      # Computer Science - Operating Systems
+
+# 关键词过滤（可选）
+# 如果设置，只包含标题或摘要中包含这些关键词的论文
+# 如果为空列表，不过滤关键词
+keywords:
+  - machine learning
+  - deep learning
+  - neural network
+  - AI
+  - artificial intelligence
+
+# 首次爬取的起始日期（首次部署时使用）
+# 格式: YYYY-MM-DD
+start_date: "2025-01-01"
+
+# 输出配置
+output:
+  file: "output/arxiv_papers.md"
+  # 每次爬取的最大论文数（避免过多）
+  max_papers_per_category: 100
+  # 是否包含论文摘要
+  include_summary: true
+  # 摘要最大长度（字符数）
+  summary_max_length: 200
+  
+# Markdown 格式配置
+markdown:
+  title: "ArXiv Daily Papers"
+  description: "自动爬取的 arxiv 论文汇总"
+  # 每个分类的标题级别（1-6）
+  category_heading_level: 2
+  # 论文条目的标题级别（1-6）
+  paper_heading_level: 3

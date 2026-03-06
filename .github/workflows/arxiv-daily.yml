@@ -1,0 +1,76 @@
+name: ArXiv Daily Crawler
+
+on:
+  # 每天 UTC 时间 00:00 执行（即北京时间 08:00）
+  schedule:
+    - cron: '0 0 * * *'
+  
+  # 允许手动触发
+  workflow_dispatch:
+  
+  # 推送到 main 分支时触发（可选）
+  push:
+    branches: [ main, master ]
+
+jobs:
+  fetch-arxiv:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Fetch arxiv papers
+        run: |
+          python scripts/fetch_arxiv.py
+      
+      - name: Check for changes
+        id: git-check
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Commit and push changes
+        if: steps.git-check.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # 添加所有更改
+          git add output/
+          
+          # 提交更改
+          git commit -m "Update arxiv papers $(date +'%Y-%m-%d')" || exit 0
+          
+          # 推送到 GitHub
+          git push
+      
+      - name: Create summary
+        if: always()
+        run: |
+          echo "## ArXiv Paper Crawler Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "output/arxiv_papers.md" ]; then
+            # 统计论文数量
+            PAPER_COUNT=$(grep -c "^\- \*\*作者\*\*:" output/arxiv_papers.md || echo "0")
+            echo "✅ Successfully processed $PAPER_COUNT papers" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ No papers found or output file not created" >> $GITHUB_STEP_SUMMARY
+          fi

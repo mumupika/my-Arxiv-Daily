@@ -1,0 +1,13 @@
+# ArXiv Paper Fetcher Dependencies
+
+# arxiv 官方 API 客户端
+arxiv>=2.1.0
+
+# YAML 配置文件解析
+PyYAML>=6.0
+
+# 请求库（用于 API 调用）
+requests>=2.31.0
+
+# 日期处理
+python-dateutil>=2.8.2
