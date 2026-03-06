@@ -79,17 +79,20 @@ def load_config(config_path):
 
 
 def get_existing_papers(docs_dir):
-    """从 docs 文件夹中提取已爬取的论文 ID"""
+    """从 docs/docs 文件夹中提取已爬取的论文 ID"""
     existing_ids = set()
     
-    if not os.path.exists(docs_dir):
+    # 修正路径，只扫描 docs/docs 目录而不是整个 docs 目录
+    papers_dir = os.path.join(docs_dir, 'docs')
+    
+    if not os.path.exists(papers_dir):
         return existing_ids
     
     import re
     pattern = r'arxiv\.org/abs/(\d+\.\d+)'
     
-    # 遍历 docs 文件夹中的所有 .md 文件
-    for root, dirs, files in os.walk(docs_dir):
+    # 遍历 docs/docs 文件夹中的所有 .md 文件
+    for root, dirs, files in os.walk(papers_dir):
         for file in files:
             if file.endswith('.md'):
                 file_path = os.path.join(root, file)
