@@ -9,10 +9,6 @@ highlighter: rouge
 baseurl: ""
 url: "https://mumupika.github.io/my-Arxiv-Daily"
 
-# 导航配置
-header_pages:
-  - index.md
-
 # 插件
 plugins:
   - jekyll-relative-links
@@ -39,5 +35,21 @@ exclude:
   - .gitignore
   - .github/
 
+# 包含文件（确保 docs 目录被处理）
+include:
+  - _pages
+
 # 时区
 timezone: Asia/Shanghai
+
+# 默认布局
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  - scope:
+      path: ""
+    values:
+      layout: "default"

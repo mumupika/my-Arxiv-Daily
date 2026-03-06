@@ -1,6 +1,6 @@
 ---
 title: ArXiv Daily Papers
-layout: home
+layout: page
 ---
 
 # 📚 ArXiv Daily Papers
