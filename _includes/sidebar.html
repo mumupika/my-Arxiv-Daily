@@ -1,0 +1,47 @@
+<div class="sidebar">
+  <h3>📅 按日期浏览</h3>
+  
+  <div class="sidebar-section">
+    <h4>2026年</h4>
+    <ul>
+      {% assign months = "01,02,03,04,05,06,07,08,09,10,11,12" | split: "," %}
+      {% for month in months %}
+        {% assign month_path = "docs/2026-" | append: month %}
+        {% if site.static_files contains month_path or site.pages contains month_path %}
+          <li><a href="/{{ month_path }}/">{{ month | append: "月" }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  
+  <div class="sidebar-section">
+    <h4>2025年</h4>
+    <ul>
+      {% for month in months %}
+        {% assign month_path = "docs/2025-" | append: month %}
+        {% if site.static_files contains month_path or site.pages contains month_path %}
+          <li><a href="/{{ month_path }}/">{{ month | append: "月" }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  
+  <div class="sidebar-section">
+    <h4>2024年</h4>
+    <ul>
+      {% for month in months %}
+        {% assign month_path = "docs/2024-" | append: month %}
+        {% if site.static_files contains month_path or site.pages contains month_path %}
+          <li><a href="/{{ month_path }}/">{{ month | append: "月" }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  
+  <div class="sidebar-section">
+    <h4>📂 分类</h4>
+    <ul>
+      <li><a href="/">首页</a></li>
+    </ul>
+  </div>
+</div>
