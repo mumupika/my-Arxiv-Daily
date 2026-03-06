@@ -1,0 +1,578 @@
+/* KaTeX数学公式样式 */
+@import 'katex/dist/katex.min.css';
+
+/* 减少侧栏宽度 */
+.VPSidebar {
+  width: 260px !important;
+}
+
+.VPSidebar .curtain {
+  width: 260px !important;
+}
+
+/* 自定义样式 - 侧栏切换功能 */
+
+/* 侧栏切换按钮 */
+.sidebar-toggle {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  z-index: 1000;
+  padding: 8px 16px;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--vp-c-text-1);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sidebar-toggle:hover {
+  background: var(--vp-c-bg-soft);
+  border-color: var(--vp-c-brand);
+  color: var(--vp-c-brand);
+}
+
+/* 右侧大纲切换按钮 */
+.aside-toggle {
+  position: fixed;
+  top: 110px;
+  right: 20px;
+  z-index: 1000;
+  padding: 8px 16px;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--vp-c-text-1);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.aside-toggle:hover {
+  background: var(--vp-c-bg-soft);
+  border-color: var(--vp-c-brand);
+  color: var(--vp-c-brand);
+}
+
+/* 侧栏固定定位，不占布局空间 */
+.VPSidebar {
+  position: fixed !important;
+  left: 0 !important;
+  top: 64px !important;
+  height: calc(100vh - 64px) !important;
+  z-index: 100 !important;
+  width: 260px !important;
+}
+
+.VPSidebar .curtain {
+  width: 260px !important;
+}
+
+/* 正文容器 - 当侧栏显示时向右偏移 */
+body.sidebar-visible .VPContent {
+  max-width: none !important;
+  width: 100vw !important;
+  padding-left: 260px !important;
+  box-sizing: border-box !important;
+}
+
+/* 正文容器 - 默认样式 */
+.VPContent {
+  max-width: none !important;
+  width: 100vw !important;
+  padding-left: 0 !important;
+  box-sizing: border-box !important;
+  transition: padding-left 0.3s ease !important;
+}
+
+.VPDoc {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 32px 16px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.VPDoc .container {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 全宽模式下移除左侧padding */
+body.full-width .VPContent {
+  padding-left: 0 !important;
+}
+
+/* 侧栏显示时的样式 */
+body.sidebar-visible .VPSidebar {
+  display: block !important;
+}
+
+body.sidebar-visible:not(.full-width) .VPContent {
+  padding-left: 260px !important;
+}
+
+/* 侧栏隐藏时的样式 */
+body.full-width .VPSidebar {
+  display: none !important;
+}
+
+body.full-width .VPContent {
+  padding-left: 0 !important;
+}
+
+.VPDoc {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 32px 8px !important;
+  margin: 0 !important;
+}
+
+.VPDoc .container {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.vp-doc {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.vp-content {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.vp-page {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* 左侧侧栏隐藏时，正文向左扩展 */
+body:not(.sidebar-visible) .VPContent {
+  padding-left: 0 !important;
+}
+
+body:not(.sidebar-visible) .VPDoc {
+  padding-left: 64px !important;
+}
+
+/* 覆盖VitePress默认的最大宽度限制 */
+.layout {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.container {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.main {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.content {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.content-container-default {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.VPDoc .content {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* 覆盖所有可能的宽度限制 */
+[class*="VPLayout"] {
+  max-width: none !important;
+}
+
+[class*="VPContent"] {
+  max-width: none !important;
+}
+
+[class*="VPDoc"] {
+  max-width: none !important;
+}
+
+.content-container {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* 同时隐藏侧栏和导航栏时，正文居中显示 */
+body.full-width .VPSidebar {
+  display: none !important;
+}
+
+/* =========================================
+   完全复刻左栏逻辑：右侧导航栏改造
+   ========================================= */
+
+/* 1. 彻底打破 VitePress 默认的左右 Flex 弹性布局 */
+.VPDoc .container {
+  display: block !important; /* 取消 flex 布局，让正文独立成行 */
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* 2. 让正文的专属容器 (.main) 完全释放宽度 */
+.VPDoc .main {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+/* 3. 【核心】将右侧栏的最外层父级 (.aside) 脱离文档流，像左栏一样绝对悬浮 */
+.VPDoc .aside {
+  position: fixed !important;
+  top: 64px !important;
+  right: 0 !important;
+  height: calc(100vh - 64px) !important;
+  width: 320px !important;
+  z-index: 100 !important;
+  display: block !important;
+  padding-top: 32px !important;
+  background-color: var(--vp-c-bg) !important;
+  border-left: none !important;
+}
+
+/* 撑满固定容器 */
+.VPDocAside {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* 4. 正文容器的过渡动画（同时监听左右两边的 padding 变化） */
+.VPContent {
+  transition: padding-left 0.3s ease, padding-right 0.3s ease !important;
+}
+
+/* 5. 正常显示时：左右同时向内挤压正文，给两侧的悬浮栏留出空间 */
+body.sidebar-visible:not(.full-width) .VPContent {
+  padding-left: 260px !important; /* 给左栏留出空间 */
+  padding-right: 320px !important; /* 给右栏留出空间 */
+}
+
+/* 6. 全宽模式触发时：左右内边距瞬间归零，触发正文向两侧丝滑伸展的动画 */
+body.full-width .VPContent {
+  padding-left: 0 !important;
+  padding-right: 0 !important; 
+}
+
+/* 全宽模式下隐藏右侧父容器 */
+body.full-width .VPDoc .aside {
+  display: none !important;
+}
+
+/* 7. 响应式适配：屏幕较小时（<1280px），VitePress 默认不显示右侧大纲，必须取消右内边距，防止右侧白边 */
+@media (max-width: 1279px) {
+  body.sidebar-visible:not(.full-width) .VPContent {
+    padding-right: 0 !important;
+  }
+  .VPDoc .aside {
+    display: none !important;
+  }
+}
+
+body.full-width .VPDoc {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* 强制覆盖内容容器宽度限制 */
+body.full-width .VPDoc .container {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+body.full-width .vp-doc {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+/* 确保内容居中 */
+body.full-width .vp-content {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+body.full-width .vp-page {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+/* 覆盖VitePress默认的布局限制 */
+body.full-width .content {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+body.full-width .content-container-default {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+body.full-width .layout {
+  max-width: 100% !important;
+}
+
+/* 覆盖所有可能的内容容器 */
+body.full-width [class*='container'] {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+body.full-width .VPContent {
+  max-width: 100% !important;
+}
+
+body.full-width .VPDoc .content {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+/* 表格样式优化 - 减少换行 */
+.vp-doc table {
+  width: 100% !important;
+  table-layout: fixed !important;
+  border-collapse: collapse !important;
+  margin: 1.5rem 0 !important;
+  overflow-x: auto !important;
+}
+
+/* 设置各列宽度 */
+.vp-doc table {
+  table-layout: fixed !important;
+}
+
+/* 标题列占较大宽度 */
+.vp-doc th:nth-child(1),
+.vp-doc td:nth-child(1) {
+  width: 25% !important;
+}
+
+/* 作者列 */
+.vp-doc th:nth-child(2),
+.vp-doc td:nth-child(2) {
+  width: 20% !important;
+}
+
+/* 发布日期列 */
+.vp-doc th:nth-child(3),
+.vp-doc td:nth-child(3) {
+  width: 12% !important;
+}
+
+/* PDF列 - 固定宽度 */
+.vp-doc th:nth-child(4),
+.vp-doc td:nth-child(4) {
+  width: 8% !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+}
+
+/* 摘要列 */
+.vp-doc th:nth-child(5),
+.vp-doc td:nth-child(5) {
+  width: 35% !important;
+}
+
+.vp-doc th,
+.vp-doc td {
+  white-space: pre-wrap !important;
+  padding: 0.5rem 1rem !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  text-align: left !important;
+  word-break: keep-all !important;
+  overflow-wrap: break-word !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* PDF链接不换行 */
+.vp-doc td:nth-child(4) a {
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+}
+
+/* URL链接可以换行 */
+.vp-doc td a:not(:nth-child(4) a) {
+  word-break: break-all !important;
+  white-space: normal !important;
+}
+
+.vp-doc td:nth-child(1) a {
+  word-break: break-all !important;
+  white-space: normal !important;
+}
+
+/* 全宽模式下的表格样式 */
+body.full-width .vp-doc table {
+  width: 100% !important;
+  min-width: 100% !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .sidebar-toggle {
+    top: 60px;
+    right: 10px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .aside-toggle {
+    display: none !important;
+  }
+  
+  /* 移动端自动隐藏右侧大纲 */
+  .VPDocAside {
+    display: none !important;
+  }
+  
+  /* 移动端允许表格水平滚动 */
+  .vp-doc table {
+    display: block !important;
+    overflow-x: auto !important;
+  }
+  
+  .vp-doc th,
+  .vp-doc td {
+    min-width: 200px !important;
+  }
+
+  body.sidebar-visible:not(.full-width) .VPContent {
+    padding-right: 0 !important;
+  }
+}
+
+
+/* 给原生的顶栏添加丝滑的平移过渡动画 */
+.VPNav {
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+/* 当触发向下滚动时，将顶栏向上平移 100% 隐藏到屏幕外 */
+body.nav-hidden .VPNav {
+  transform: translateY(-100%) !important;
+}
+
+/* （可选优化）：当顶栏隐藏时，把我们的“切换视图按钮”也顺势往上移一点，视觉更宽敞 */
+.sidebar-toggle {
+  transition: top 0.3s ease, background 0.2s, border-color 0.2s, color 0.2s !important;
+}
+
+body.nav-hidden .sidebar-toggle {
+  top: 16px !important; /* 原本是 70px，顶栏收起后自动上浮到 16px */
+}
+
+/* 覆盖 VitePress 全局的侧栏背景色变量 */
+:root {
+  --vp-sidebar-bg-color: var(--vp-c-bg) !important;
+}
+
+/* 强制给左侧栏及滚动区域应用主底色 */
+.VPSidebar {
+  background-color: var(--vp-c-bg) !important;
+}
+
+/* （可选）如果你觉得侧栏和正文融为一体后有点分不清边界，
+   可以保留一条极浅的右边框线；如果想要完全无痕，请保留下面的 none */
+.VPSidebar {
+  border-right: none !important; 
+}
+
+/* 清除侧栏导航列表容器的顶部内边距 */
+.VPSidebar {
+  padding-top: 0px !important; /* 原本大概是 32px，改为 16px 保留一点点呼吸感，如果你想完全贴顶，可以改成 0 */
+}
+
+.VPSidebar .nav {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+.VPSidebar .wrapper {
+  padding-top: 0 !important;
+}
+
+/* 确保第一个菜单项顶部没有多余空白 */
+.VPSidebar .group:first-child {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* =========================================
+   11 & 12 (整合修正版). 左右侧栏跟随顶栏同步收缩
+   ========================================= */
+
+/* 1. 定义过渡动画：让位置(top)和内边距(padding)都丝滑过渡 */
+.VPSidebar,
+.VPDoc .aside,
+.VPDocAside,
+.aside-container {
+  transition: top 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+              padding-top 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+              height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+/* ------------------- 左侧栏 (时间轴) ------------------- */
+
+/* 当顶栏隐藏时：左侧栏贴顶，并留出 32px 的呼吸空间 */
+body.nav-hidden .VPSidebar {
+  top: 0 !important;
+  height: 100vh !important;
+  padding-top: 32px !important; /* 左侧没有按钮，32px 足够美观 */
+}
+
+/* ------------------- 右侧栏 (页面导航) ------------------- */
+
+/* 当顶栏隐藏时：右侧栏父容器贴顶 */
+body.nav-hidden .VPDoc .aside {
+  top: 0 !important;
+  height: 100vh !important;
+  
+  /* 🔥 关键修改：设置 80px 的顶部内边距 */
+  /* 计算公式：按钮顶部距离(16px) + 按钮高度(~34px) + 额外呼吸空间(30px) = 80px */
+  padding-top: 80px !important; 
+}
+
+/* 必须重置右侧内部容器的 Padding，防止双重叠加 */
+body.nav-hidden .VPDocAside,
+body.nav-hidden .aside-container,
+body.nav-hidden .aside-content {
+  top: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 16px !important; /* 内部清零，完全由外部 .aside 的 80px 控制 */
+}
