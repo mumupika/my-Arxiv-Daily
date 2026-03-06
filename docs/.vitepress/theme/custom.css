@@ -76,12 +76,25 @@
   width: 260px !important;
 }
 
-/* 正文容器 - 当侧栏显示时向右偏移 */
-body.sidebar-visible .VPContent {
-  max-width: none !important;
-  width: 100vw !important;
-  padding-left: 260px !important;
-  box-sizing: border-box !important;
+@media (min-width: 960px) {
+  /* 正文容器 - 当侧栏显示时向右偏移 */
+  body.sidebar-visible .VPContent {
+    max-width: none !important;
+    width: 100vw !important;
+    padding-left: 260px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 侧栏显示时的样式 */
+  body.sidebar-visible .VPSidebar {
+    display: block !important;
+  }
+
+  /* 5. 正常显示时：左右同时向内挤压正文，给两侧的悬浮栏留出空间 */
+  body.sidebar-visible:not(.full-width) .VPContent {
+    padding-left: 260px !important; /* 给左栏留出空间 */
+    padding-right: 320px !important; /* 给右栏留出空间 */
+  }
 }
 
 /* 正文容器 - 默认样式 */
@@ -111,11 +124,6 @@ body.sidebar-visible .VPContent {
 /* 全宽模式下移除左侧padding */
 body.full-width .VPContent {
   padding-left: 0 !important;
-}
-
-/* 侧栏显示时的样式 */
-body.sidebar-visible .VPSidebar {
-  display: block !important;
 }
 
 body.sidebar-visible:not(.full-width) .VPContent {
@@ -264,12 +272,6 @@ body.full-width .VPSidebar {
 /* 4. 正文容器的过渡动画（同时监听左右两边的 padding 变化） */
 .VPContent {
   transition: padding-left 0.3s ease, padding-right 0.3s ease !important;
-}
-
-/* 5. 正常显示时：左右同时向内挤压正文，给两侧的悬浮栏留出空间 */
-body.sidebar-visible:not(.full-width) .VPContent {
-  padding-left: 260px !important; /* 给左栏留出空间 */
-  padding-right: 320px !important; /* 给右栏留出空间 */
 }
 
 /* 6. 全宽模式触发时：左右内边距瞬间归零，触发正文向两侧丝滑伸展的动画 */
@@ -578,46 +580,54 @@ body.nav-hidden .aside-content {
 }
 
 /* =========================================
-   13. 移动端/平板端终极适配 (修复默认收窄问题)
+   13. 移动端终极重置 (修复菜单键失效与挤压)
    ========================================= */
 
-/* 针对 960px 以下的设备（手机 + 竖屏平板） */
-@media (max-width: 960px) {
+   @media (max-width: 960px) {
   
-  /* 1. 暴力清除正文容器的所有强制内边距 */
-  body.sidebar-visible:not(.full-width) .VPContent,
-  .VPContent {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    width: 100vw !important;
+    /* 1. 无论 JS 加了什么类，手机端正文永远不缩进，占满全屏 */
+    body.sidebar-visible:not(.full-width) .VPContent,
+    body.sidebar-visible .VPContent,
+    .VPContent {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      width: 100vw !important;
+      max-width: 100% !important;
+    }
+  
+    /* 2. 【核心】释放侧栏的显示控制权 */
+    /* 不要强制 display: none，也不要强制 display: block */
+    /* 让 VitePress 原生 CSS 决定：平时隐藏，按下 Menu 键时滑出 */
+    .VPSidebar {
+      width: auto !important;
+      top: 0 !important;
+      height: 100% !important;
+      /* 移除之前的 position: fixed !important 可能会导致的层级覆盖问题 */
+      /* 关键：去掉 display 的强制属性，让原生菜单生效 */
+      display: none; 
+    }
+    
+    /* 当 VitePress 手机菜单打开时 (通常会添加 .open 类)，让侧栏显示 */
+    .VPSidebar.open {
+      display: block !important;
+      background-color: var(--vp-c-bg) !important;
+      z-index: 200 !important; /* 保证在最上层 */
+    }
+  
+    /* 3. 隐藏我们自定义的 PC 端切换按钮 */
+    .sidebar-toggle, .aside-toggle {
+      display: none !important;
+    }
+  
+    /* 4. 隐藏右侧大纲 (手机端不显示) */
+    .VPDoc .aside, .VPDocAside {
+      display: none !important;
+    }
+  
+    /* 5. 修复表格宽度 */
+    .vp-doc table {
+      display: block !important;
+      overflow-x: auto !important;
+      width: 100% !important;
+    }
   }
-
-  /* 2. 隐藏我们在 PC 端强制固定的左侧栏 */
-  /* (移动端通常使用 VitePress 自带的汉堡菜单，或者为了阅读体验直接隐藏) */
-  .VPSidebar {
-    display: none !important;
-  }
-
-  /* 3. 隐藏右侧大纲栏（手机屏幕太小，放不下） */
-  .VPDoc .aside,
-  .VPDocAside {
-    display: none !important;
-  }
-
-  /* 4. 隐藏右上角的“切换视图”按钮（移动端默认就是全宽，不需要切换） */
-  .sidebar-toggle {
-    display: none !important;
-  }
-
-  /* 5. 调整正文内容的内边距，适应手机屏幕 */
-  .VPDoc {
-    padding: 20px 16px !important; /* 上下20px，左右16px */
-  }
-
-  /* 6. 确保表格容器可以横向滚动，不撑爆屏幕 */
-  .vp-doc table {
-    display: block !important;
-    overflow-x: auto !important;
-    width: 100% !important;
-  }
-}
