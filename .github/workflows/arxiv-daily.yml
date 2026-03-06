@@ -51,7 +51,7 @@ jobs:
             echo "jekyll/docs 目录已创建"
             echo "文件数量: $(find jekyll/docs -name "*.md" | wc -l)"
             echo "目录结构:"
-            find jekyll/docs -type f -name "*.md" | head -20
+            find jekyll/docs -type f -name "*.md" | head -20 || true
             echo ""
             echo "论文数量: $(grep -r "arxiv.org/abs" jekyll/docs/ | wc -l)"
           else
@@ -59,33 +59,32 @@ jobs:
           fi
         continue-on-error: false
       
-      - name: Check for changes
-        id: git-check
-        run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-          fi
-      
       - name: Commit and push changes
-        if: steps.git-check.outputs.has_changes == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+          
+          # 显示当前 git 状态
+          echo "当前 git 状态:"
+          git status
           
           # 添加所有更改
           git add .
           
           # 显示将要提交的更改
+          echo ""
           echo "将要提交的文件:"
           git status --short
           
-          # 提交更改
-          git commit -m "Update arxiv papers $(date +'%Y-%m-%d')" || exit 0
-          
-          # 推送到 GitHub
-          git push
+          # 提交更改（如果有）
+          if [ -n "$(git diff --cached --name-only)" ]; then
+            git commit -m "Update arxiv papers $(date +'%Y-%m-%d')"
+            echo "提交成功，正在推送..."
+            git push
+            echo "推送成功"
+          else
+            echo "没有需要提交的更改"
+          fi
       
       - name: Create summary
         if: always()
@@ -104,7 +103,7 @@ jobs:
           fi
       
       - name: Deploy to GitHub Pages
-        if: success() && steps.git-check.outputs.has_changes == 'true'
+        if: success()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

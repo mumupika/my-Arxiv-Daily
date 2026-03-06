@@ -32,3 +32,4 @@ _site/
 
 # Logs
 *.log
+*logs_*
