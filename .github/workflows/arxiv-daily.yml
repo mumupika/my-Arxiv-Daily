@@ -110,3 +110,4 @@ jobs:
           publish_dir: jekyll/
           publish_branch: gh-pages
           cname: ""
+          disable_nojekyll: true
