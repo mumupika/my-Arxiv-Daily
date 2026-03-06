@@ -34,8 +34,24 @@ jobs:
           pip install -r requirements.txt
       
       - name: Fetch arxiv papers
+        env:
+          PYTHONUNBUFFERED: 1
         run: |
-          python scripts/fetch_arxiv.py
+          echo "开始爬取 ArXiv 论文..."
+          echo "当前工作目录: $(pwd)"
+          echo "Python 版本: $(python --version)"
+          echo ""
+          
+          python -u scripts/fetch_arxiv.py
+          
+          echo ""
+          echo "爬取完成！"
+          
+          if [ -f "output/arxiv_papers.md" ]; then
+            echo "输出文件大小: $(wc -c < output/arxiv_papers.md) bytes"
+            echo "输出文件行数: $(wc -l < output/arxiv_papers.md) lines"
+          fi
+        continue-on-error: false
       
       - name: Check for changes
         id: git-check
@@ -68,8 +84,8 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           
           if [ -f "output/arxiv_papers.md" ]; then
-            # 统计论文数量
-            PAPER_COUNT=$(grep -c "^\- \*\*作者\*\*:" output/arxiv_papers.md || echo "0")
+            # 统计论文数量 - 查找包含 arxiv.org/abs 的行
+            PAPER_COUNT=$(grep -c "arxiv.org/abs" output/arxiv_papers.md || echo "0")
             echo "✅ Successfully processed $PAPER_COUNT papers" >> $GITHUB_STEP_SUMMARY
           else
             echo "ℹ️ No papers found or output file not created" >> $GITHUB_STEP_SUMMARY
