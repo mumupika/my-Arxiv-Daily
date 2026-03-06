@@ -49,12 +49,12 @@ jobs:
           
           if [ -d "docs" ]; then
             echo "docs 目录已创建"
-            echo "文件数量: $(find docs -name "*.md" | wc -l)"
+            echo "文件数量: $(find docs -name "*.md" 2>/dev/null | wc -l)"
             echo "目录结构:"
-            # 使用 process substitution 避免管道，这种方法不会触发 broken pipe
-            find docs -type f -name "*.md" | head -20
+            # 移除会导致 broken pipe 的管道命令，使用简单计数替代
+            echo "（已创建文件，详细结构见提交记录）"
             echo ""
-            echo "论文数量: $(grep -r "arxiv.org/abs" docs/ | wc -l)"
+            echo "论文数量: $(grep -r "arxiv.org/abs" docs/ 2>/dev/null | wc -l)"
           else
             echo "docs 目录未创建"
           fi
