@@ -51,4 +51,4 @@ layout: home
 
 ---
 
-*最后更新：{{ site.time | date: "%Y-%m-%d %H:%M" }}*
+*最后更新：{% if site.data.last_update %}{{ site.data.last_update.last_update }}{% else %}{{ site.time | date: "%Y-%m-%d %H:%M" }}{% endif %}*

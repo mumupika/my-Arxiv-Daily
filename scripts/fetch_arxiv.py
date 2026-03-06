@@ -313,6 +313,23 @@ def save_state(state_file, last_run_date):
         yaml.dump({'last_run_date': last_run_date.strftime('%Y-%m-%d')}, f)
 
 
+def save_last_update_time(update_time):
+    """保存最后更新时间到 jekyll 目录"""
+    # 获取 jekyll 目录路径
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    jekyll_dir = os.path.join(script_dir, '..', 'jekyll')
+    update_file = os.path.join(jekyll_dir, '_data', 'last_update.yml')
+    
+    # 确保 _data 目录存在
+    os.makedirs(os.path.dirname(update_file), exist_ok=True)
+    
+    # 保存更新时间
+    with open(update_file, 'w', encoding='utf-8') as f:
+        f.write(f"last_update: {update_time.strftime('%Y-%m-%d %H:%M:%S %Z')}\n")
+        f.write(f"last_update_date: {update_time.strftime('%Y-%m-%d')}\n")
+        f.write(f"last_update_time: {update_time.strftime('%H:%M')}\n")
+
+
 def main():
     # 获取配置文件路径
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -381,6 +398,9 @@ def main():
     
     # 保存状态
     save_state(state_file, end_date)
+    
+    # 保存最后更新时间到 jekyll 目录
+    save_last_update_time(end_date)
     
     print(f"\n完成！共爬取 {new_count} 篇新论文")
 

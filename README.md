@@ -2,6 +2,16 @@
 
 自动爬取 ArXiv 论文并生成按日期分类的 Markdown 报告，自动部署到 GitHub Pages 的工具。
 
+## 声明
+
+- 个人/组织使用项目，非商用，禁止商用使用或商用化二次分发。
+
+- "Data provided by the arXiv API. This project is not affiliated with, nor endorsed by, Cornell University or arXiv." (本项目数据由 arXiv API 提供，本项目与康奈尔大学或 arXiv 官方无隶属关系。)
+
+- 本项目采用了cline + glm-4.7进行开发，作者自身不具有相关项目的经验，如果您使用中遇到问题请留下issues，但作者不一定有足够的能力解决 QAQ，感谢您的理解与支持。
+
+- 本项目没有支持i18n的计划。(This project will be maintained in Chinese, without plans to be internationalized.)
+
 ## ✨ 功能特性
 
 - 🤖 **自动化爬取**：使用 GitHub Actions 定时自动爬取 ArXiv 论文
@@ -17,7 +27,10 @@
 
 👉 **访问网站**: [https://mumupika.github.io/my-Arxiv-Daily](https://mumupika.github.io/my-Arxiv-Daily)
 
+> ⚠️ 注意：首次部署后需要等待 GitHub Actions 运行完成（约5-10分钟），网站才能正常访问。
+
 论文列表会每天自动更新，包含以下分类的论文：
+
 - cs.AR - Architecture
 - cs.DC - Distributed, Parallel, and Cluster Computing
 - cs.NI - Networking and Internet Architecture
@@ -27,7 +40,7 @@
 
 ## 📦 项目结构
 
-```
+```txt
 arxiv/
 ├── .github/
 │   └── workflows/
@@ -289,4 +302,4 @@ MIT License
 
 ---
 
-Made with ❤️ by [Your Name]
+Made with glm-4.7 by [mumupika]
