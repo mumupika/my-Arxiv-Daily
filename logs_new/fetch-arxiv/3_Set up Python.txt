@@ -1,0 +1,20 @@
+﻿2026-03-06T06:59:30.2048745Z ##[group]Run actions/setup-python@v4
+2026-03-06T06:59:30.2049999Z with:
+2026-03-06T06:59:30.2050819Z   python-version: 3.12
+2026-03-06T06:59:30.2051753Z   cache: pip
+2026-03-06T06:59:30.2052756Z   check-latest: false
+2026-03-06T06:59:30.2053992Z   token: ***
+2026-03-06T06:59:30.2054885Z   update-environment: true
+2026-03-06T06:59:30.2055941Z   allow-prereleases: false
+2026-03-06T06:59:30.2056951Z ##[endgroup]
+2026-03-06T06:59:30.3826638Z ##[group]Installed versions
+2026-03-06T06:59:30.4181086Z Successfully set up CPython (3.12.12)
+2026-03-06T06:59:30.4182410Z ##[endgroup]
+2026-03-06T06:59:30.5174305Z [command]/opt/hostedtoolcache/Python/3.12.12/x64/bin/pip cache dir
+2026-03-06T06:59:31.8445912Z /home/runner/.cache/pip
+2026-03-06T06:59:32.1611248Z Cache hit for: setup-python-Linux-24.04-Ubuntu-python-3.12.12-pip-cd0d0219a5ce22eea01f3bf46596ba36b70fc823b02492544b5b76f8110c79c6
+2026-03-06T06:59:33.1186925Z Received 3259332 of 3259332 (100.0%), 4.5 MBs/sec
+2026-03-06T06:59:33.1187738Z Cache Size: ~3 MB (3259332 B)
+2026-03-06T06:59:33.1224567Z [command]/usr/bin/tar -xf /home/runner/work/_temp/90757cad-b126-44bc-8663-c95040b1367c/cache.tzst -P -C /home/runner/work/my-Arxiv-Daily/my-Arxiv-Daily --use-compress-program unzstd
+2026-03-06T06:59:33.1487913Z Cache restored successfully
+2026-03-06T06:59:33.1503588Z Cache restored from key: setup-python-Linux-24.04-Ubuntu-python-3.12.12-pip-cd0d0219a5ce22eea01f3bf46596ba36b70fc823b02492544b5b76f8110c79c6

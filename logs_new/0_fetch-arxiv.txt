@@ -1,0 +1,960 @@
+﻿2026-03-06T06:59:28.1098795Z Current runner version: '2.332.0'
+2026-03-06T06:59:28.1124250Z ##[group]Runner Image Provisioner
+2026-03-06T06:59:28.1125336Z Hosted Compute Agent
+2026-03-06T06:59:28.1125873Z Version: 20260213.493
+2026-03-06T06:59:28.1126578Z Commit: 5c115507f6dd24b8de37d8bbe0bb4509d0cc0fa3
+2026-03-06T06:59:28.1127251Z Build Date: 2026-02-13T00:28:41Z
+2026-03-06T06:59:28.1127907Z Worker ID: {dcbc3618-1d5e-4465-8e63-09f12fcaaab6}
+2026-03-06T06:59:28.1128591Z Azure Region: westus2
+2026-03-06T06:59:28.1129191Z ##[endgroup]
+2026-03-06T06:59:28.1130742Z ##[group]Operating System
+2026-03-06T06:59:28.1131428Z Ubuntu
+2026-03-06T06:59:28.1132109Z 24.04.3
+2026-03-06T06:59:28.1132549Z LTS
+2026-03-06T06:59:28.1133105Z ##[endgroup]
+2026-03-06T06:59:28.1133627Z ##[group]Runner Image
+2026-03-06T06:59:28.1134193Z Image: ubuntu-24.04
+2026-03-06T06:59:28.1134654Z Version: 20260302.42.1
+2026-03-06T06:59:28.1135977Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260302.42/images/ubuntu/Ubuntu2404-Readme.md
+2026-03-06T06:59:28.1138558Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260302.42
+2026-03-06T06:59:28.1140243Z ##[endgroup]
+2026-03-06T06:59:28.1143669Z ##[group]GITHUB_TOKEN Permissions
+2026-03-06T06:59:28.1146178Z Actions: write
+2026-03-06T06:59:28.1146748Z ArtifactMetadata: write
+2026-03-06T06:59:28.1147333Z Attestations: write
+2026-03-06T06:59:28.1147950Z Checks: write
+2026-03-06T06:59:28.1148499Z Contents: write
+2026-03-06T06:59:28.1149012Z Deployments: write
+2026-03-06T06:59:28.1149644Z Discussions: write
+2026-03-06T06:59:28.1150181Z Issues: write
+2026-03-06T06:59:28.1150673Z Metadata: read
+2026-03-06T06:59:28.1151230Z Models: read
+2026-03-06T06:59:28.1151696Z Packages: write
+2026-03-06T06:59:28.1152600Z Pages: write
+2026-03-06T06:59:28.1153243Z PullRequests: write
+2026-03-06T06:59:28.1153831Z RepositoryProjects: write
+2026-03-06T06:59:28.1154464Z SecurityEvents: write
+2026-03-06T06:59:28.1155402Z Statuses: write
+2026-03-06T06:59:28.1156022Z ##[endgroup]
+2026-03-06T06:59:28.1158129Z Secret source: Actions
+2026-03-06T06:59:28.1159224Z Prepare workflow directory
+2026-03-06T06:59:28.1495923Z Prepare all required actions
+2026-03-06T06:59:28.1534295Z Getting action download info
+2026-03-06T06:59:28.6330216Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-03-06T06:59:28.7998004Z Download action repository 'actions/setup-python@v4' (SHA:7f4fc3e22c37d6ff65e88745f38bd3157c663f7c)
+2026-03-06T06:59:28.9111745Z Download action repository 'peaceiris/actions-gh-pages@v3' (SHA:373f7f263a76c20808c831209c920827a82a2847)
+2026-03-06T06:59:29.4005217Z Complete job name: fetch-arxiv
+2026-03-06T06:59:29.4759323Z ##[group]Run actions/checkout@v4
+2026-03-06T06:59:29.4760174Z with:
+2026-03-06T06:59:29.4760796Z   token: ***
+2026-03-06T06:59:29.4761220Z   repository: mumupika/my-Arxiv-Daily
+2026-03-06T06:59:29.4761715Z   ssh-strict: true
+2026-03-06T06:59:29.4762305Z   ssh-user: git
+2026-03-06T06:59:29.4762718Z   persist-credentials: true
+2026-03-06T06:59:29.4763178Z   clean: true
+2026-03-06T06:59:29.4763581Z   sparse-checkout-cone-mode: true
+2026-03-06T06:59:29.4764058Z   fetch-depth: 1
+2026-03-06T06:59:29.4764445Z   fetch-tags: false
+2026-03-06T06:59:29.4764832Z   show-progress: true
+2026-03-06T06:59:29.4765230Z   lfs: false
+2026-03-06T06:59:29.4765584Z   submodules: false
+2026-03-06T06:59:29.4765987Z   set-safe-directory: true
+2026-03-06T06:59:29.4766661Z ##[endgroup]
+2026-03-06T06:59:29.5863137Z Syncing repository: mumupika/my-Arxiv-Daily
+2026-03-06T06:59:29.5865381Z ##[group]Getting Git version info
+2026-03-06T06:59:29.5866244Z Working directory is '/home/runner/work/my-Arxiv-Daily/my-Arxiv-Daily'
+2026-03-06T06:59:29.5867255Z [command]/usr/bin/git version
+2026-03-06T06:59:29.5927262Z git version 2.53.0
+2026-03-06T06:59:29.5953956Z ##[endgroup]
+2026-03-06T06:59:29.5968749Z Temporarily overriding HOME='/home/runner/work/_temp/e1193ada-e88c-4f33-9fc8-bf6a922e63e4' before making global git config changes
+2026-03-06T06:59:29.5970959Z Adding repository directory to the temporary git global config as a safe directory
+2026-03-06T06:59:29.5981815Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/my-Arxiv-Daily/my-Arxiv-Daily
+2026-03-06T06:59:29.6024175Z Deleting the contents of '/home/runner/work/my-Arxiv-Daily/my-Arxiv-Daily'
+2026-03-06T06:59:29.6027307Z ##[group]Initializing the repository
+2026-03-06T06:59:29.6031379Z [command]/usr/bin/git init /home/runner/work/my-Arxiv-Daily/my-Arxiv-Daily
+2026-03-06T06:59:29.6128015Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-03-06T06:59:29.6129707Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-03-06T06:59:29.6131205Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-03-06T06:59:29.6132786Z hint: call:
+2026-03-06T06:59:29.6133349Z hint:
+2026-03-06T06:59:29.6134082Z hint: 	git config --global init.defaultBranch <name>
+2026-03-06T06:59:29.6134910Z hint:
+2026-03-06T06:59:29.6135461Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-03-06T06:59:29.6136348Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-03-06T06:59:29.6137037Z hint:
+2026-03-06T06:59:29.6137410Z hint: 	git branch -m <name>
+2026-03-06T06:59:29.6137846Z hint:
+2026-03-06T06:59:29.6138414Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-03-06T06:59:29.6139911Z Initialized empty Git repository in /home/runner/work/my-Arxiv-Daily/my-Arxiv-Daily/.git/
+2026-03-06T06:59:29.6145380Z [command]/usr/bin/git remote add origin https://github.com/mumupika/my-Arxiv-Daily
+2026-03-06T06:59:29.6182737Z ##[endgroup]
+2026-03-06T06:59:29.6183457Z ##[group]Disabling automatic garbage collection
+2026-03-06T06:59:29.6187111Z [command]/usr/bin/git config --local gc.auto 0
+2026-03-06T06:59:29.6217191Z ##[endgroup]
+2026-03-06T06:59:29.6217862Z ##[group]Setting up auth
+2026-03-06T06:59:29.6225693Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-03-06T06:59:29.6259703Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-03-06T06:59:29.6597227Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-03-06T06:59:29.6632177Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-03-06T06:59:29.6874320Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-03-06T06:59:29.6917916Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-03-06T06:59:29.7162719Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-03-06T06:59:29.7201303Z ##[endgroup]
+2026-03-06T06:59:29.7202887Z ##[group]Fetching the repository
+2026-03-06T06:59:29.7211343Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +da035d48055cec479796cd0c59b3739516f7b90c:refs/remotes/origin/main
+2026-03-06T06:59:30.0972148Z From https://github.com/mumupika/my-Arxiv-Daily
+2026-03-06T06:59:30.0974278Z  * [new ref]         da035d48055cec479796cd0c59b3739516f7b90c -> origin/main
+2026-03-06T06:59:30.1009381Z ##[endgroup]
+2026-03-06T06:59:30.1011235Z ##[group]Determining the checkout info
+2026-03-06T06:59:30.1013631Z ##[endgroup]
+2026-03-06T06:59:30.1016194Z [command]/usr/bin/git sparse-checkout disable
+2026-03-06T06:59:30.1059633Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-03-06T06:59:30.1088880Z ##[group]Checking out the ref
+2026-03-06T06:59:30.1093251Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-03-06T06:59:30.1615942Z Switched to a new branch 'main'
+2026-03-06T06:59:30.1619797Z branch 'main' set up to track 'origin/main'.
+2026-03-06T06:59:30.1629674Z ##[endgroup]
+2026-03-06T06:59:30.1673095Z [command]/usr/bin/git log -1 --format=%H
+2026-03-06T06:59:30.1700895Z da035d48055cec479796cd0c59b3739516f7b90c
+2026-03-06T06:59:30.2048782Z ##[group]Run actions/setup-python@v4
+2026-03-06T06:59:30.2050005Z with:
+2026-03-06T06:59:30.2050823Z   python-version: 3.12
+2026-03-06T06:59:30.2051756Z   cache: pip
+2026-03-06T06:59:30.2052762Z   check-latest: false
+2026-03-06T06:59:30.2053997Z   token: ***
+2026-03-06T06:59:30.2054889Z   update-environment: true
+2026-03-06T06:59:30.2055944Z   allow-prereleases: false
+2026-03-06T06:59:30.2056955Z ##[endgroup]
+2026-03-06T06:59:30.3826692Z ##[group]Installed versions
+2026-03-06T06:59:30.4181160Z Successfully set up CPython (3.12.12)
+2026-03-06T06:59:30.4182430Z ##[endgroup]
+2026-03-06T06:59:30.5174375Z [command]/opt/hostedtoolcache/Python/3.12.12/x64/bin/pip cache dir
+2026-03-06T06:59:31.8445981Z /home/runner/.cache/pip
+2026-03-06T06:59:32.1611287Z Cache hit for: setup-python-Linux-24.04-Ubuntu-python-3.12.12-pip-cd0d0219a5ce22eea01f3bf46596ba36b70fc823b02492544b5b76f8110c79c6
+2026-03-06T06:59:33.1186995Z Received 3259332 of 3259332 (100.0%), 4.5 MBs/sec
+2026-03-06T06:59:33.1187856Z Cache Size: ~3 MB (3259332 B)
+2026-03-06T06:59:33.1224594Z [command]/usr/bin/tar -xf /home/runner/work/_temp/90757cad-b126-44bc-8663-c95040b1367c/cache.tzst -P -C /home/runner/work/my-Arxiv-Daily/my-Arxiv-Daily --use-compress-program unzstd
+2026-03-06T06:59:33.1488097Z Cache restored successfully
+2026-03-06T06:59:33.1503620Z Cache restored from key: setup-python-Linux-24.04-Ubuntu-python-3.12.12-pip-cd0d0219a5ce22eea01f3bf46596ba36b70fc823b02492544b5b76f8110c79c6
+2026-03-06T06:59:33.1640084Z ##[group]Run python -m pip install --upgrade pip
+2026-03-06T06:59:33.1640558Z [36;1mpython -m pip install --upgrade pip[0m
+2026-03-06T06:59:33.1640877Z [36;1mpip install -r requirements.txt[0m
+2026-03-06T06:59:33.1697611Z shell: /usr/bin/bash -e {0}
+2026-03-06T06:59:33.1697921Z env:
+2026-03-06T06:59:33.1698182Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:33.1698634Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib/pkgconfig
+2026-03-06T06:59:33.1699082Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:33.1699465Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:33.1699836Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:33.1700221Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib
+2026-03-06T06:59:33.1700534Z ##[endgroup]
+2026-03-06T06:59:34.4133747Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/site-packages (26.0.1)
+2026-03-06T06:59:35.4404496Z Collecting arxiv>=2.1.0 (from -r requirements.txt (line 4))
+2026-03-06T06:59:35.4417811Z   Using cached arxiv-2.4.1-py3-none-any.whl.metadata (6.3 kB)
+2026-03-06T06:59:35.4820929Z Collecting PyYAML>=6.0 (from -r requirements.txt (line 7))
+2026-03-06T06:59:35.4835847Z   Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-03-06T06:59:35.5049989Z Collecting requests>=2.31.0 (from -r requirements.txt (line 10))
+2026-03-06T06:59:35.5062575Z   Using cached requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+2026-03-06T06:59:35.5201518Z Collecting python-dateutil>=2.8.2 (from -r requirements.txt (line 13))
+2026-03-06T06:59:35.5214784Z   Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+2026-03-06T06:59:35.5352971Z Collecting feedparser~=6.0.10 (from arxiv>=2.1.0->-r requirements.txt (line 4))
+2026-03-06T06:59:35.5365322Z   Using cached feedparser-6.0.12-py3-none-any.whl.metadata (2.7 kB)
+2026-03-06T06:59:35.6456331Z Collecting charset_normalizer<4,>=2 (from requests>=2.31.0->-r requirements.txt (line 10))
+2026-03-06T06:59:35.7176693Z   Downloading charset_normalizer-3.4.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (39 kB)
+2026-03-06T06:59:35.7577394Z Collecting idna<4,>=2.5 (from requests>=2.31.0->-r requirements.txt (line 10))
+2026-03-06T06:59:35.7589981Z   Using cached idna-3.11-py3-none-any.whl.metadata (8.4 kB)
+2026-03-06T06:59:35.7818274Z Collecting urllib3<3,>=1.21.1 (from requests>=2.31.0->-r requirements.txt (line 10))
+2026-03-06T06:59:35.7830089Z   Using cached urllib3-2.6.3-py3-none-any.whl.metadata (6.9 kB)
+2026-03-06T06:59:35.8023821Z Collecting certifi>=2017.4.17 (from requests>=2.31.0->-r requirements.txt (line 10))
+2026-03-06T06:59:35.8035914Z   Using cached certifi-2026.2.25-py3-none-any.whl.metadata (2.5 kB)
+2026-03-06T06:59:35.8147944Z Collecting sgmllib3k (from feedparser~=6.0.10->arxiv>=2.1.0->-r requirements.txt (line 4))
+2026-03-06T06:59:35.8149476Z   Using cached sgmllib3k-1.0.0-py3-none-any.whl
+2026-03-06T06:59:35.8446869Z Collecting six>=1.5 (from python-dateutil>=2.8.2->-r requirements.txt (line 13))
+2026-03-06T06:59:35.8458819Z   Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+2026-03-06T06:59:35.8490468Z Using cached arxiv-2.4.1-py3-none-any.whl (12 kB)
+2026-03-06T06:59:35.8502353Z Using cached requests-2.32.5-py3-none-any.whl (64 kB)
+2026-03-06T06:59:35.8571550Z Downloading charset_normalizer-3.4.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (196 kB)
+2026-03-06T06:59:35.8832902Z Using cached feedparser-6.0.12-py3-none-any.whl (81 kB)
+2026-03-06T06:59:35.8845124Z Using cached idna-3.11-py3-none-any.whl (71 kB)
+2026-03-06T06:59:35.8857210Z Using cached urllib3-2.6.3-py3-none-any.whl (131 kB)
+2026-03-06T06:59:35.8869358Z Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-03-06T06:59:35.8886903Z Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+2026-03-06T06:59:35.8898240Z Using cached certifi-2026.2.25-py3-none-any.whl (153 kB)
+2026-03-06T06:59:35.8909760Z Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+2026-03-06T06:59:35.9154053Z Installing collected packages: sgmllib3k, urllib3, six, PyYAML, idna, feedparser, charset_normalizer, certifi, requests, python-dateutil, arxiv
+2026-03-06T06:59:36.3536823Z 
+2026-03-06T06:59:36.3554733Z Successfully installed PyYAML-6.0.3 arxiv-2.4.1 certifi-2026.2.25 charset_normalizer-3.4.5 feedparser-6.0.12 idna-3.11 python-dateutil-2.9.0.post0 requests-2.32.5 sgmllib3k-1.0.0 six-1.17.0 urllib3-2.6.3
+2026-03-06T06:59:36.4134477Z ##[group]Run echo "开始爬取 ArXiv 论文..."
+2026-03-06T06:59:36.4134799Z [36;1mecho "开始爬取 ArXiv 论文..."[0m
+2026-03-06T06:59:36.4135068Z [36;1mecho "当前工作目录: $(pwd)"[0m
+2026-03-06T06:59:36.4135330Z [36;1mecho "Python 版本: $(python --version)"[0m
+2026-03-06T06:59:36.4135610Z [36;1mecho ""[0m
+2026-03-06T06:59:36.4135794Z [36;1m[0m
+2026-03-06T06:59:36.4135983Z [36;1mpython -u scripts/fetch_arxiv.py[0m
+2026-03-06T06:59:36.4136235Z [36;1m[0m
+2026-03-06T06:59:36.4136395Z [36;1mecho ""[0m
+2026-03-06T06:59:36.4136570Z [36;1mecho "爬取完成！"[0m
+2026-03-06T06:59:36.4136760Z [36;1m[0m
+2026-03-06T06:59:36.4136959Z [36;1mif [ -d "jekyll/docs" ]; then[0m
+2026-03-06T06:59:36.4137262Z [36;1m  echo "jekyll/docs 目录已创建"[0m
+2026-03-06T06:59:36.4137576Z [36;1m  echo "文件数量: $(find jekyll/docs -name "*.md" | wc -l)"[0m
+2026-03-06T06:59:36.4137906Z [36;1m  echo "目录结构:"[0m
+2026-03-06T06:59:36.4138195Z [36;1m  find jekyll/docs -type f -name "*.md" | head -20 || true[0m
+2026-03-06T06:59:36.4138542Z [36;1m  echo ""[0m
+2026-03-06T06:59:36.4138810Z [36;1m  echo "论文数量: $(grep -r "arxiv.org/abs" jekyll/docs/ | wc -l)"[0m
+2026-03-06T06:59:36.4139147Z [36;1melse[0m
+2026-03-06T06:59:36.4139334Z [36;1m  echo "jekyll/docs 目录未创建"[0m
+2026-03-06T06:59:36.4139564Z [36;1mfi[0m
+2026-03-06T06:59:36.4190974Z shell: /usr/bin/bash -e {0}
+2026-03-06T06:59:36.4191213Z env:
+2026-03-06T06:59:36.4191459Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.4191886Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib/pkgconfig
+2026-03-06T06:59:36.4192575Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.4193134Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.4193522Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.4193904Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib
+2026-03-06T06:59:36.4194220Z   PYTHONUNBUFFERED: 1
+2026-03-06T06:59:36.4194418Z ##[endgroup]
+2026-03-06T06:59:36.4265086Z 开始爬取 ArXiv 论文...
+2026-03-06T06:59:36.4269779Z 当前工作目录: /home/runner/work/my-Arxiv-Daily/my-Arxiv-Daily
+2026-03-06T06:59:36.4294496Z Python 版本: Python 3.12.12
+2026-03-06T06:59:36.4294734Z 
+2026-03-06T06:59:36.6656260Z 已存在 12089 篇论文
+2026-03-06T06:59:36.6794082Z 从上次运行日期 2026-03-07 开始爬取
+2026-03-06T06:59:36.6794525Z 日期范围无效，退出
+2026-03-06T06:59:36.6978449Z 
+2026-03-06T06:59:36.6979070Z 爬取完成！
+2026-03-06T06:59:36.6980164Z jekyll/docs 目录已创建
+2026-03-06T06:59:36.7039041Z 文件数量: 545
+2026-03-06T06:59:36.7039453Z 目录结构:
+2026-03-06T06:59:36.7054947Z jekyll/docs/2024-12/2024-12-22.md
+2026-03-06T06:59:36.7055473Z jekyll/docs/2024-12/2024-12-19.md
+2026-03-06T06:59:36.7058101Z jekyll/docs/2024-12/2024-12-24.md
+2026-03-06T06:59:36.7058568Z jekyll/docs/2024-12/2024-12-04.md
+2026-03-06T06:59:36.7058978Z jekyll/docs/2024-12/2024-12-01.md
+2026-03-06T06:59:36.7059371Z jekyll/docs/2024-12/2024-12-07.md
+2026-03-06T06:59:36.7059763Z jekyll/docs/2024-12/2024-12-17.md
+2026-03-06T06:59:36.7060201Z jekyll/docs/2024-12/2024-12-05.md
+2026-03-06T06:59:36.7060598Z jekyll/docs/2024-12/2024-12-13.md
+2026-03-06T06:59:36.7060961Z jekyll/docs/2024-12/2024-12-08.md
+2026-03-06T06:59:36.7061189Z jekyll/docs/2024-12/2024-12-14.md
+2026-03-06T06:59:36.7061414Z jekyll/docs/2024-12/2024-12-06.md
+2026-03-06T06:59:36.7061650Z jekyll/docs/2024-12/2024-12-26.md
+2026-03-06T06:59:36.7061876Z jekyll/docs/2024-12/2024-12-03.md
+2026-03-06T06:59:36.7062470Z jekyll/docs/2024-12/2024-12-16.md
+2026-03-06T06:59:36.7062889Z jekyll/docs/2024-12/2024-12-30.md
+2026-03-06T06:59:36.7063307Z jekyll/docs/2024-12/2024-12-23.md
+2026-03-06T06:59:36.7063708Z jekyll/docs/2024-12/2024-12-29.md
+2026-03-06T06:59:36.7064115Z jekyll/docs/2024-12/2024-12-11.md
+2026-03-06T06:59:36.7064504Z jekyll/docs/2024-12/2024-12-10.md
+2026-03-06T06:59:36.7065173Z find: ‘standard output’: Broken pipe
+2026-03-06T06:59:36.7065617Z find: write error
+2026-03-06T06:59:36.7067379Z 
+2026-03-06T06:59:36.7318438Z 论文数量: 13761
+2026-03-06T06:59:36.7347208Z ##[group]Run git config --local user.email "github-actions[bot]@users.noreply.github.com"
+2026-03-06T06:59:36.7347853Z [36;1mgit config --local user.email "github-actions[bot]@users.noreply.github.com"[0m
+2026-03-06T06:59:36.7348334Z [36;1mgit config --local user.name "github-actions[bot]"[0m
+2026-03-06T06:59:36.7348639Z [36;1m[0m
+2026-03-06T06:59:36.7348819Z [36;1m# 显示当前 git 状态[0m
+2026-03-06T06:59:36.7349033Z [36;1mecho "当前 git 状态:"[0m
+2026-03-06T06:59:36.7349242Z [36;1mgit status[0m
+2026-03-06T06:59:36.7349426Z [36;1m[0m
+2026-03-06T06:59:36.7349587Z [36;1m# 添加所有更改[0m
+2026-03-06T06:59:36.7349759Z [36;1mgit add .[0m
+2026-03-06T06:59:36.7349956Z [36;1m[0m
+2026-03-06T06:59:36.7350116Z [36;1m# 显示将要提交的更改[0m
+2026-03-06T06:59:36.7350296Z [36;1mecho ""[0m
+2026-03-06T06:59:36.7350480Z [36;1mecho "将要提交的文件:"[0m
+2026-03-06T06:59:36.7350692Z [36;1mgit status --short[0m
+2026-03-06T06:59:36.7350901Z [36;1m[0m
+2026-03-06T06:59:36.7351053Z [36;1m# 提交更改（如果有）[0m
+2026-03-06T06:59:36.7351336Z [36;1mif [ -n "$(git diff --cached --name-only)" ]; then[0m
+2026-03-06T06:59:36.7351720Z [36;1m  git commit -m "Update arxiv papers $(date +'%Y-%m-%d')"[0m
+2026-03-06T06:59:36.7352421Z [36;1m  echo "提交成功，正在推送..."[0m
+2026-03-06T06:59:36.7352656Z [36;1m  git push[0m
+2026-03-06T06:59:36.7352850Z [36;1m  echo "推送成功"[0m
+2026-03-06T06:59:36.7353041Z [36;1melse[0m
+2026-03-06T06:59:36.7353221Z [36;1m  echo "没有需要提交的更改"[0m
+2026-03-06T06:59:36.7353426Z [36;1mfi[0m
+2026-03-06T06:59:36.7402633Z shell: /usr/bin/bash -e {0}
+2026-03-06T06:59:36.7402873Z env:
+2026-03-06T06:59:36.7403123Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.7403731Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib/pkgconfig
+2026-03-06T06:59:36.7404151Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.7404520Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.7404911Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.7405290Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib
+2026-03-06T06:59:36.7405602Z ##[endgroup]
+2026-03-06T06:59:36.7506576Z 当前 git 状态:
+2026-03-06T06:59:36.7753323Z On branch main
+2026-03-06T06:59:36.7753847Z Your branch is up to date with 'origin/main'.
+2026-03-06T06:59:36.7754151Z 
+2026-03-06T06:59:36.7754280Z nothing to commit, working tree clean
+2026-03-06T06:59:36.7790295Z 
+2026-03-06T06:59:36.7790593Z 将要提交的文件:
+2026-03-06T06:59:36.7846967Z 没有需要提交的更改
+2026-03-06T06:59:36.7875337Z ##[group]Run echo "## ArXiv Paper Crawler Results" >> $GITHUB_STEP_SUMMARY
+2026-03-06T06:59:36.7875862Z [36;1mecho "## ArXiv Paper Crawler Results" >> $GITHUB_STEP_SUMMARY[0m
+2026-03-06T06:59:36.7876251Z [36;1mecho "" >> $GITHUB_STEP_SUMMARY[0m
+2026-03-06T06:59:36.7876496Z [36;1m[0m
+2026-03-06T06:59:36.7876688Z [36;1mif [ -d "jekyll/docs" ]; then[0m
+2026-03-06T06:59:36.7876949Z [36;1m  # 统计文件数量[0m
+2026-03-06T06:59:36.7877218Z [36;1m  FILE_COUNT=$(find jekyll/docs -name "*.md" | wc -l)[0m
+2026-03-06T06:59:36.7877588Z [36;1m  # 统计论文数量 - 查找包含 arxiv.org/abs 的行[0m
+2026-03-06T06:59:36.7877933Z [36;1m  PAPER_COUNT=$(grep -r "arxiv.org/abs" jekyll/docs/ | wc -l)[0m
+2026-03-06T06:59:36.7878519Z [36;1m  echo "✅ Successfully processed $FILE_COUNT files with $PAPER_COUNT papers" >> $GITHUB_STEP_SUMMARY[0m
+2026-03-06T06:59:36.7879003Z [36;1melse[0m
+2026-03-06T06:59:36.7879391Z [36;1m  echo "ℹ️ No papers found or jekyll/docs directory not created" >> $GITHUB_STEP_SUMMARY[0m
+2026-03-06T06:59:36.7879802Z [36;1mfi[0m
+2026-03-06T06:59:36.7926388Z shell: /usr/bin/bash -e {0}
+2026-03-06T06:59:36.7926623Z env:
+2026-03-06T06:59:36.7926901Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.7927338Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib/pkgconfig
+2026-03-06T06:59:36.7927757Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.7928119Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.7928498Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.7928895Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib
+2026-03-06T06:59:36.7929207Z ##[endgroup]
+2026-03-06T06:59:36.8282918Z ##[group]Run peaceiris/actions-gh-pages@v3
+2026-03-06T06:59:36.8283226Z with:
+2026-03-06T06:59:36.8283644Z   github_token: ***
+2026-03-06T06:59:36.8283842Z   publish_dir: jekyll/
+2026-03-06T06:59:36.8284053Z   publish_branch: gh-pages
+2026-03-06T06:59:36.8284281Z   allow_empty_commit: false
+2026-03-06T06:59:36.8284495Z   keep_files: false
+2026-03-06T06:59:36.8284677Z   force_orphan: false
+2026-03-06T06:59:36.8284871Z   enable_jekyll: false
+2026-03-06T06:59:36.8285080Z   disable_nojekyll: false
+2026-03-06T06:59:36.8285284Z   exclude_assets: .github
+2026-03-06T06:59:36.8285477Z env:
+2026-03-06T06:59:36.8285707Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.8286117Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib/pkgconfig
+2026-03-06T06:59:36.8286523Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.8286880Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.8287268Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.8287632Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib
+2026-03-06T06:59:36.8287926Z ##[endgroup]
+2026-03-06T06:59:36.8916071Z [INFO] Usage https://github.com/peaceiris/actions-gh-pages#readme
+2026-03-06T06:59:36.8920942Z ##[group]Dump inputs
+2026-03-06T06:59:36.8921292Z [INFO] GithubToken: true
+2026-03-06T06:59:36.8921618Z [INFO] PublishBranch: gh-pages
+2026-03-06T06:59:36.8922582Z [INFO] PublishDir: jekyll/
+2026-03-06T06:59:36.8922841Z [INFO] DestinationDir: 
+2026-03-06T06:59:36.8923060Z [INFO] ExternalRepository: 
+2026-03-06T06:59:36.8923303Z [INFO] AllowEmptyCommit: false
+2026-03-06T06:59:36.8923532Z [INFO] KeepFiles: false
+2026-03-06T06:59:36.8923733Z [INFO] ForceOrphan: false
+2026-03-06T06:59:36.8923941Z [INFO] UserName: 
+2026-03-06T06:59:36.8924128Z [INFO] UserEmail: 
+2026-03-06T06:59:36.8924308Z [INFO] CommitMessage: 
+2026-03-06T06:59:36.8924545Z [INFO] FullCommitMessage: 
+2026-03-06T06:59:36.8924935Z [INFO] TagName: 
+2026-03-06T06:59:36.8925289Z [INFO] TagMessage: 
+2026-03-06T06:59:36.8925539Z [INFO] EnableJekyll (DisableNoJekyll): false
+2026-03-06T06:59:36.8925800Z [INFO] CNAME: 
+2026-03-06T06:59:36.8926023Z [INFO] ExcludeAssets .github
+2026-03-06T06:59:36.8926264Z 
+2026-03-06T06:59:36.8926538Z ##[endgroup]
+2026-03-06T06:59:36.8927104Z ##[group]Setup auth token
+2026-03-06T06:59:36.8927488Z [INFO] setup GITHUB_TOKEN
+2026-03-06T06:59:36.8928316Z ##[endgroup]
+2026-03-06T06:59:36.8928906Z ##[group]Prepare publishing assets
+2026-03-06T06:59:36.8932458Z [INFO] ForceOrphan: false
+2026-03-06T06:59:36.8982889Z [command]/usr/bin/git clone --depth=1 --single-branch --branch gh-pages ***github.com/mumupika/my-Arxiv-Daily.git /home/runner/actions_github_pages_1772780376892
+2026-03-06T06:59:36.9020753Z Cloning into '/home/runner/actions_github_pages_1772780376892'...
+2026-03-06T06:59:37.3809312Z [INFO] clean up /home/runner/actions_github_pages_1772780376892
+2026-03-06T06:59:37.3809791Z [INFO] chdir /home/runner/actions_github_pages_1772780376892
+2026-03-06T06:59:37.3824991Z [command]/usr/bin/git rm -r --ignore-unmatch *
+2026-03-06T06:59:37.4378265Z rm '.nojekyll'
+2026-03-06T06:59:37.4378648Z rm '_config.yml'
+2026-03-06T06:59:37.4379011Z rm '_includes/sidebar.html'
+2026-03-06T06:59:37.4379418Z rm 'docs/.state'
+2026-03-06T06:59:37.4379742Z rm 'docs/2024-09/2024-09-01.md'
+2026-03-06T06:59:37.4380105Z rm 'docs/2024-09/2024-09-02.md'
+2026-03-06T06:59:37.4380491Z rm 'docs/2024-09/2024-09-03.md'
+2026-03-06T06:59:37.4380935Z rm 'docs/2024-09/2024-09-04.md'
+2026-03-06T06:59:37.4381342Z rm 'docs/2024-09/2024-09-05.md'
+2026-03-06T06:59:37.4381727Z rm 'docs/2024-09/2024-09-06.md'
+2026-03-06T06:59:37.4382308Z rm 'docs/2024-09/2024-09-08.md'
+2026-03-06T06:59:37.4382717Z rm 'docs/2024-09/2024-09-09.md'
+2026-03-06T06:59:37.4382984Z rm 'docs/2024-09/2024-09-10.md'
+2026-03-06T06:59:37.4383214Z rm 'docs/2024-09/2024-09-11.md'
+2026-03-06T06:59:37.4383440Z rm 'docs/2024-09/2024-09-12.md'
+2026-03-06T06:59:37.4383649Z rm 'docs/2024-09/2024-09-13.md'
+2026-03-06T06:59:37.4384212Z rm 'docs/2024-09/2024-09-15.md'
+2026-03-06T06:59:37.4384439Z rm 'docs/2024-09/2024-09-16.md'
+2026-03-06T06:59:37.4384646Z rm 'docs/2024-09/2024-09-17.md'
+2026-03-06T06:59:37.4384859Z rm 'docs/2024-09/2024-09-18.md'
+2026-03-06T06:59:37.4385069Z rm 'docs/2024-09/2024-09-19.md'
+2026-03-06T06:59:37.4385271Z rm 'docs/2024-09/2024-09-20.md'
+2026-03-06T06:59:37.4385486Z rm 'docs/2024-09/2024-09-21.md'
+2026-03-06T06:59:37.4385696Z rm 'docs/2024-09/2024-09-22.md'
+2026-03-06T06:59:37.4385913Z rm 'docs/2024-09/2024-09-23.md'
+2026-03-06T06:59:37.4386194Z rm 'docs/2024-09/2024-09-24.md'
+2026-03-06T06:59:37.4386408Z rm 'docs/2024-09/2024-09-25.md'
+2026-03-06T06:59:37.4386619Z rm 'docs/2024-09/2024-09-26.md'
+2026-03-06T06:59:37.4386823Z rm 'docs/2024-09/2024-09-27.md'
+2026-03-06T06:59:37.4387034Z rm 'docs/2024-09/2024-09-28.md'
+2026-03-06T06:59:37.4387247Z rm 'docs/2024-09/2024-09-30.md'
+2026-03-06T06:59:37.4387451Z rm 'docs/2024-10/2024-10-01.md'
+2026-03-06T06:59:37.4387667Z rm 'docs/2024-10/2024-10-02.md'
+2026-03-06T06:59:37.4387878Z rm 'docs/2024-10/2024-10-03.md'
+2026-03-06T06:59:37.4388087Z rm 'docs/2024-10/2024-10-04.md'
+2026-03-06T06:59:37.4388301Z rm 'docs/2024-10/2024-10-06.md'
+2026-03-06T06:59:37.4388510Z rm 'docs/2024-10/2024-10-07.md'
+2026-03-06T06:59:37.4388719Z rm 'docs/2024-10/2024-10-08.md'
+2026-03-06T06:59:37.4388921Z rm 'docs/2024-10/2024-10-09.md'
+2026-03-06T06:59:37.4389129Z rm 'docs/2024-10/2024-10-10.md'
+2026-03-06T06:59:37.4389337Z rm 'docs/2024-10/2024-10-11.md'
+2026-03-06T06:59:37.4389701Z rm 'docs/2024-10/2024-10-12.md'
+2026-03-06T06:59:37.4389912Z rm 'docs/2024-10/2024-10-13.md'
+2026-03-06T06:59:37.4390129Z rm 'docs/2024-10/2024-10-14.md'
+2026-03-06T06:59:37.4390337Z rm 'docs/2024-10/2024-10-15.md'
+2026-03-06T06:59:37.4390546Z rm 'docs/2024-10/2024-10-16.md'
+2026-03-06T06:59:37.4390753Z rm 'docs/2024-10/2024-10-17.md'
+2026-03-06T06:59:37.4390955Z rm 'docs/2024-10/2024-10-18.md'
+2026-03-06T06:59:37.4391163Z rm 'docs/2024-10/2024-10-19.md'
+2026-03-06T06:59:37.4391376Z rm 'docs/2024-10/2024-10-20.md'
+2026-03-06T06:59:37.4391585Z rm 'docs/2024-10/2024-10-21.md'
+2026-03-06T06:59:37.4391784Z rm 'docs/2024-10/2024-10-22.md'
+2026-03-06T06:59:37.4392230Z rm 'docs/2024-10/2024-10-23.md'
+2026-03-06T06:59:37.4392445Z rm 'docs/2024-10/2024-10-24.md'
+2026-03-06T06:59:37.4392647Z rm 'docs/2024-10/2024-10-25.md'
+2026-03-06T06:59:37.4392856Z rm 'docs/2024-10/2024-10-26.md'
+2026-03-06T06:59:37.4393061Z rm 'docs/2024-10/2024-10-27.md'
+2026-03-06T06:59:37.4393266Z rm 'docs/2024-10/2024-10-28.md'
+2026-03-06T06:59:37.4393476Z rm 'docs/2024-10/2024-10-29.md'
+2026-03-06T06:59:37.4393688Z rm 'docs/2024-10/2024-10-30.md'
+2026-03-06T06:59:37.4393907Z rm 'docs/2024-10/2024-10-31.md'
+2026-03-06T06:59:37.4394121Z rm 'docs/2024-11/2024-11-01.md'
+2026-03-06T06:59:37.4394332Z rm 'docs/2024-11/2024-11-02.md'
+2026-03-06T06:59:37.4394536Z rm 'docs/2024-11/2024-11-03.md'
+2026-03-06T06:59:37.4394747Z rm 'docs/2024-11/2024-11-04.md'
+2026-03-06T06:59:37.4394959Z rm 'docs/2024-11/2024-11-05.md'
+2026-03-06T06:59:37.4395173Z rm 'docs/2024-11/2024-11-06.md'
+2026-03-06T06:59:37.4395377Z rm 'docs/2024-11/2024-11-07.md'
+2026-03-06T06:59:37.4395589Z rm 'docs/2024-11/2024-11-08.md'
+2026-03-06T06:59:37.4395795Z rm 'docs/2024-11/2024-11-09.md'
+2026-03-06T06:59:37.4395996Z rm 'docs/2024-11/2024-11-10.md'
+2026-03-06T06:59:37.4396205Z rm 'docs/2024-11/2024-11-11.md'
+2026-03-06T06:59:37.4396428Z rm 'docs/2024-11/2024-11-12.md'
+2026-03-06T06:59:37.4396637Z rm 'docs/2024-11/2024-11-13.md'
+2026-03-06T06:59:37.4396854Z rm 'docs/2024-11/2024-11-14.md'
+2026-03-06T06:59:37.4397068Z rm 'docs/2024-11/2024-11-15.md'
+2026-03-06T06:59:37.4397272Z rm 'docs/2024-11/2024-11-16.md'
+2026-03-06T06:59:37.4397484Z rm 'docs/2024-11/2024-11-17.md'
+2026-03-06T06:59:37.4397697Z rm 'docs/2024-11/2024-11-18.md'
+2026-03-06T06:59:37.4397912Z rm 'docs/2024-11/2024-11-19.md'
+2026-03-06T06:59:37.4398117Z rm 'docs/2024-11/2024-11-20.md'
+2026-03-06T06:59:37.4398329Z rm 'docs/2024-11/2024-11-21.md'
+2026-03-06T06:59:37.4398542Z rm 'docs/2024-11/2024-11-22.md'
+2026-03-06T06:59:37.4398921Z rm 'docs/2024-11/2024-11-23.md'
+2026-03-06T06:59:37.4399146Z rm 'docs/2024-11/2024-11-24.md'
+2026-03-06T06:59:37.4399356Z rm 'docs/2024-11/2024-11-25.md'
+2026-03-06T06:59:37.4399563Z rm 'docs/2024-11/2024-11-26.md'
+2026-03-06T06:59:37.4399771Z rm 'docs/2024-11/2024-11-27.md'
+2026-03-06T06:59:37.4399981Z rm 'docs/2024-11/2024-11-28.md'
+2026-03-06T06:59:37.4400184Z rm 'docs/2024-11/2024-11-29.md'
+2026-03-06T06:59:37.4400393Z rm 'docs/2024-12/2024-12-01.md'
+2026-03-06T06:59:37.4400607Z rm 'docs/2024-12/2024-12-02.md'
+2026-03-06T06:59:37.4400816Z rm 'docs/2024-12/2024-12-03.md'
+2026-03-06T06:59:37.4401029Z rm 'docs/2024-12/2024-12-04.md'
+2026-03-06T06:59:37.4401236Z rm 'docs/2024-12/2024-12-05.md'
+2026-03-06T06:59:37.4401444Z rm 'docs/2024-12/2024-12-06.md'
+2026-03-06T06:59:37.4401649Z rm 'docs/2024-12/2024-12-07.md'
+2026-03-06T06:59:37.4401855Z rm 'docs/2024-12/2024-12-08.md'
+2026-03-06T06:59:37.4402404Z rm 'docs/2024-12/2024-12-09.md'
+2026-03-06T06:59:37.4402620Z rm 'docs/2024-12/2024-12-10.md'
+2026-03-06T06:59:37.4402836Z rm 'docs/2024-12/2024-12-11.md'
+2026-03-06T06:59:37.4403048Z rm 'docs/2024-12/2024-12-12.md'
+2026-03-06T06:59:37.4403255Z rm 'docs/2024-12/2024-12-13.md'
+2026-03-06T06:59:37.4403465Z rm 'docs/2024-12/2024-12-14.md'
+2026-03-06T06:59:37.4403675Z rm 'docs/2024-12/2024-12-15.md'
+2026-03-06T06:59:37.4403879Z rm 'docs/2024-12/2024-12-16.md'
+2026-03-06T06:59:37.4404093Z rm 'docs/2024-12/2024-12-17.md'
+2026-03-06T06:59:37.4404303Z rm 'docs/2024-12/2024-12-18.md'
+2026-03-06T06:59:37.4404662Z rm 'docs/2024-12/2024-12-19.md'
+2026-03-06T06:59:37.4404872Z rm 'docs/2024-12/2024-12-20.md'
+2026-03-06T06:59:37.4405080Z rm 'docs/2024-12/2024-12-21.md'
+2026-03-06T06:59:37.4405287Z rm 'docs/2024-12/2024-12-22.md'
+2026-03-06T06:59:37.4405490Z rm 'docs/2024-12/2024-12-23.md'
+2026-03-06T06:59:37.4405699Z rm 'docs/2024-12/2024-12-24.md'
+2026-03-06T06:59:37.4405914Z rm 'docs/2024-12/2024-12-25.md'
+2026-03-06T06:59:37.4406118Z rm 'docs/2024-12/2024-12-26.md'
+2026-03-06T06:59:37.4406336Z rm 'docs/2024-12/2024-12-27.md'
+2026-03-06T06:59:37.4406548Z rm 'docs/2024-12/2024-12-28.md'
+2026-03-06T06:59:37.4406753Z rm 'docs/2024-12/2024-12-29.md'
+2026-03-06T06:59:37.4406964Z rm 'docs/2024-12/2024-12-30.md'
+2026-03-06T06:59:37.4407175Z rm 'docs/2024-12/2024-12-31.md'
+2026-03-06T06:59:37.4407377Z rm 'docs/2025-01/2025-01-01.md'
+2026-03-06T06:59:37.4407586Z rm 'docs/2025-01/2025-01-02.md'
+2026-03-06T06:59:37.4407797Z rm 'docs/2025-01/2025-01-03.md'
+2026-03-06T06:59:37.4408015Z rm 'docs/2025-01/2025-01-04.md'
+2026-03-06T06:59:37.4408218Z rm 'docs/2025-01/2025-01-05.md'
+2026-03-06T06:59:37.4408448Z rm 'docs/2025-01/2025-01-06.md'
+2026-03-06T06:59:37.4408667Z rm 'docs/2025-01/2025-01-07.md'
+2026-03-06T06:59:37.4408879Z rm 'docs/2025-01/2025-01-08.md'
+2026-03-06T06:59:37.4409089Z rm 'docs/2025-01/2025-01-09.md'
+2026-03-06T06:59:37.4409289Z rm 'docs/2025-01/2025-01-10.md'
+2026-03-06T06:59:37.4409503Z rm 'docs/2025-01/2025-01-11.md'
+2026-03-06T06:59:37.4409727Z rm 'docs/2025-01/2025-01-12.md'
+2026-03-06T06:59:37.4409930Z rm 'docs/2025-01/2025-01-13.md'
+2026-03-06T06:59:37.4410138Z rm 'docs/2025-01/2025-01-14.md'
+2026-03-06T06:59:37.4410349Z rm 'docs/2025-01/2025-01-15.md'
+2026-03-06T06:59:37.4410552Z rm 'docs/2025-01/2025-01-16.md'
+2026-03-06T06:59:37.4410763Z rm 'docs/2025-01/2025-01-17.md'
+2026-03-06T06:59:37.4410975Z rm 'docs/2025-01/2025-01-18.md'
+2026-03-06T06:59:37.4411178Z rm 'docs/2025-01/2025-01-19.md'
+2026-03-06T06:59:37.4411383Z rm 'docs/2025-01/2025-01-20.md'
+2026-03-06T06:59:37.4411595Z rm 'docs/2025-01/2025-01-21.md'
+2026-03-06T06:59:37.4411802Z rm 'docs/2025-01/2025-01-22.md'
+2026-03-06T06:59:37.4412268Z rm 'docs/2025-01/2025-01-23.md'
+2026-03-06T06:59:37.4412484Z rm 'docs/2025-01/2025-01-24.md'
+2026-03-06T06:59:37.4412692Z rm 'docs/2025-01/2025-01-25.md'
+2026-03-06T06:59:37.4412897Z rm 'docs/2025-01/2025-01-26.md'
+2026-03-06T06:59:37.4413104Z rm 'docs/2025-01/2025-01-27.md'
+2026-03-06T06:59:37.4413314Z rm 'docs/2025-01/2025-01-28.md'
+2026-03-06T06:59:37.4413515Z rm 'docs/2025-01/2025-01-29.md'
+2026-03-06T06:59:37.4413856Z rm 'docs/2025-01/2025-01-30.md'
+2026-03-06T06:59:37.4414071Z rm 'docs/2025-01/2025-01-31.md'
+2026-03-06T06:59:37.4414277Z rm 'docs/2025-02/2025-02-01.md'
+2026-03-06T06:59:37.4414484Z rm 'docs/2025-02/2025-02-02.md'
+2026-03-06T06:59:37.4414695Z rm 'docs/2025-02/2025-02-03.md'
+2026-03-06T06:59:37.4414902Z rm 'docs/2025-02/2025-02-04.md'
+2026-03-06T06:59:37.4415114Z rm 'docs/2025-02/2025-02-05.md'
+2026-03-06T06:59:37.4415326Z rm 'docs/2025-02/2025-02-06.md'
+2026-03-06T06:59:37.4415537Z rm 'docs/2025-02/2025-02-07.md'
+2026-03-06T06:59:37.4415742Z rm 'docs/2025-02/2025-02-08.md'
+2026-03-06T06:59:37.4415960Z rm 'docs/2025-02/2025-02-09.md'
+2026-03-06T06:59:37.4416171Z rm 'docs/2025-02/2025-02-10.md'
+2026-03-06T06:59:37.4416375Z rm 'docs/2025-02/2025-02-11.md'
+2026-03-06T06:59:37.4416585Z rm 'docs/2025-02/2025-02-12.md'
+2026-03-06T06:59:37.4416795Z rm 'docs/2025-02/2025-02-13.md'
+2026-03-06T06:59:37.4416997Z rm 'docs/2025-02/2025-02-14.md'
+2026-03-06T06:59:37.4417208Z rm 'docs/2025-02/2025-02-15.md'
+2026-03-06T06:59:37.4417421Z rm 'docs/2025-02/2025-02-16.md'
+2026-03-06T06:59:37.4417623Z rm 'docs/2025-02/2025-02-17.md'
+2026-03-06T06:59:37.4435987Z rm 'docs/2025-02/2025-02-18.md'
+2026-03-06T06:59:37.4436303Z rm 'docs/2025-02/2025-02-19.md'
+2026-03-06T06:59:37.4436542Z rm 'docs/2025-02/2025-02-20.md'
+2026-03-06T06:59:37.4436760Z rm 'docs/2025-02/2025-02-21.md'
+2026-03-06T06:59:37.4436980Z rm 'docs/2025-02/2025-02-22.md'
+2026-03-06T06:59:37.4437188Z rm 'docs/2025-02/2025-02-23.md'
+2026-03-06T06:59:37.4437614Z rm 'docs/2025-02/2025-02-24.md'
+2026-03-06T06:59:37.4437838Z rm 'docs/2025-02/2025-02-25.md'
+2026-03-06T06:59:37.4438056Z rm 'docs/2025-02/2025-02-26.md'
+2026-03-06T06:59:37.4438263Z rm 'docs/2025-02/2025-02-27.md'
+2026-03-06T06:59:37.4438468Z rm 'docs/2025-02/2025-02-28.md'
+2026-03-06T06:59:37.4438676Z rm 'docs/2025-03/2025-03-01.md'
+2026-03-06T06:59:37.4438878Z rm 'docs/2025-03/2025-03-03.md'
+2026-03-06T06:59:37.4439090Z rm 'docs/2025-03/2025-03-04.md'
+2026-03-06T06:59:37.4439299Z rm 'docs/2025-03/2025-03-05.md'
+2026-03-06T06:59:37.4439537Z rm 'docs/2025-03/2025-03-06.md'
+2026-03-06T06:59:37.4439755Z rm 'docs/2025-03/2025-03-07.md'
+2026-03-06T06:59:37.4439967Z rm 'docs/2025-03/2025-03-08.md'
+2026-03-06T06:59:37.4440167Z rm 'docs/2025-03/2025-03-09.md'
+2026-03-06T06:59:37.4440374Z rm 'docs/2025-03/2025-03-10.md'
+2026-03-06T06:59:37.4440581Z rm 'docs/2025-03/2025-03-11.md'
+2026-03-06T06:59:37.4440786Z rm 'docs/2025-03/2025-03-12.md'
+2026-03-06T06:59:37.4440997Z rm 'docs/2025-03/2025-03-13.md'
+2026-03-06T06:59:37.4441210Z rm 'docs/2025-03/2025-03-14.md'
+2026-03-06T06:59:37.4441422Z rm 'docs/2025-03/2025-03-15.md'
+2026-03-06T06:59:37.4441629Z rm 'docs/2025-03/2025-03-16.md'
+2026-03-06T06:59:37.4441835Z rm 'docs/2025-03/2025-03-17.md'
+2026-03-06T06:59:37.4442331Z rm 'docs/2025-03/2025-03-18.md'
+2026-03-06T06:59:37.4442542Z rm 'docs/2025-03/2025-03-19.md'
+2026-03-06T06:59:37.4442752Z rm 'docs/2025-03/2025-03-20.md'
+2026-03-06T06:59:37.4442961Z rm 'docs/2025-03/2025-03-21.md'
+2026-03-06T06:59:37.4443168Z rm 'docs/2025-03/2025-03-22.md'
+2026-03-06T06:59:37.4443375Z rm 'docs/2025-03/2025-03-23.md'
+2026-03-06T06:59:37.4443583Z rm 'docs/2025-03/2025-03-24.md'
+2026-03-06T06:59:37.4443783Z rm 'docs/2025-03/2025-03-25.md'
+2026-03-06T06:59:37.4443990Z rm 'docs/2025-03/2025-03-26.md'
+2026-03-06T06:59:37.4444214Z rm 'docs/2025-03/2025-03-27.md'
+2026-03-06T06:59:37.4444435Z rm 'docs/2025-03/2025-03-28.md'
+2026-03-06T06:59:37.4444642Z rm 'docs/2025-03/2025-03-29.md'
+2026-03-06T06:59:37.4444855Z rm 'docs/2025-03/2025-03-30.md'
+2026-03-06T06:59:37.4445064Z rm 'docs/2025-03/2025-03-31.md'
+2026-03-06T06:59:37.4445268Z rm 'docs/2025-04/2025-04-01.md'
+2026-03-06T06:59:37.4445473Z rm 'docs/2025-04/2025-04-02.md'
+2026-03-06T06:59:37.4445681Z rm 'docs/2025-04/2025-04-03.md'
+2026-03-06T06:59:37.4445886Z rm 'docs/2025-04/2025-04-04.md'
+2026-03-06T06:59:37.4446107Z rm 'docs/2025-04/2025-04-05.md'
+2026-03-06T06:59:37.4446315Z rm 'docs/2025-04/2025-04-06.md'
+2026-03-06T06:59:37.4446518Z rm 'docs/2025-04/2025-04-07.md'
+2026-03-06T06:59:37.4446862Z rm 'docs/2025-04/2025-04-08.md'
+2026-03-06T06:59:37.4447080Z rm 'docs/2025-04/2025-04-09.md'
+2026-03-06T06:59:37.4447293Z rm 'docs/2025-04/2025-04-10.md'
+2026-03-06T06:59:37.4447501Z rm 'docs/2025-04/2025-04-11.md'
+2026-03-06T06:59:37.4447713Z rm 'docs/2025-04/2025-04-12.md'
+2026-03-06T06:59:37.4447921Z rm 'docs/2025-04/2025-04-13.md'
+2026-03-06T06:59:37.4448123Z rm 'docs/2025-04/2025-04-14.md'
+2026-03-06T06:59:37.4448329Z rm 'docs/2025-04/2025-04-15.md'
+2026-03-06T06:59:37.4448544Z rm 'docs/2025-04/2025-04-16.md'
+2026-03-06T06:59:37.4448745Z rm 'docs/2025-04/2025-04-17.md'
+2026-03-06T06:59:37.4448965Z rm 'docs/2025-04/2025-04-18.md'
+2026-03-06T06:59:37.4449174Z rm 'docs/2025-04/2025-04-19.md'
+2026-03-06T06:59:37.4449382Z rm 'docs/2025-04/2025-04-20.md'
+2026-03-06T06:59:37.4449591Z rm 'docs/2025-04/2025-04-21.md'
+2026-03-06T06:59:37.4449799Z rm 'docs/2025-04/2025-04-22.md'
+2026-03-06T06:59:37.4450001Z rm 'docs/2025-04/2025-04-23.md'
+2026-03-06T06:59:37.4450212Z rm 'docs/2025-04/2025-04-24.md'
+2026-03-06T06:59:37.4450425Z rm 'docs/2025-04/2025-04-25.md'
+2026-03-06T06:59:37.4450632Z rm 'docs/2025-04/2025-04-26.md'
+2026-03-06T06:59:37.4450831Z rm 'docs/2025-04/2025-04-27.md'
+2026-03-06T06:59:37.4451037Z rm 'docs/2025-04/2025-04-28.md'
+2026-03-06T06:59:37.4451243Z rm 'docs/2025-04/2025-04-29.md'
+2026-03-06T06:59:37.4451457Z rm 'docs/2025-04/2025-04-30.md'
+2026-03-06T06:59:37.4451699Z rm 'docs/2025-05/2025-05-01.md'
+2026-03-06T06:59:37.4452018Z rm 'docs/2025-05/2025-05-02.md'
+2026-03-06T06:59:37.4452360Z rm 'docs/2025-05/2025-05-03.md'
+2026-03-06T06:59:37.4452575Z rm 'docs/2025-05/2025-05-04.md'
+2026-03-06T06:59:37.4452779Z rm 'docs/2025-05/2025-05-05.md'
+2026-03-06T06:59:37.4452988Z rm 'docs/2025-05/2025-05-06.md'
+2026-03-06T06:59:37.4453199Z rm 'docs/2025-05/2025-05-07.md'
+2026-03-06T06:59:37.4453409Z rm 'docs/2025-05/2025-05-08.md'
+2026-03-06T06:59:37.4453620Z rm 'docs/2025-05/2025-05-09.md'
+2026-03-06T06:59:37.4453822Z rm 'docs/2025-05/2025-05-10.md'
+2026-03-06T06:59:37.4454028Z rm 'docs/2025-05/2025-05-11.md'
+2026-03-06T06:59:37.4454240Z rm 'docs/2025-05/2025-05-12.md'
+2026-03-06T06:59:37.4454444Z rm 'docs/2025-05/2025-05-13.md'
+2026-03-06T06:59:37.4454653Z rm 'docs/2025-05/2025-05-14.md'
+2026-03-06T06:59:37.4454872Z rm 'docs/2025-05/2025-05-15.md'
+2026-03-06T06:59:37.4455080Z rm 'docs/2025-05/2025-05-16.md'
+2026-03-06T06:59:37.4455296Z rm 'docs/2025-05/2025-05-17.md'
+2026-03-06T06:59:37.4455506Z rm 'docs/2025-05/2025-05-18.md'
+2026-03-06T06:59:37.4455707Z rm 'docs/2025-05/2025-05-19.md'
+2026-03-06T06:59:37.4455918Z rm 'docs/2025-05/2025-05-20.md'
+2026-03-06T06:59:37.4456128Z rm 'docs/2025-05/2025-05-21.md'
+2026-03-06T06:59:37.4456327Z rm 'docs/2025-05/2025-05-22.md'
+2026-03-06T06:59:37.4456531Z rm 'docs/2025-05/2025-05-23.md'
+2026-03-06T06:59:37.4456739Z rm 'docs/2025-05/2025-05-24.md'
+2026-03-06T06:59:37.4456953Z rm 'docs/2025-05/2025-05-25.md'
+2026-03-06T06:59:37.4457158Z rm 'docs/2025-05/2025-05-26.md'
+2026-03-06T06:59:37.4457368Z rm 'docs/2025-05/2025-05-27.md'
+2026-03-06T06:59:37.4457582Z rm 'docs/2025-05/2025-05-28.md'
+2026-03-06T06:59:37.4457786Z rm 'docs/2025-05/2025-05-29.md'
+2026-03-06T06:59:37.4457997Z rm 'docs/2025-05/2025-05-30.md'
+2026-03-06T06:59:37.4458211Z rm 'docs/2025-05/2025-05-31.md'
+2026-03-06T06:59:37.4458414Z rm 'docs/2025-06/2025-06-01.md'
+2026-03-06T06:59:37.4458629Z rm 'docs/2025-06/2025-06-02.md'
+2026-03-06T06:59:37.4458840Z rm 'docs/2025-06/2025-06-03.md'
+2026-03-06T06:59:37.4459043Z rm 'docs/2025-06/2025-06-04.md'
+2026-03-06T06:59:37.4459252Z rm 'docs/2025-06/2025-06-05.md'
+2026-03-06T06:59:37.4459466Z rm 'docs/2025-06/2025-06-06.md'
+2026-03-06T06:59:37.4459676Z rm 'docs/2025-06/2025-06-07.md'
+2026-03-06T06:59:37.4459911Z rm 'docs/2025-06/2025-06-08.md'
+2026-03-06T06:59:37.4460117Z rm 'docs/2025-06/2025-06-09.md'
+2026-03-06T06:59:37.4460327Z rm 'docs/2025-06/2025-06-10.md'
+2026-03-06T06:59:37.4460527Z rm 'docs/2025-06/2025-06-11.md'
+2026-03-06T06:59:37.4460735Z rm 'docs/2025-06/2025-06-12.md'
+2026-03-06T06:59:37.4460943Z rm 'docs/2025-06/2025-06-13.md'
+2026-03-06T06:59:37.4461257Z rm 'docs/2025-06/2025-06-14.md'
+2026-03-06T06:59:37.4461474Z rm 'docs/2025-06/2025-06-15.md'
+2026-03-06T06:59:37.4461683Z rm 'docs/2025-06/2025-06-16.md'
+2026-03-06T06:59:37.4461884Z rm 'docs/2025-06/2025-06-17.md'
+2026-03-06T06:59:37.4462196Z rm 'docs/2025-06/2025-06-18.md'
+2026-03-06T06:59:37.4462409Z rm 'docs/2025-06/2025-06-19.md'
+2026-03-06T06:59:37.4462613Z rm 'docs/2025-06/2025-06-20.md'
+2026-03-06T06:59:37.4462816Z rm 'docs/2025-06/2025-06-21.md'
+2026-03-06T06:59:37.4463033Z rm 'docs/2025-06/2025-06-22.md'
+2026-03-06T06:59:37.4463239Z rm 'docs/2025-06/2025-06-23.md'
+2026-03-06T06:59:37.4463437Z rm 'docs/2025-06/2025-06-24.md'
+2026-03-06T06:59:37.4463641Z rm 'docs/2025-06/2025-06-25.md'
+2026-03-06T06:59:37.4463846Z rm 'docs/2025-06/2025-06-26.md'
+2026-03-06T06:59:37.4464045Z rm 'docs/2025-06/2025-06-27.md'
+2026-03-06T06:59:37.4464246Z rm 'docs/2025-06/2025-06-28.md'
+2026-03-06T06:59:37.4464451Z rm 'docs/2025-06/2025-06-29.md'
+2026-03-06T06:59:37.4464651Z rm 'docs/2025-06/2025-06-30.md'
+2026-03-06T06:59:37.4464863Z rm 'docs/2025-07/2025-07-01.md'
+2026-03-06T06:59:37.4465074Z rm 'docs/2025-07/2025-07-02.md'
+2026-03-06T06:59:37.4465274Z rm 'docs/2025-07/2025-07-03.md'
+2026-03-06T06:59:37.4465482Z rm 'docs/2025-07/2025-07-04.md'
+2026-03-06T06:59:37.4465686Z rm 'docs/2025-07/2025-07-05.md'
+2026-03-06T06:59:37.4465890Z rm 'docs/2025-07/2025-07-06.md'
+2026-03-06T06:59:37.4466090Z rm 'docs/2025-07/2025-07-07.md'
+2026-03-06T06:59:37.4466303Z rm 'docs/2025-07/2025-07-08.md'
+2026-03-06T06:59:37.4466653Z rm 'docs/2025-07/2025-07-09.md'
+2026-03-06T06:59:37.4466864Z rm 'docs/2025-07/2025-07-10.md'
+2026-03-06T06:59:37.4467073Z rm 'docs/2025-07/2025-07-11.md'
+2026-03-06T06:59:37.4467274Z rm 'docs/2025-07/2025-07-12.md'
+2026-03-06T06:59:37.4467485Z rm 'docs/2025-07/2025-07-13.md'
+2026-03-06T06:59:37.4467692Z rm 'docs/2025-07/2025-07-14.md'
+2026-03-06T06:59:37.4467892Z rm 'docs/2025-07/2025-07-15.md'
+2026-03-06T06:59:37.4468099Z rm 'docs/2025-07/2025-07-16.md'
+2026-03-06T06:59:37.4468304Z rm 'docs/2025-07/2025-07-17.md'
+2026-03-06T06:59:37.4468507Z rm 'docs/2025-07/2025-07-18.md'
+2026-03-06T06:59:37.4468721Z rm 'docs/2025-07/2025-07-19.md'
+2026-03-06T06:59:37.4468929Z rm 'docs/2025-07/2025-07-20.md'
+2026-03-06T06:59:37.4469133Z rm 'docs/2025-07/2025-07-21.md'
+2026-03-06T06:59:37.4469334Z rm 'docs/2025-07/2025-07-22.md'
+2026-03-06T06:59:37.4469541Z rm 'docs/2025-07/2025-07-23.md'
+2026-03-06T06:59:37.4469747Z rm 'docs/2025-07/2025-07-24.md'
+2026-03-06T06:59:37.4469951Z rm 'docs/2025-07/2025-07-25.md'
+2026-03-06T06:59:37.4470159Z rm 'docs/2025-07/2025-07-26.md'
+2026-03-06T06:59:37.4470364Z rm 'docs/2025-07/2025-07-27.md'
+2026-03-06T06:59:37.4470563Z rm 'docs/2025-07/2025-07-28.md'
+2026-03-06T06:59:37.4470769Z rm 'docs/2025-07/2025-07-29.md'
+2026-03-06T06:59:37.4470975Z rm 'docs/2025-07/2025-07-30.md'
+2026-03-06T06:59:37.4471176Z rm 'docs/2025-07/2025-07-31.md'
+2026-03-06T06:59:37.4471382Z rm 'docs/2025-08/2025-08-01.md'
+2026-03-06T06:59:37.4471592Z rm 'docs/2025-08/2025-08-02.md'
+2026-03-06T06:59:37.4471791Z rm 'docs/2025-08/2025-08-03.md'
+2026-03-06T06:59:37.4472230Z rm 'docs/2025-08/2025-08-04.md'
+2026-03-06T06:59:37.4472445Z rm 'docs/2025-08/2025-08-05.md'
+2026-03-06T06:59:37.4472657Z rm 'docs/2025-08/2025-08-06.md'
+2026-03-06T06:59:37.4472861Z rm 'docs/2025-08/2025-08-07.md'
+2026-03-06T06:59:37.4473067Z rm 'docs/2025-08/2025-08-08.md'
+2026-03-06T06:59:37.4473274Z rm 'docs/2025-08/2025-08-09.md'
+2026-03-06T06:59:37.4473475Z rm 'docs/2025-08/2025-08-10.md'
+2026-03-06T06:59:37.4473680Z rm 'docs/2025-08/2025-08-11.md'
+2026-03-06T06:59:37.4473888Z rm 'docs/2025-08/2025-08-12.md'
+2026-03-06T06:59:37.4474089Z rm 'docs/2025-08/2025-08-13.md'
+2026-03-06T06:59:37.4474295Z rm 'docs/2025-08/2025-08-14.md'
+2026-03-06T06:59:37.4474503Z rm 'docs/2025-08/2025-08-15.md'
+2026-03-06T06:59:37.4474703Z rm 'docs/2025-08/2025-08-16.md'
+2026-03-06T06:59:37.4474913Z rm 'docs/2025-08/2025-08-17.md'
+2026-03-06T06:59:37.4475120Z rm 'docs/2025-08/2025-08-18.md'
+2026-03-06T06:59:37.4475327Z rm 'docs/2025-08/2025-08-19.md'
+2026-03-06T06:59:37.4475657Z rm 'docs/2025-08/2025-08-20.md'
+2026-03-06T06:59:37.4475874Z rm 'docs/2025-08/2025-08-21.md'
+2026-03-06T06:59:37.4476078Z rm 'docs/2025-08/2025-08-22.md'
+2026-03-06T06:59:37.4476278Z rm 'docs/2025-08/2025-08-23.md'
+2026-03-06T06:59:37.4476485Z rm 'docs/2025-08/2025-08-24.md'
+2026-03-06T06:59:37.4476694Z rm 'docs/2025-08/2025-08-25.md'
+2026-03-06T06:59:37.4476898Z rm 'docs/2025-08/2025-08-26.md'
+2026-03-06T06:59:37.4477105Z rm 'docs/2025-08/2025-08-27.md'
+2026-03-06T06:59:37.4477317Z rm 'docs/2025-08/2025-08-28.md'
+2026-03-06T06:59:37.4477529Z rm 'docs/2025-08/2025-08-29.md'
+2026-03-06T06:59:37.4477743Z rm 'docs/2025-08/2025-08-30.md'
+2026-03-06T06:59:37.4477950Z rm 'docs/2025-08/2025-08-31.md'
+2026-03-06T06:59:37.4478157Z rm 'docs/2025-09/2025-09-01.md'
+2026-03-06T06:59:37.4478358Z rm 'docs/2025-09/2025-09-02.md'
+2026-03-06T06:59:37.4478566Z rm 'docs/2025-09/2025-09-03.md'
+2026-03-06T06:59:37.4478774Z rm 'docs/2025-09/2025-09-04.md'
+2026-03-06T06:59:37.4478975Z rm 'docs/2025-09/2025-09-05.md'
+2026-03-06T06:59:37.4479187Z rm 'docs/2025-09/2025-09-06.md'
+2026-03-06T06:59:37.4479391Z rm 'docs/2025-09/2025-09-07.md'
+2026-03-06T06:59:37.4479591Z rm 'docs/2025-09/2025-09-08.md'
+2026-03-06T06:59:37.4479795Z rm 'docs/2025-09/2025-09-09.md'
+2026-03-06T06:59:37.4480000Z rm 'docs/2025-09/2025-09-10.md'
+2026-03-06T06:59:37.4480198Z rm 'docs/2025-09/2025-09-11.md'
+2026-03-06T06:59:37.4480404Z rm 'docs/2025-09/2025-09-12.md'
+2026-03-06T06:59:37.4480609Z rm 'docs/2025-09/2025-09-13.md'
+2026-03-06T06:59:37.4480931Z rm 'docs/2025-09/2025-09-14.md'
+2026-03-06T06:59:37.4481137Z rm 'docs/2025-09/2025-09-15.md'
+2026-03-06T06:59:37.4481338Z rm 'docs/2025-09/2025-09-16.md'
+2026-03-06T06:59:37.4481542Z rm 'docs/2025-09/2025-09-17.md'
+2026-03-06T06:59:37.4481741Z rm 'docs/2025-09/2025-09-18.md'
+2026-03-06T06:59:37.4482150Z rm 'docs/2025-09/2025-09-19.md'
+2026-03-06T06:59:37.4482435Z rm 'docs/2025-09/2025-09-20.md'
+2026-03-06T06:59:37.4482641Z rm 'docs/2025-09/2025-09-21.md'
+2026-03-06T06:59:37.4482847Z rm 'docs/2025-09/2025-09-22.md'
+2026-03-06T06:59:37.4483059Z rm 'docs/2025-09/2025-09-23.md'
+2026-03-06T06:59:37.4483258Z rm 'docs/2025-09/2025-09-24.md'
+2026-03-06T06:59:37.4483466Z rm 'docs/2025-09/2025-09-25.md'
+2026-03-06T06:59:37.4483674Z rm 'docs/2025-09/2025-09-26.md'
+2026-03-06T06:59:37.4483876Z rm 'docs/2025-09/2025-09-27.md'
+2026-03-06T06:59:37.4484085Z rm 'docs/2025-09/2025-09-28.md'
+2026-03-06T06:59:37.4484292Z rm 'docs/2025-09/2025-09-29.md'
+2026-03-06T06:59:37.4484505Z rm 'docs/2025-09/2025-09-30.md'
+2026-03-06T06:59:37.4484711Z rm 'docs/2025-10/2025-10-01.md'
+2026-03-06T06:59:37.4484918Z rm 'docs/2025-10/2025-10-02.md'
+2026-03-06T06:59:37.4485126Z rm 'docs/2025-10/2025-10-03.md'
+2026-03-06T06:59:37.4485329Z rm 'docs/2025-10/2025-10-04.md'
+2026-03-06T06:59:37.4485540Z rm 'docs/2025-10/2025-10-05.md'
+2026-03-06T06:59:37.4485748Z rm 'docs/2025-10/2025-10-06.md'
+2026-03-06T06:59:37.4485949Z rm 'docs/2025-10/2025-10-07.md'
+2026-03-06T06:59:37.4486156Z rm 'docs/2025-10/2025-10-08.md'
+2026-03-06T06:59:37.4486365Z rm 'docs/2025-10/2025-10-09.md'
+2026-03-06T06:59:37.4486569Z rm 'docs/2025-10/2025-10-10.md'
+2026-03-06T06:59:37.4486778Z rm 'docs/2025-10/2025-10-11.md'
+2026-03-06T06:59:37.4487035Z rm 'docs/2025-10/2025-10-12.md'
+2026-03-06T06:59:37.4487423Z rm 'docs/2025-10/2025-10-13.md'
+2026-03-06T06:59:37.4487813Z rm 'docs/2025-10/2025-10-14.md'
+2026-03-06T06:59:37.4488193Z rm 'docs/2025-10/2025-10-15.md'
+2026-03-06T06:59:37.4489090Z rm 'docs/2025-10/2025-10-16.md'
+2026-03-06T06:59:37.4489507Z rm 'docs/2025-10/2025-10-17.md'
+2026-03-06T06:59:37.4489754Z rm 'docs/2025-10/2025-10-18.md'
+2026-03-06T06:59:37.4489971Z rm 'docs/2025-10/2025-10-19.md'
+2026-03-06T06:59:37.4490217Z rm 'docs/2025-10/2025-10-20.md'
+2026-03-06T06:59:37.4490615Z rm 'docs/2025-10/2025-10-21.md'
+2026-03-06T06:59:37.4491001Z rm 'docs/2025-10/2025-10-22.md'
+2026-03-06T06:59:37.4491380Z rm 'docs/2025-10/2025-10-23.md'
+2026-03-06T06:59:37.4491764Z rm 'docs/2025-10/2025-10-24.md'
+2026-03-06T06:59:37.4492354Z rm 'docs/2025-10/2025-10-25.md'
+2026-03-06T06:59:37.4492756Z rm 'docs/2025-10/2025-10-26.md'
+2026-03-06T06:59:37.4493399Z rm 'docs/2025-10/2025-10-27.md'
+2026-03-06T06:59:37.4493840Z rm 'docs/2025-10/2025-10-28.md'
+2026-03-06T06:59:37.4494225Z rm 'docs/2025-10/2025-10-29.md'
+2026-03-06T06:59:37.4494599Z rm 'docs/2025-10/2025-10-30.md'
+2026-03-06T06:59:37.4494991Z rm 'docs/2025-10/2025-10-31.md'
+2026-03-06T06:59:37.4495393Z rm 'docs/2025-11/2025-11-01.md'
+2026-03-06T06:59:37.4495758Z rm 'docs/2025-11/2025-11-02.md'
+2026-03-06T06:59:37.4496133Z rm 'docs/2025-11/2025-11-03.md'
+2026-03-06T06:59:37.4496545Z rm 'docs/2025-11/2025-11-04.md'
+2026-03-06T06:59:37.4496919Z rm 'docs/2025-11/2025-11-05.md'
+2026-03-06T06:59:37.4497317Z rm 'docs/2025-11/2025-11-06.md'
+2026-03-06T06:59:37.4497721Z rm 'docs/2025-11/2025-11-07.md'
+2026-03-06T06:59:37.4498093Z rm 'docs/2025-11/2025-11-08.md'
+2026-03-06T06:59:37.4498458Z rm 'docs/2025-11/2025-11-09.md'
+2026-03-06T06:59:37.4498851Z rm 'docs/2025-11/2025-11-10.md'
+2026-03-06T06:59:37.4499246Z rm 'docs/2025-11/2025-11-11.md'
+2026-03-06T06:59:37.4499636Z rm 'docs/2025-11/2025-11-12.md'
+2026-03-06T06:59:37.4500028Z rm 'docs/2025-11/2025-11-13.md'
+2026-03-06T06:59:37.4500421Z rm 'docs/2025-11/2025-11-14.md'
+2026-03-06T06:59:37.4500815Z rm 'docs/2025-11/2025-11-15.md'
+2026-03-06T06:59:37.4501211Z rm 'docs/2025-11/2025-11-16.md'
+2026-03-06T06:59:37.4501606Z rm 'docs/2025-11/2025-11-17.md'
+2026-03-06T06:59:37.4502213Z rm 'docs/2025-11/2025-11-18.md'
+2026-03-06T06:59:37.4502605Z rm 'docs/2025-11/2025-11-19.md'
+2026-03-06T06:59:37.4503232Z rm 'docs/2025-11/2025-11-20.md'
+2026-03-06T06:59:37.4503624Z rm 'docs/2025-11/2025-11-21.md'
+2026-03-06T06:59:37.4504026Z rm 'docs/2025-11/2025-11-22.md'
+2026-03-06T06:59:37.4504437Z rm 'docs/2025-11/2025-11-23.md'
+2026-03-06T06:59:37.4504829Z rm 'docs/2025-11/2025-11-24.md'
+2026-03-06T06:59:37.4505242Z rm 'docs/2025-11/2025-11-25.md'
+2026-03-06T06:59:37.4505623Z rm 'docs/2025-11/2025-11-26.md'
+2026-03-06T06:59:37.4506019Z rm 'docs/2025-11/2025-11-27.md'
+2026-03-06T06:59:37.4506405Z rm 'docs/2025-11/2025-11-28.md'
+2026-03-06T06:59:37.4506796Z rm 'docs/2025-11/2025-11-29.md'
+2026-03-06T06:59:37.4507161Z rm 'docs/2025-11/2025-11-30.md'
+2026-03-06T06:59:37.4507550Z rm 'docs/2025-12/2025-12-01.md'
+2026-03-06T06:59:37.4507930Z rm 'docs/2025-12/2025-12-02.md'
+2026-03-06T06:59:37.4508336Z rm 'docs/2025-12/2025-12-03.md'
+2026-03-06T06:59:37.4508731Z rm 'docs/2025-12/2025-12-04.md'
+2026-03-06T06:59:37.4509121Z rm 'docs/2025-12/2025-12-05.md'
+2026-03-06T06:59:37.4509511Z rm 'docs/2025-12/2025-12-06.md'
+2026-03-06T06:59:37.4509872Z rm 'docs/2025-12/2025-12-07.md'
+2026-03-06T06:59:37.4510260Z rm 'docs/2025-12/2025-12-08.md'
+2026-03-06T06:59:37.4510650Z rm 'docs/2025-12/2025-12-09.md'
+2026-03-06T06:59:37.4511034Z rm 'docs/2025-12/2025-12-10.md'
+2026-03-06T06:59:37.4511420Z rm 'docs/2025-12/2025-12-11.md'
+2026-03-06T06:59:37.4511829Z rm 'docs/2025-12/2025-12-12.md'
+2026-03-06T06:59:37.4512511Z rm 'docs/2025-12/2025-12-13.md'
+2026-03-06T06:59:37.4512918Z rm 'docs/2025-12/2025-12-14.md'
+2026-03-06T06:59:37.4513307Z rm 'docs/2025-12/2025-12-15.md'
+2026-03-06T06:59:37.4513716Z rm 'docs/2025-12/2025-12-16.md'
+2026-03-06T06:59:37.4514112Z rm 'docs/2025-12/2025-12-17.md'
+2026-03-06T06:59:37.4514517Z rm 'docs/2025-12/2025-12-18.md'
+2026-03-06T06:59:37.4514923Z rm 'docs/2025-12/2025-12-19.md'
+2026-03-06T06:59:37.4515321Z rm 'docs/2025-12/2025-12-20.md'
+2026-03-06T06:59:37.4515715Z rm 'docs/2025-12/2025-12-21.md'
+2026-03-06T06:59:37.4516111Z rm 'docs/2025-12/2025-12-22.md'
+2026-03-06T06:59:37.4516500Z rm 'docs/2025-12/2025-12-23.md'
+2026-03-06T06:59:37.4516902Z rm 'docs/2025-12/2025-12-24.md'
+2026-03-06T06:59:37.4517294Z rm 'docs/2025-12/2025-12-25.md'
+2026-03-06T06:59:37.4517704Z rm 'docs/2025-12/2025-12-26.md'
+2026-03-06T06:59:37.4518100Z rm 'docs/2025-12/2025-12-27.md'
+2026-03-06T06:59:37.4518517Z rm 'docs/2025-12/2025-12-28.md'
+2026-03-06T06:59:37.4518917Z rm 'docs/2025-12/2025-12-29.md'
+2026-03-06T06:59:37.4519318Z rm 'docs/2025-12/2025-12-30.md'
+2026-03-06T06:59:37.4519709Z rm 'docs/2025-12/2025-12-31.md'
+2026-03-06T06:59:37.4520087Z rm 'docs/2026-01/2026-01-01.md'
+2026-03-06T06:59:37.4520727Z rm 'docs/2026-01/2026-01-02.md'
+2026-03-06T06:59:37.4521145Z rm 'docs/2026-01/2026-01-03.md'
+2026-03-06T06:59:37.4521541Z rm 'docs/2026-01/2026-01-04.md'
+2026-03-06T06:59:37.4522209Z rm 'docs/2026-01/2026-01-05.md'
+2026-03-06T06:59:37.4522592Z rm 'docs/2026-01/2026-01-06.md'
+2026-03-06T06:59:37.4522960Z rm 'docs/2026-01/2026-01-07.md'
+2026-03-06T06:59:37.4523323Z rm 'docs/2026-01/2026-01-08.md'
+2026-03-06T06:59:37.4523682Z rm 'docs/2026-01/2026-01-09.md'
+2026-03-06T06:59:37.4524056Z rm 'docs/2026-01/2026-01-10.md'
+2026-03-06T06:59:37.4524429Z rm 'docs/2026-01/2026-01-11.md'
+2026-03-06T06:59:37.4524799Z rm 'docs/2026-01/2026-01-12.md'
+2026-03-06T06:59:37.4525157Z rm 'docs/2026-01/2026-01-13.md'
+2026-03-06T06:59:37.4525513Z rm 'docs/2026-01/2026-01-14.md'
+2026-03-06T06:59:37.4525873Z rm 'docs/2026-01/2026-01-15.md'
+2026-03-06T06:59:37.4526230Z rm 'docs/2026-01/2026-01-16.md'
+2026-03-06T06:59:37.4526599Z rm 'docs/2026-01/2026-01-17.md'
+2026-03-06T06:59:37.4526971Z rm 'docs/2026-01/2026-01-18.md'
+2026-03-06T06:59:37.4527327Z rm 'docs/2026-01/2026-01-19.md'
+2026-03-06T06:59:37.4527687Z rm 'docs/2026-01/2026-01-20.md'
+2026-03-06T06:59:37.4528055Z rm 'docs/2026-01/2026-01-21.md'
+2026-03-06T06:59:37.4528422Z rm 'docs/2026-01/2026-01-22.md'
+2026-03-06T06:59:37.4528787Z rm 'docs/2026-01/2026-01-23.md'
+2026-03-06T06:59:37.4529158Z rm 'docs/2026-01/2026-01-24.md'
+2026-03-06T06:59:37.4529519Z rm 'docs/2026-01/2026-01-25.md'
+2026-03-06T06:59:37.4529868Z rm 'docs/2026-01/2026-01-26.md'
+2026-03-06T06:59:37.4530499Z rm 'docs/2026-01/2026-01-27.md'
+2026-03-06T06:59:37.4530876Z rm 'docs/2026-01/2026-01-28.md'
+2026-03-06T06:59:37.4531270Z rm 'docs/2026-01/2026-01-29.md'
+2026-03-06T06:59:37.4531627Z rm 'docs/2026-01/2026-01-30.md'
+2026-03-06T06:59:37.4532186Z rm 'docs/2026-01/2026-01-31.md'
+2026-03-06T06:59:37.4532551Z rm 'docs/2026-02/2026-02-01.md'
+2026-03-06T06:59:37.4532908Z rm 'docs/2026-02/2026-02-02.md'
+2026-03-06T06:59:37.4533276Z rm 'docs/2026-02/2026-02-03.md'
+2026-03-06T06:59:37.4533648Z rm 'docs/2026-02/2026-02-04.md'
+2026-03-06T06:59:37.4534006Z rm 'docs/2026-02/2026-02-05.md'
+2026-03-06T06:59:37.4534356Z rm 'docs/2026-02/2026-02-06.md'
+2026-03-06T06:59:37.4534721Z rm 'docs/2026-02/2026-02-07.md'
+2026-03-06T06:59:37.4535081Z rm 'docs/2026-02/2026-02-08.md'
+2026-03-06T06:59:37.4535448Z rm 'docs/2026-02/2026-02-09.md'
+2026-03-06T06:59:37.4535812Z rm 'docs/2026-02/2026-02-10.md'
+2026-03-06T06:59:37.4536172Z rm 'docs/2026-02/2026-02-11.md'
+2026-03-06T06:59:37.4536545Z rm 'docs/2026-02/2026-02-12.md'
+2026-03-06T06:59:37.4536912Z rm 'docs/2026-02/2026-02-13.md'
+2026-03-06T06:59:37.4537277Z rm 'docs/2026-02/2026-02-14.md'
+2026-03-06T06:59:37.4537637Z rm 'docs/2026-02/2026-02-15.md'
+2026-03-06T06:59:37.4538006Z rm 'docs/2026-02/2026-02-16.md'
+2026-03-06T06:59:37.4538373Z rm 'docs/2026-02/2026-02-17.md'
+2026-03-06T06:59:37.4538732Z rm 'docs/2026-02/2026-02-18.md'
+2026-03-06T06:59:37.4539099Z rm 'docs/2026-02/2026-02-19.md'
+2026-03-06T06:59:37.4539474Z rm 'docs/2026-02/2026-02-20.md'
+2026-03-06T06:59:37.4539846Z rm 'docs/2026-02/2026-02-21.md'
+2026-03-06T06:59:37.4540211Z rm 'docs/2026-02/2026-02-22.md'
+2026-03-06T06:59:37.4540578Z rm 'docs/2026-02/2026-02-23.md'
+2026-03-06T06:59:37.4540949Z rm 'docs/2026-02/2026-02-24.md'
+2026-03-06T06:59:37.4541310Z rm 'docs/2026-02/2026-02-25.md'
+2026-03-06T06:59:37.4541678Z rm 'docs/2026-02/2026-02-26.md'
+2026-03-06T06:59:37.4542244Z rm 'docs/2026-02/2026-02-27.md'
+2026-03-06T06:59:37.4542615Z rm 'docs/2026-02/2026-02-28.md'
+2026-03-06T06:59:37.4542981Z rm 'docs/2026-03/2026-03-01.md'
+2026-03-06T06:59:37.4543347Z rm 'docs/2026-03/2026-03-02.md'
+2026-03-06T06:59:37.4543714Z rm 'docs/2026-03/2026-03-03.md'
+2026-03-06T06:59:37.4544075Z rm 'docs/2026-03/2026-03-04.md'
+2026-03-06T06:59:37.4544441Z rm 'docs/2026-03/2026-03-05.md'
+2026-03-06T06:59:37.4544800Z rm 'index.md'
+2026-03-06T06:59:37.4545225Z [INFO] chdir /home/runner/actions_github_pages_1772780376892
+2026-03-06T06:59:37.4545805Z [INFO] prepare publishing assets
+2026-03-06T06:59:37.4546885Z [INFO] copy /home/runner/work/my-Arxiv-Daily/my-Arxiv-Daily/jekyll/ to /home/runner/actions_github_pages_1772780376892
+2026-03-06T06:59:37.5378816Z cp: no such file or directory: /home/runner/work/my-Arxiv-Daily/my-Arxiv-Daily/jekyll//.*
+2026-03-06T06:59:37.5381603Z [INFO] delete excluded assets
+2026-03-06T06:59:37.5419376Z rm: no paths given
+2026-03-06T06:59:37.5421322Z [INFO] Created /home/runner/actions_github_pages_1772780376892/.nojekyll
+2026-03-06T06:59:37.5423977Z ##[endgroup]
+2026-03-06T06:59:37.5424617Z ##[group]Setup Git config
+2026-03-06T06:59:37.5442552Z [command]/usr/bin/git remote rm origin
+2026-03-06T06:59:37.5568859Z [command]/usr/bin/git remote add origin ***github.com/mumupika/my-Arxiv-Daily.git
+2026-03-06T06:59:37.5627713Z [command]/usr/bin/git add --all
+2026-03-06T06:59:37.6063113Z [command]/usr/bin/git config user.name mumupika
+2026-03-06T06:59:37.6127888Z [command]/usr/bin/git config user.email mumupika@users.noreply.github.com
+2026-03-06T06:59:37.6172774Z ##[endgroup]
+2026-03-06T06:59:37.6173371Z ##[group]Create a commit
+2026-03-06T06:59:37.6192898Z [command]/usr/bin/git commit -m deploy: da035d48055cec479796cd0c59b3739516f7b90c
+2026-03-06T06:59:37.6582685Z [gh-pages 03438e9] deploy: da035d48055cec479796cd0c59b3739516f7b90c
+2026-03-06T06:59:37.6584728Z  1 file changed, 1 insertion(+), 1 deletion(-)
+2026-03-06T06:59:37.6590016Z ##[endgroup]
+2026-03-06T06:59:37.6590818Z ##[group]Push the commit or tag
+2026-03-06T06:59:37.6605722Z [command]/usr/bin/git push origin gh-pages
+2026-03-06T06:59:38.2900188Z To https://github.com/mumupika/my-Arxiv-Daily.git
+2026-03-06T06:59:38.2900845Z    6d70f4b..03438e9  gh-pages -> gh-pages
+2026-03-06T06:59:38.2954482Z ##[endgroup]
+2026-03-06T06:59:38.2954903Z [INFO] Action successfully completed
+2026-03-06T06:59:38.3079384Z Post job cleanup.
+2026-03-06T06:59:38.4623041Z Cache hit occurred on the primary key setup-python-Linux-24.04-Ubuntu-python-3.12.12-pip-cd0d0219a5ce22eea01f3bf46596ba36b70fc823b02492544b5b76f8110c79c6, not saving cache.
+2026-03-06T06:59:38.4744934Z Post job cleanup.
+2026-03-06T06:59:38.5727721Z [command]/usr/bin/git version
+2026-03-06T06:59:38.5769851Z git version 2.53.0
+2026-03-06T06:59:38.5816849Z Temporarily overriding HOME='/home/runner/work/_temp/71f6125f-c2a6-478e-a305-559a786462c8' before making global git config changes
+2026-03-06T06:59:38.5818280Z Adding repository directory to the temporary git global config as a safe directory
+2026-03-06T06:59:38.5823901Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/my-Arxiv-Daily/my-Arxiv-Daily
+2026-03-06T06:59:38.5862712Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-03-06T06:59:38.5898019Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-03-06T06:59:38.6149041Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-03-06T06:59:38.6172662Z http.https://github.com/.extraheader
+2026-03-06T06:59:38.6186025Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-03-06T06:59:38.6219245Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-03-06T06:59:38.6457306Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-03-06T06:59:38.6488432Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-03-06T06:59:38.6830489Z Cleaning up orphan processes

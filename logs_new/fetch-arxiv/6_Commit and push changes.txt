@@ -1,0 +1,42 @@
+﻿2026-03-06T06:59:36.7347200Z ##[group]Run git config --local user.email "github-actions[bot]@users.noreply.github.com"
+2026-03-06T06:59:36.7347849Z [36;1mgit config --local user.email "github-actions[bot]@users.noreply.github.com"[0m
+2026-03-06T06:59:36.7348331Z [36;1mgit config --local user.name "github-actions[bot]"[0m
+2026-03-06T06:59:36.7348637Z [36;1m[0m
+2026-03-06T06:59:36.7348816Z [36;1m# 显示当前 git 状态[0m
+2026-03-06T06:59:36.7349031Z [36;1mecho "当前 git 状态:"[0m
+2026-03-06T06:59:36.7349239Z [36;1mgit status[0m
+2026-03-06T06:59:36.7349424Z [36;1m[0m
+2026-03-06T06:59:36.7349585Z [36;1m# 添加所有更改[0m
+2026-03-06T06:59:36.7349757Z [36;1mgit add .[0m
+2026-03-06T06:59:36.7349954Z [36;1m[0m
+2026-03-06T06:59:36.7350113Z [36;1m# 显示将要提交的更改[0m
+2026-03-06T06:59:36.7350294Z [36;1mecho ""[0m
+2026-03-06T06:59:36.7350477Z [36;1mecho "将要提交的文件:"[0m
+2026-03-06T06:59:36.7350690Z [36;1mgit status --short[0m
+2026-03-06T06:59:36.7350899Z [36;1m[0m
+2026-03-06T06:59:36.7351051Z [36;1m# 提交更改（如果有）[0m
+2026-03-06T06:59:36.7351297Z [36;1mif [ -n "$(git diff --cached --name-only)" ]; then[0m
+2026-03-06T06:59:36.7351717Z [36;1m  git commit -m "Update arxiv papers $(date +'%Y-%m-%d')"[0m
+2026-03-06T06:59:36.7352417Z [36;1m  echo "提交成功，正在推送..."[0m
+2026-03-06T06:59:36.7352654Z [36;1m  git push[0m
+2026-03-06T06:59:36.7352843Z [36;1m  echo "推送成功"[0m
+2026-03-06T06:59:36.7353038Z [36;1melse[0m
+2026-03-06T06:59:36.7353219Z [36;1m  echo "没有需要提交的更改"[0m
+2026-03-06T06:59:36.7353424Z [36;1mfi[0m
+2026-03-06T06:59:36.7402628Z shell: /usr/bin/bash -e {0}
+2026-03-06T06:59:36.7402871Z env:
+2026-03-06T06:59:36.7403121Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.7403727Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib/pkgconfig
+2026-03-06T06:59:36.7404148Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.7404518Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.7404900Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:36.7405288Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib
+2026-03-06T06:59:36.7405600Z ##[endgroup]
+2026-03-06T06:59:36.7506562Z 当前 git 状态:
+2026-03-06T06:59:36.7753309Z On branch main
+2026-03-06T06:59:36.7753839Z Your branch is up to date with 'origin/main'.
+2026-03-06T06:59:36.7754147Z 
+2026-03-06T06:59:36.7754277Z nothing to commit, working tree clean
+2026-03-06T06:59:36.7790284Z 
+2026-03-06T06:59:36.7790587Z 将要提交的文件:
+2026-03-06T06:59:36.7846955Z 没有需要提交的更改

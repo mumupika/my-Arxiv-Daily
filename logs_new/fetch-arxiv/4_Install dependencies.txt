@@ -1,0 +1,48 @@
+﻿2026-03-06T06:59:33.1640065Z ##[group]Run python -m pip install --upgrade pip
+2026-03-06T06:59:33.1640552Z [36;1mpython -m pip install --upgrade pip[0m
+2026-03-06T06:59:33.1640874Z [36;1mpip install -r requirements.txt[0m
+2026-03-06T06:59:33.1697594Z shell: /usr/bin/bash -e {0}
+2026-03-06T06:59:33.1697915Z env:
+2026-03-06T06:59:33.1698177Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:33.1698631Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib/pkgconfig
+2026-03-06T06:59:33.1699061Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:33.1699462Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:33.1699832Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-03-06T06:59:33.1700217Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib
+2026-03-06T06:59:33.1700529Z ##[endgroup]
+2026-03-06T06:59:34.4133635Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/site-packages (26.0.1)
+2026-03-06T06:59:35.4404453Z Collecting arxiv>=2.1.0 (from -r requirements.txt (line 4))
+2026-03-06T06:59:35.4417788Z   Using cached arxiv-2.4.1-py3-none-any.whl.metadata (6.3 kB)
+2026-03-06T06:59:35.4820884Z Collecting PyYAML>=6.0 (from -r requirements.txt (line 7))
+2026-03-06T06:59:35.4835827Z   Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-03-06T06:59:35.5049960Z Collecting requests>=2.31.0 (from -r requirements.txt (line 10))
+2026-03-06T06:59:35.5062554Z   Using cached requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+2026-03-06T06:59:35.5201500Z Collecting python-dateutil>=2.8.2 (from -r requirements.txt (line 13))
+2026-03-06T06:59:35.5214766Z   Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+2026-03-06T06:59:35.5352951Z Collecting feedparser~=6.0.10 (from arxiv>=2.1.0->-r requirements.txt (line 4))
+2026-03-06T06:59:35.5365278Z   Using cached feedparser-6.0.12-py3-none-any.whl.metadata (2.7 kB)
+2026-03-06T06:59:35.6456278Z Collecting charset_normalizer<4,>=2 (from requests>=2.31.0->-r requirements.txt (line 10))
+2026-03-06T06:59:35.7176655Z   Downloading charset_normalizer-3.4.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (39 kB)
+2026-03-06T06:59:35.7577352Z Collecting idna<4,>=2.5 (from requests>=2.31.0->-r requirements.txt (line 10))
+2026-03-06T06:59:35.7589965Z   Using cached idna-3.11-py3-none-any.whl.metadata (8.4 kB)
+2026-03-06T06:59:35.7818256Z Collecting urllib3<3,>=1.21.1 (from requests>=2.31.0->-r requirements.txt (line 10))
+2026-03-06T06:59:35.7830073Z   Using cached urllib3-2.6.3-py3-none-any.whl.metadata (6.9 kB)
+2026-03-06T06:59:35.8023756Z Collecting certifi>=2017.4.17 (from requests>=2.31.0->-r requirements.txt (line 10))
+2026-03-06T06:59:35.8035854Z   Using cached certifi-2026.2.25-py3-none-any.whl.metadata (2.5 kB)
+2026-03-06T06:59:35.8147899Z Collecting sgmllib3k (from feedparser~=6.0.10->arxiv>=2.1.0->-r requirements.txt (line 4))
+2026-03-06T06:59:35.8149464Z   Using cached sgmllib3k-1.0.0-py3-none-any.whl
+2026-03-06T06:59:35.8446820Z Collecting six>=1.5 (from python-dateutil>=2.8.2->-r requirements.txt (line 13))
+2026-03-06T06:59:35.8458804Z   Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+2026-03-06T06:59:35.8490453Z Using cached arxiv-2.4.1-py3-none-any.whl (12 kB)
+2026-03-06T06:59:35.8502338Z Using cached requests-2.32.5-py3-none-any.whl (64 kB)
+2026-03-06T06:59:35.8571529Z Downloading charset_normalizer-3.4.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (196 kB)
+2026-03-06T06:59:35.8832865Z Using cached feedparser-6.0.12-py3-none-any.whl (81 kB)
+2026-03-06T06:59:35.8845101Z Using cached idna-3.11-py3-none-any.whl (71 kB)
+2026-03-06T06:59:35.8857192Z Using cached urllib3-2.6.3-py3-none-any.whl (131 kB)
+2026-03-06T06:59:35.8869349Z Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-03-06T06:59:35.8886323Z Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+2026-03-06T06:59:35.8898230Z Using cached certifi-2026.2.25-py3-none-any.whl (153 kB)
+2026-03-06T06:59:35.8909752Z Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+2026-03-06T06:59:35.9154012Z Installing collected packages: sgmllib3k, urllib3, six, PyYAML, idna, feedparser, charset_normalizer, certifi, requests, python-dateutil, arxiv
+2026-03-06T06:59:36.3536774Z 
+2026-03-06T06:59:36.3554714Z Successfully installed PyYAML-6.0.3 arxiv-2.4.1 certifi-2026.2.25 charset_normalizer-3.4.5 feedparser-6.0.12 idna-3.11 python-dateutil-2.9.0.post0 requests-2.32.5 sgmllib3k-1.0.0 six-1.17.0 urllib3-2.6.3

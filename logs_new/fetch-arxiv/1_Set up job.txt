@@ -1,0 +1,46 @@
+﻿2026-03-06T06:59:28.1097780Z Current runner version: '2.332.0'
+2026-03-06T06:59:28.1124222Z ##[group]Runner Image Provisioner
+2026-03-06T06:59:28.1125328Z Hosted Compute Agent
+2026-03-06T06:59:28.1125869Z Version: 20260213.493
+2026-03-06T06:59:28.1126574Z Commit: 5c115507f6dd24b8de37d8bbe0bb4509d0cc0fa3
+2026-03-06T06:59:28.1127248Z Build Date: 2026-02-13T00:28:41Z
+2026-03-06T06:59:28.1127903Z Worker ID: {dcbc3618-1d5e-4465-8e63-09f12fcaaab6}
+2026-03-06T06:59:28.1128587Z Azure Region: westus2
+2026-03-06T06:59:28.1129187Z ##[endgroup]
+2026-03-06T06:59:28.1130722Z ##[group]Operating System
+2026-03-06T06:59:28.1131424Z Ubuntu
+2026-03-06T06:59:28.1132104Z 24.04.3
+2026-03-06T06:59:28.1132546Z LTS
+2026-03-06T06:59:28.1133101Z ##[endgroup]
+2026-03-06T06:59:28.1133623Z ##[group]Runner Image
+2026-03-06T06:59:28.1134190Z Image: ubuntu-24.04
+2026-03-06T06:59:28.1134650Z Version: 20260302.42.1
+2026-03-06T06:59:28.1135713Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260302.42/images/ubuntu/Ubuntu2404-Readme.md
+2026-03-06T06:59:28.1138536Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260302.42
+2026-03-06T06:59:28.1140226Z ##[endgroup]
+2026-03-06T06:59:28.1143628Z ##[group]GITHUB_TOKEN Permissions
+2026-03-06T06:59:28.1146159Z Actions: write
+2026-03-06T06:59:28.1146743Z ArtifactMetadata: write
+2026-03-06T06:59:28.1147330Z Attestations: write
+2026-03-06T06:59:28.1147946Z Checks: write
+2026-03-06T06:59:28.1148496Z Contents: write
+2026-03-06T06:59:28.1149009Z Deployments: write
+2026-03-06T06:59:28.1149640Z Discussions: write
+2026-03-06T06:59:28.1150177Z Issues: write
+2026-03-06T06:59:28.1150670Z Metadata: read
+2026-03-06T06:59:28.1151227Z Models: read
+2026-03-06T06:59:28.1151693Z Packages: write
+2026-03-06T06:59:28.1152595Z Pages: write
+2026-03-06T06:59:28.1153238Z PullRequests: write
+2026-03-06T06:59:28.1153827Z RepositoryProjects: write
+2026-03-06T06:59:28.1154387Z SecurityEvents: write
+2026-03-06T06:59:28.1155395Z Statuses: write
+2026-03-06T06:59:28.1155999Z ##[endgroup]
+2026-03-06T06:59:28.1158112Z Secret source: Actions
+2026-03-06T06:59:28.1159216Z Prepare workflow directory
+2026-03-06T06:59:28.1495884Z Prepare all required actions
+2026-03-06T06:59:28.1534265Z Getting action download info
+2026-03-06T06:59:28.6330181Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-03-06T06:59:28.7997977Z Download action repository 'actions/setup-python@v4' (SHA:7f4fc3e22c37d6ff65e88745f38bd3157c663f7c)
+2026-03-06T06:59:28.9111718Z Download action repository 'peaceiris/actions-gh-pages@v3' (SHA:373f7f263a76c20808c831209c920827a82a2847)
+2026-03-06T06:59:29.4005185Z Complete job name: fetch-arxiv
