@@ -1,6 +1,9 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
+  // GitHub Pages 部署需要设置 base 路径
+  base: '/my-Arxiv-Daily/',
+  
   title: 'ArXiv Daily Papers',
   description: '自动爬取的 arxiv 论文汇总，按日期分类',
   
