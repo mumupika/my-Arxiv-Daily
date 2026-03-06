@@ -576,3 +576,48 @@ body.nav-hidden .aside-content {
   margin-top: 0 !important;
   padding-top: 16px !important; /* 内部清零，完全由外部 .aside 的 80px 控制 */
 }
+
+/* =========================================
+   13. 移动端/平板端终极适配 (修复默认收窄问题)
+   ========================================= */
+
+/* 针对 960px 以下的设备（手机 + 竖屏平板） */
+@media (max-width: 960px) {
+  
+  /* 1. 暴力清除正文容器的所有强制内边距 */
+  body.sidebar-visible:not(.full-width) .VPContent,
+  .VPContent {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100vw !important;
+  }
+
+  /* 2. 隐藏我们在 PC 端强制固定的左侧栏 */
+  /* (移动端通常使用 VitePress 自带的汉堡菜单，或者为了阅读体验直接隐藏) */
+  .VPSidebar {
+    display: none !important;
+  }
+
+  /* 3. 隐藏右侧大纲栏（手机屏幕太小，放不下） */
+  .VPDoc .aside,
+  .VPDocAside {
+    display: none !important;
+  }
+
+  /* 4. 隐藏右上角的“切换视图”按钮（移动端默认就是全宽，不需要切换） */
+  .sidebar-toggle {
+    display: none !important;
+  }
+
+  /* 5. 调整正文内容的内边距，适应手机屏幕 */
+  .VPDoc {
+    padding: 20px 16px !important; /* 上下20px，左右16px */
+  }
+
+  /* 6. 确保表格容器可以横向滚动，不撑爆屏幕 */
+  .vp-doc table {
+    display: block !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+  }
+}
