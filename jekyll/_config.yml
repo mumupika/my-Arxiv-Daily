@@ -1,0 +1,43 @@
+# Jekyll配置文件用于GitHub Pages
+title: ArXiv Daily Papers
+description: 自动爬取的 arxiv 论文汇总，按日期分类
+theme: minima
+markdown: kramdown
+highlighter: rouge
+
+# GitHub Pages配置
+baseurl: ""
+url: "https://mumupika.github.io/my-Arxiv-Daily"
+
+# 导航配置
+header_pages:
+  - index.md
+
+# 插件
+plugins:
+  - jekyll-relative-links
+  - jekyll-titles-from-headings
+
+# 相对链接
+relative_links:
+  enabled: true
+  collections: true
+
+# 从标题生成页面标题
+titles_from_headings:
+  enabled: true
+  strip_title: true
+  collections: true
+
+# 排除文件
+exclude:
+  - README.md
+  - scripts/
+  - config/
+  - output/
+  - requirements.txt
+  - .gitignore
+  - .github/
+
+# 时区
+timezone: Asia/Shanghai

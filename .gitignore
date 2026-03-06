@@ -12,12 +12,14 @@ dist/
 build/
 
 # Output files
-# 忽略 output 目录中的所有文件
-output/*
+# 忽略旧的 output 目录
+output/
 
-# 但保留 markdown 文件
-!output/*.md
-!output/*.state
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
 
 # IDE
 .vscode/

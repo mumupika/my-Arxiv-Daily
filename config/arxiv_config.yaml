@@ -14,11 +14,12 @@ keywords: []
 
 # 首次爬取的起始日期（首次部署时使用）
 # 格式: YYYY-MM-DD
-start_date: "2024-06-01"
+start_date: "2024-09-01"
 
 # 输出配置
 output:
-  file: "output/arxiv_papers.md"
+  # 输出目录（用于 GitHub Pages）
+  dir: "jekyll/docs"
   # 每次爬取的最大论文数（避免过多）
   max_papers_per_category: 1000
   # 是否包含论文摘要

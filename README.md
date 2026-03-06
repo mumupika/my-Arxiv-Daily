@@ -1,36 +1,53 @@
 # ArXiv Daily Papers Crawler 📚
 
-自动爬取 ArXiv 论文并生成 Markdown 报告的 GitHub Actions 工具。
+自动爬取 ArXiv 论文并生成按日期分类的 Markdown 报告，自动部署到 GitHub Pages 的工具。
 
 ## ✨ 功能特性
 
 - 🤖 **自动化爬取**：使用 GitHub Actions 定时自动爬取 ArXiv 论文
 - 📊 **多分类支持**：支持配置多个 ArXiv 分类（如 cs.AR, cs.DC 等）
+- 📅 **按日期分类**：论文按日期组织，方便浏览历史论文
+- 🌐 **自动部署**：自动部署到 GitHub Pages，生成美观的网站
 - 🔍 **关键词过滤**：可根据关键词过滤论文
 - 📝 **Markdown 输出**：生成格式良好的 Markdown 报告
 - 🔄 **增量更新**：只爬取新增论文，避免重复
 - ⚙️ **灵活配置**：通过 YAML 配置文件轻松自定义
 
-## 📖 论文列表
+## 📖 在线访问
 
-👉 **查看最新论文**: [output/arxiv_papers.md](output/arxiv_papers.md)
+👉 **访问网站**: [https://mumupika.github.io/my-Arxiv-Daily](https://mumupika.github.io/my-Arxiv-Daily)
 
 论文列表会每天自动更新，包含以下分类的论文：
 - cs.AR - Architecture
 - cs.DC - Distributed, Parallel, and Cluster Computing
 - cs.NI - Networking and Internet Architecture
 - cs.OS - Operating Systems
+- cs.DB - Databases
+- cs.PF - Performance
 
 ## 📦 项目结构
 
 ```
 arxiv/
-├── .github/workflows/arxiv-daily.yml    # GitHub Actions 工作流
-├── config/arxiv_config.yaml              # 配置文件
-├── scripts/fetch_arxiv.py                # 主爬取脚本
-├── requirements.txt                      # Python 依赖
-├── README.md                             # 项目说明文档
-└── output/arxiv_papers.md                # 生成的论文列表
+├── .github/
+│   └── workflows/
+│       └── arxiv-daily.yml              # GitHub Actions 工作流
+├── jekyll/                              # GitHub Pages 网站文件
+│   ├── _config.yml                      # Jekyll 配置
+│   ├── index.md                         # 首页
+│   ├── _includes/
+│   │   └── sidebar.html                 # 侧栏导航
+│   └── docs/                            # 生成的论文文档
+│       ├── 2024-09/
+│       ├── 2024-10/
+│       └── ...
+├── config/
+│   └── arxiv_config.yaml                # 爬取配置文件
+├── scripts/
+│   └── fetch_arxiv.py                   # 主爬取脚本
+├── requirements.txt                     # Python 依赖
+├── README.md                            # 项目说明文档
+└── .gitignore                           # Git 忽略文件
 ```
 
 ## 🚀 快速开始
@@ -76,9 +93,17 @@ start_date: "2024-06-01" (默认)
 python scripts/fetch_arxiv.py
 ```
 
-论文列表将生成到 `output/arxiv_papers.md` 文件中。
+论文列表将按日期生成到 `jekyll/docs/` 目录中，每个日期一个文件。
 
-### 5. 推送到 GitHub
+### 5. 启用 GitHub Pages
+
+推送到 GitHub 后：
+
+1. 进入仓库 **Settings** → **Pages**
+2. Source 选择: **GitHub Actions**
+3. 等待 Actions 运行完成
+
+### 6. 推送到 GitHub
 
 ```bash
 git add .
@@ -124,11 +149,13 @@ keywords: []
 
 ```yaml
 output:
-  file: "output/arxiv_papers.md"         # 输出文件路径
-  max_papers_per_category: 100           # 每个分类最大论文数
-  include_summary: true                  # 是否包含摘要
-  summary_max_length: 200                # 摘要最大长度
+  dir: "jekyll/docs"                    # 输出目录（按日期分类）
+  max_papers_per_category: 1000         # 每个分类最大论文数
+  include_summary: true                 # 是否包含摘要
+  summary_max_length: 200               # 摘要最大长度
 ```
+
+论文将按日期组织，格式为 `jekyll/docs/YYYY-MM/YYYY-MM-DD.md`。
 
 ### Markdown 格式配置
 
@@ -169,11 +196,25 @@ schedule:
 
 ## 📄 论文列表格式
 
-论文列表会自动显示在 `output/arxiv_papers.md` 中，格式如下：
+论文按日期分类存储，每个日期一个文件：`jekyll/docs/YYYY-MM/YYYY-MM-DD.md`
+
+文件格式如下：
+
+```markdown
+## cs.AR - Architecture
 
 | 标题 | 作者 | 发布日期 | PDF | 摘要 |
 |------|------|----------|-----|------|
 | [论文标题](链接) | 作者名 | 2026-03-05 | [下载](链接) | 论文摘要... |
+
+## cs.DC - Distributed, Parallel, and Cluster Computing
+
+| 标题 | 作者 | 发布日期 | PDF | 摘要 |
+|------|------|----------|-----|------|
+| [论文标题](链接) | 作者名 | 2026-03-05 | [下载](链接) | 论文摘要... |
+```
+
+每个文件包含当天所有分类的论文，方便按日期浏览。
 
 ## 🔧 高级用法
 

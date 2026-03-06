@@ -77,21 +77,28 @@ def load_config(config_path):
         return yaml.safe_load(f)
 
 
-def get_existing_papers(markdown_file):
-    """从现有 Markdown 文件中提取已爬取的论文 ID"""
+def get_existing_papers(docs_dir):
+    """从 docs 文件夹中提取已爬取的论文 ID"""
     existing_ids = set()
     
-    if not os.path.exists(markdown_file):
+    if not os.path.exists(docs_dir):
         return existing_ids
     
-    with open(markdown_file, 'r', encoding='utf-8') as f:
-        content = f.read()
-        
-        # 从 arxiv 链接中提取论文 ID (格式: arxiv.org/abs/2301.12345)
-        import re
-        pattern = r'arxiv\.org/abs/(\d+\.\d+)'
-        matches = re.findall(pattern, content)
-        existing_ids.update(matches)
+    import re
+    pattern = r'arxiv\.org/abs/(\d+\.\d+)'
+    
+    # 遍历 docs 文件夹中的所有 .md 文件
+    for root, dirs, files in os.walk(docs_dir):
+        for file in files:
+            if file.endswith('.md'):
+                file_path = os.path.join(root, file)
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                        matches = re.findall(pattern, content)
+                        existing_ids.update(matches)
+                except Exception as e:
+                    print(f"警告: 读取文件 {file_path} 时出错: {e}")
     
     return existing_ids
 
@@ -159,7 +166,7 @@ def fetch_papers_by_category(category, start_date, end_date, max_results, keywor
 
 
 def generate_markdown(papers_by_category, config, existing_ids=None, last_update=None):
-    """生成 Markdown 内容 - 只包含论文列表"""
+    """生成 Markdown 内容 - 按日期分组"""
     if existing_ids is None:
         existing_ids = set()
     
@@ -167,10 +174,10 @@ def generate_markdown(papers_by_category, config, existing_ids=None, last_update
     summary_max_length = config['output']['summary_max_length']
     cat_heading = '#' * config['markdown']['category_heading_level']
     
-    lines = []
+    # 按日期分组论文
+    papers_by_date = {}
     total_new = 0
     
-    # 按分类生成内容
     for category, papers in papers_by_category.items():
         if not papers:
             continue
@@ -183,37 +190,15 @@ def generate_markdown(papers_by_category, config, existing_ids=None, last_update
         
         total_new += len(new_papers)
         
-        # 分类标题
-        category_name = CATEGORY_NAMES.get(category, category)
-        lines.append(f"{cat_heading} {category} - {category_name}\n")
-        lines.append("")
-        
-        # 创建表格
-        if include_summary:
-            # 包含摘要的表格
-            lines.append("| 标题 | 作者 | 发布日期 | PDF | 摘要 |")
-            lines.append("|------|------|----------|-----|------|")
-            for paper in new_papers:
-                title_link = f"[{paper.title}](https://arxiv.org/abs/{paper.get_short_id()})"
-                authors = ', '.join([str(author) for author in paper.authors])
-                published_date = paper.published.strftime('%Y-%m-%d')
-                pdf_link = f"[下载](https://arxiv.org/pdf/{paper.get_short_id()}.pdf)"
-                summary = truncate_summary(paper.summary.replace('\n', ' ').replace('|', '\\|').replace('\r', ''), summary_max_length)
-                lines.append(f"| {title_link} | {authors} | {published_date} | {pdf_link} | {summary} |")
-        else:
-            # 不包含摘要的表格
-            lines.append("| 标题 | 作者 | 发布日期 | PDF |")
-            lines.append("|------|------|----------|-----|")
-            for paper in new_papers:
-                title_link = f"[{paper.title}](https://arxiv.org/abs/{paper.get_short_id()})"
-                authors = ', '.join([str(author) for author in paper.authors])
-                published_date = paper.published.strftime('%Y-%m-%d')
-                pdf_link = f"[下载](https://arxiv.org/pdf/{paper.get_short_id()}.pdf)"
-                lines.append(f"| {title_link} | {authors} | {published_date} | {pdf_link} |")
-        
-        lines.append("")
+        for paper in new_papers:
+            date = paper.published.strftime('%Y-%m-%d')
+            if date not in papers_by_date:
+                papers_by_date[date] = {}
+            if category not in papers_by_date[date]:
+                papers_by_date[date][category] = []
+            papers_by_date[date][category].append(paper)
     
-    return '\n'.join(lines), total_new
+    return papers_by_date, total_new
 
 
 def get_template_path(output_file):
@@ -224,31 +209,89 @@ def get_template_path(output_file):
     return template_path
 
 
-def update_markdown_file(new_content, output_file, config):
-    """更新 Markdown 文件 - 只保留论文列表"""
-    output_dir = os.path.dirname(output_file)
-    if output_dir and not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+def update_markdown_files_by_date(papers_by_date, config):
+    """按日期生成多个 Markdown 文件到 docs 文件夹"""
+    docs_dir = config['output']['dir']
+    include_summary = config['output']['include_summary']
+    summary_max_length = config['output']['summary_max_length']
+    cat_heading = '#' * config['markdown']['category_heading_level']
     
-    # 新文件或覆盖现有文件
-    from datetime import datetime
-    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    paper_count = len([p for p in new_content.split('\n') if 'arxiv.org/abs' in p])
+    # 确保 docs 目录存在
+    if not os.path.exists(docs_dir):
+        os.makedirs(docs_dir)
     
-    final_content = ""
-    final_content += f"**最后更新时间**: {current_time}\n\n"
-    final_content += f"**论文总数**: {paper_count}\n\n"
-    final_content += '---\n\n'
-    final_content += new_content
+    total_files_created = 0
+    total_papers = 0
     
-    with open(output_file, 'w', encoding='utf-8') as f:
-        f.write(final_content)
+    # 按日期生成文件
+    for date in sorted(papers_by_date.keys(), reverse=True):
+        date_str = date
+        papers_by_category = papers_by_date[date]
+        
+        # 格式化日期为文件名友好格式
+        date_parts = date_str.split('-')
+        year_month = f"{date_parts[0]}-{date_parts[1]}"
+        
+        # 创建年月目录
+        year_month_dir = os.path.join(docs_dir, year_month)
+        if not os.path.exists(year_month_dir):
+            os.makedirs(year_month_dir)
+        
+        # 生成文件内容
+        lines = []
+        lines.append(f"# {date_str}\n")
+        lines.append(f"\n")
+        
+        # 按分类添加论文
+        for category in sorted(papers_by_category.keys()):
+            papers = papers_by_category[category]
+            if not papers:
+                continue
+            
+            total_papers += len(papers)
+            
+            # 分类标题
+            category_name = CATEGORY_NAMES.get(category, category)
+            lines.append(f"{cat_heading} {category} - {category_name}\n")
+            lines.append("")
+            
+            # 创建表格
+            if include_summary:
+                lines.append("| 标题 | 作者 | 发布日期 | PDF | 摘要 |")
+                lines.append("|------|------|----------|-----|------|")
+                for paper in papers:
+                    title_link = f"[{paper.title}](https://arxiv.org/abs/{paper.get_short_id()})"
+                    authors = ', '.join([str(author) for author in paper.authors])
+                    published_date = paper.published.strftime('%Y-%m-%d')
+                    pdf_link = f"[下载](https://arxiv.org/pdf/{paper.get_short_id()}.pdf)"
+                    summary = truncate_summary(paper.summary.replace('\n', ' ').replace('|', '\\|').replace('\r', ''), summary_max_length)
+                    lines.append(f"| {title_link} | {authors} | {published_date} | {pdf_link} | {summary} |")
+            else:
+                lines.append("| 标题 | 作者 | 发布日期 | PDF |")
+                lines.append("|------|------|----------|-----|")
+                for paper in papers:
+                    title_link = f"[{paper.title}](https://arxiv.org/abs/{paper.get_short_id()})"
+                    authors = ', '.join([str(author) for author in paper.authors])
+                    published_date = paper.published.strftime('%Y-%m-%d')
+                    pdf_link = f"[下载](https://arxiv.org/pdf/{paper.get_short_id()}.pdf)"
+                    lines.append(f"| {title_link} | {authors} | {published_date} | {pdf_link} |")
+            
+            lines.append("")
+        
+        # 写入文件
+        file_path = os.path.join(year_month_dir, f"{date_str}.md")
+        with open(file_path, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(lines))
+        
+        total_files_created += 1
+        print(f"  创建文件: {file_path} ({len(papers_by_category)} 个分类)")
+    
+    return total_files_created, total_papers
 
 
-def get_state_file_path(output_file):
+def get_state_file_path(docs_dir):
     """获取状态文件路径"""
-    state_file = output_file.replace('.md', '.state')
-    return state_file
+    return os.path.join(docs_dir, '.state')
 
 
 def load_state(state_file):
@@ -277,15 +320,15 @@ def main():
     # 加载配置
     config = load_config(config_path)
     
-    # 输出文件路径
-    output_file = config['output']['file']
-    state_file = get_state_file_path(output_file)
+    # 输出目录
+    docs_dir = config['output']['dir']
+    state_file = get_state_file_path(docs_dir)
     
     # 加载状态
     state = load_state(state_file)
     
     # 获取现有论文 ID
-    existing_ids = get_existing_papers(output_file)
+    existing_ids = get_existing_papers(docs_dir)
     print(f"已存在 {len(existing_ids)} 篇论文")
     
     # 确定日期范围
@@ -317,15 +360,15 @@ def main():
         )
         papers_by_category[category] = papers
     
-    # 生成 Markdown
-    markdown_content, new_count = generate_markdown(
+    # 生成 Markdown（按日期分组）
+    papers_by_date, new_count = generate_markdown(
         papers_by_category, config, existing_ids
     )
     
-    # 更新文件
+    # 更新文件（按日期生成多个文件）
     if new_count > 0:
-        update_markdown_file(markdown_content, output_file, config)
-        print(f"✓ 成功添加 {new_count} 篇新论文到 {output_file}")
+        files_created, total_papers = update_markdown_files_by_date(papers_by_date, config)
+        print(f"✓ 成功创建 {files_created} 个文件，包含 {total_papers} 篇新论文到 {docs_dir}")
     else:
         print("✓ 没有新论文需要添加")
     
