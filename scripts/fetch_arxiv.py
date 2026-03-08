@@ -138,8 +138,10 @@ def fetch_papers_by_category(category, start_date, end_date, max_results, keywor
     # 构建搜索查询
     query = f"cat:{category}"
     
-    # 添加日期范围
-    date_query = f"submittedDate:[{start_date.strftime('%Y%m%d%H%M%S')} TO {end_date.strftime('%Y%m%d%H%M%S')}]"
+    # 添加日期范围 - 使用 YYYYMMDD 格式（ArXiv API 标准格式）
+    # 结束日期加一天以确保包含当天的所有论文
+    end_date_plus_one = end_date + timedelta(days=1)
+    date_query = f"submittedDate:[{start_date.strftime('%Y%m%d')} TO {end_date_plus_one.strftime('%Y%m%d')}]"
     
     search = arxiv.Search(
         query=f"{query} AND {date_query}",
