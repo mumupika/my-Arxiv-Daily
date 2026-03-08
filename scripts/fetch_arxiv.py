@@ -132,7 +132,7 @@ def truncate_summary(summary, max_length):
 
 
 def fetch_papers_by_category(category, start_date, end_date, max_results, keywords):
-    """获取指定分类的论文"""
+    """获取指定分类的论文，返回 (论文列表, 最新论文的提交时间)"""
     print(f"正在爬取分类: {category}")
     
     # 构建搜索查询
@@ -151,6 +151,7 @@ def fetch_papers_by_category(category, start_date, end_date, max_results, keywor
     )
     
     papers = []
+    latest_published = None
     client = arxiv.Client()
     
     try:
@@ -158,11 +159,14 @@ def fetch_papers_by_category(category, start_date, end_date, max_results, keywor
             # 关键词过滤
             if filter_by_keywords(result, keywords):
                 papers.append(result)
+                # 跟踪最新论文的提交时间（因为按降序排序，第一个就是最新的）
+                if latest_published is None or result.published > latest_published:
+                    latest_published = result.published
     except Exception as e:
         print(f"  警告: 爬取 {category} 时出错: {e}")
     
     print(f"  找到 {len(papers)} 篇论文")
-    return papers
+    return papers, latest_published
 
 
 def generate_markdown(papers_by_category, config, existing_ids=None, last_update=None):
@@ -355,11 +359,11 @@ def load_state(state_file):
         return None
 
 
-def save_state(state_file, last_run_date):
-    """保存状态文件 - 保存的是爬取的结束时间（UTC）"""
-    # 直接保存结束时间（UTC），下次从该时间点继续
+def save_state(state_file, latest_paper_date):
+    """保存状态文件 - 保存的是最新论文的提交时间（UTC）"""
+    # 保存最新论文的提交时间，下次从该时间点继续
     with open(state_file, 'w') as f:
-        yaml.dump({'last_run_date': last_run_date.strftime('%Y-%m-%d %H:%M:%S')}, f)
+        yaml.dump({'last_run_date': latest_paper_date.strftime('%Y-%m-%d %H:%M:%S')}, f)
 
 
 def save_last_update_time(update_time):
@@ -420,12 +424,18 @@ def main():
     papers_by_category = {}
     max_results = config['output']['max_papers_per_category']
     keywords = config['keywords']
+    latest_paper_date = None
     
     for i, category in enumerate(config['categories']):
-        papers = fetch_papers_by_category(
+        papers, category_latest = fetch_papers_by_category(
             category, start_date, end_date, max_results, keywords
         )
         papers_by_category[category] = papers
+        
+        # 跟踪所有分类中最新的论文时间
+        if category_latest is not None:
+            if latest_paper_date is None or category_latest > latest_paper_date:
+                latest_paper_date = category_latest
         
         # ArXiv API 使用条款：每次请求之间必须至少间隔 10 秒
         # 最后一个分类不需要等待
@@ -445,8 +455,15 @@ def main():
     else:
         print("✓ 没有新论文需要添加")
     
-    # 保存状态
-    save_state(state_file, end_date)
+    # 保存状态 - 保存最新论文的提交时间
+    # 如果有新论文，使用最新论文的时间；否则保持状态不变
+    if latest_paper_date is not None:
+        state_date = latest_paper_date
+        print(f"保存最新论文时间: {state_date.strftime('%Y-%m-%d %H:%M:%S UTC')}")
+        save_state(state_file, state_date)
+    else:
+        # 如果没有新论文，保持状态不变
+        print(f"没有新论文，保持状态不变: {state['last_run_date'] if state else 'N/A'}")
     
     # 保存最后更新时间到 docs 目录
     save_last_update_time(end_date)
