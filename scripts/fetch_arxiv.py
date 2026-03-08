@@ -344,9 +344,11 @@ def load_state(state_file):
 
 
 def save_state(state_file, last_run_date):
-    """保存状态文件"""
+    """保存状态文件 - 保存的是最后爬取的日期"""
+    # 将日期减去一天，因为 end_date 是运行结束时间，我们需要保存最后爬取的日期
+    last_crawled_date = last_run_date - timedelta(days=1)
     with open(state_file, 'w') as f:
-        yaml.dump({'last_run_date': last_run_date.strftime('%Y-%m-%d')}, f)
+        yaml.dump({'last_run_date': last_crawled_date.strftime('%Y-%m-%d')}, f)
 
 
 def save_last_update_time(update_time):
@@ -391,10 +393,10 @@ def main():
         start_date = datetime.strptime(config['start_date'], '%Y-%m-%d')
         print(f"首次运行，从 {start_date.strftime('%Y-%m-%d')} 开始爬取")
     else:
-        # 后续运行：从上次运行到现在
-        start_date = datetime.strptime(state['last_run_date'], '%Y-%m-%d')
-        start_date = start_date + timedelta(days=1)  # 从下一天开始
-        print(f"从上次运行日期 {start_date.strftime('%Y-%m-%d')} 开始爬取")
+        # 后续运行：从最后爬取日期的下一天开始（避免重复爬取）
+        last_crawled_date = datetime.strptime(state['last_run_date'], '%Y-%m-%d')
+        start_date = last_crawled_date + timedelta(days=1)
+        print(f"从最后爬取日期的下一天 {start_date.strftime('%Y-%m-%d')} 开始爬取")
     
     end_date = datetime.now()
     
