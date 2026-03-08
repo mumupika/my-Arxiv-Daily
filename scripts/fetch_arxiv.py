@@ -338,17 +338,22 @@ def load_state(state_file):
     
     try:
         with open(state_file, 'r') as f:
-            return yaml.safe_load(f)
+            data = yaml.safe_load(f)
+            # 兼容旧格式：如果只有日期（YYYY-MM-DD），转换为当天的 00:00:00 UTC
+            if data and 'last_run_date' in data:
+                date_str = data['last_run_date']
+                if len(date_str) == 10:  # YYYY-MM-DD 格式
+                    data['last_run_date'] = date_str + ' 00:00:00'
+            return data
     except:
         return None
 
 
 def save_state(state_file, last_run_date):
-    """保存状态文件 - 保存的是最后爬取的日期"""
-    # 将日期减去一天，因为 end_date 是运行结束时间，我们需要保存最后爬取的日期
-    last_crawled_date = last_run_date - timedelta(days=1)
+    """保存状态文件 - 保存的是爬取的结束时间（UTC）"""
+    # 直接保存结束时间（UTC），下次从该时间点继续
     with open(state_file, 'w') as f:
-        yaml.dump({'last_run_date': last_crawled_date.strftime('%Y-%m-%d')}, f)
+        yaml.dump({'last_run_date': last_run_date.strftime('%Y-%m-%d %H:%M:%S')}, f)
 
 
 def save_last_update_time(update_time):
@@ -387,18 +392,18 @@ def main():
     existing_ids = get_existing_papers(docs_dir)
     print(f"已存在 {len(existing_ids)} 篇论文")
     
-    # 确定日期范围
+    # 确定日期范围（使用 UTC 时间）
     if state is None:
         # 首次运行：从配置的起始日期到现在
         start_date = datetime.strptime(config['start_date'], '%Y-%m-%d')
         print(f"首次运行，从 {start_date.strftime('%Y-%m-%d')} 开始爬取")
     else:
-        # 后续运行：从最后爬取日期的下一天开始（避免重复爬取）
-        last_crawled_date = datetime.strptime(state['last_run_date'], '%Y-%m-%d')
-        start_date = last_crawled_date + timedelta(days=1)
-        print(f"从最后爬取日期的下一天 {start_date.strftime('%Y-%m-%d')} 开始爬取")
+        # 后续运行：从上次爬取结束时间继续（UTC）
+        last_run_date = datetime.strptime(state['last_run_date'], '%Y-%m-%d %H:%M:%S')
+        start_date = last_run_date
+        print(f"从上次爬取结束时间 {start_date.strftime('%Y-%m-%d %H:%M:%S UTC')} 开始爬取")
     
-    end_date = datetime.now()
+    end_date = datetime.utcnow()
     
     # 确保日期范围合理
     if start_date > end_date:
