@@ -344,26 +344,18 @@ def load_state(state_file):
     
     try:
         with open(state_file, 'r') as f:
-            data = yaml.safe_load(f)
-            # 兼容旧格式：如果只有日期（YYYY-MM-DD），转换为下一天的 00:00:00 UTC
-            # 旧格式表示"最后爬取到了这一天"，所以下次从下一天开始
-            if data and 'last_run_date' in data:
-                date_str = data['last_run_date']
-                if len(date_str) == 10:  # YYYY-MM-DD 格式（旧格式）
-                    date_obj = datetime.strptime(date_str, '%Y-%m-%d').replace(tzinfo=timezone.utc)
-                    # 转换为下一天 00:00:00 UTC
-                    next_day = date_obj + timedelta(days=1)
-                    data['last_run_date'] = next_day.strftime('%Y-%m-%d %H:%M:%S')
-            return data
+            return yaml.safe_load(f)
     except:
         return None
 
 
 def save_state(state_file, latest_paper_date):
-    """保存状态文件 - 保存的是最新论文的提交时间（UTC）"""
-    # 保存最新论文的提交时间，下次从该时间点继续
+    """保存状态文件 - 保存最新论文的日期（天级别）"""
+    # ArXiv API 只支持天级别查询，所以保存论文的日期
+    # 重复论文通过论文 ID 去重来避免
+    paper_date = latest_paper_date.strftime('%Y-%m-%d')
     with open(state_file, 'w') as f:
-        yaml.dump({'last_run_date': latest_paper_date.strftime('%Y-%m-%d %H:%M:%S')}, f)
+        yaml.dump({'last_run_date': paper_date}, f)
 
 
 def save_last_update_time(update_time):
@@ -408,10 +400,11 @@ def main():
         start_date = datetime.strptime(config['start_date'], '%Y-%m-%d').replace(tzinfo=timezone.utc)
         print(f"首次运行，从 {start_date.strftime('%Y-%m-%d')} 开始爬取")
     else:
-        # 后续运行：从上次爬取结束时间继续（添加 UTC 时区）
-        last_run_date = datetime.strptime(state['last_run_date'], '%Y-%m-%d %H:%M:%S').replace(tzinfo=timezone.utc)
-        start_date = last_run_date
-        print(f"从上次爬取结束时间 {start_date.strftime('%Y-%m-%d %H:%M:%S UTC')} 开始爬取")
+        # 后续运行：从保存的日期开始（添加 UTC 时区）
+        # 保存的是最新论文的日期，所以从该日期的 00:00:00 开始
+        last_paper_date_str = state['last_run_date']
+        start_date = datetime.strptime(last_paper_date_str, '%Y-%m-%d').replace(tzinfo=timezone.utc)
+        print(f"从最新论文日期 {start_date.strftime('%Y-%m-%d UTC')} 开始爬取")
     
     end_date = datetime.now(timezone.utc)
     
@@ -455,11 +448,11 @@ def main():
     else:
         print("✓ 没有新论文需要添加")
     
-    # 保存状态 - 保存最新论文的提交时间
-    # 如果有新论文，使用最新论文的时间；否则保持状态不变
+    # 保存状态 - 保存最新论文的提交日期
+    # 如果有新论文，使用最新论文的日期；否则保持状态不变
     if latest_paper_date is not None:
         state_date = latest_paper_date
-        print(f"保存最新论文时间: {state_date.strftime('%Y-%m-%d %H:%M:%S UTC')}")
+        print(f"保存最新论文日期: {state_date.strftime('%Y-%m-%d')}")
         save_state(state_file, state_date)
     else:
         # 如果没有新论文，保持状态不变
