@@ -1,9 +1,9 @@
 name: ArXiv Daily Crawler
 
 on:
-  # 每天 UTC 时间 19:00 执行（即北京时间凌晨 03:00）
+  # 每天 UTC 时间 12:00 执行（即北京时间凌晨 12:00）
   schedule:
-    - cron: '0 19 * * *'
+    - cron: '0 4 * * *'
   
   # 允许手动触发
   workflow_dispatch:

@@ -9,7 +9,7 @@ import sys
 import yaml
 import arxiv
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 # ArXiv 分类名称映射 - 完整的计算机科学分类
@@ -339,11 +339,15 @@ def load_state(state_file):
     try:
         with open(state_file, 'r') as f:
             data = yaml.safe_load(f)
-            # 兼容旧格式：如果只有日期（YYYY-MM-DD），转换为当天的 00:00:00 UTC
+            # 兼容旧格式：如果只有日期（YYYY-MM-DD），转换为下一天的 00:00:00 UTC
+            # 旧格式表示"最后爬取到了这一天"，所以下次从下一天开始
             if data and 'last_run_date' in data:
                 date_str = data['last_run_date']
-                if len(date_str) == 10:  # YYYY-MM-DD 格式
-                    data['last_run_date'] = date_str + ' 00:00:00'
+                if len(date_str) == 10:  # YYYY-MM-DD 格式（旧格式）
+                    date_obj = datetime.strptime(date_str, '%Y-%m-%d').replace(tzinfo=timezone.utc)
+                    # 转换为下一天 00:00:00 UTC
+                    next_day = date_obj + timedelta(days=1)
+                    data['last_run_date'] = next_day.strftime('%Y-%m-%d %H:%M:%S')
             return data
     except:
         return None
@@ -394,16 +398,16 @@ def main():
     
     # 确定日期范围（使用 UTC 时间）
     if state is None:
-        # 首次运行：从配置的起始日期到现在
-        start_date = datetime.strptime(config['start_date'], '%Y-%m-%d')
+        # 首次运行：从配置的起始日期到现在（添加 UTC 时区）
+        start_date = datetime.strptime(config['start_date'], '%Y-%m-%d').replace(tzinfo=timezone.utc)
         print(f"首次运行，从 {start_date.strftime('%Y-%m-%d')} 开始爬取")
     else:
-        # 后续运行：从上次爬取结束时间继续（UTC）
-        last_run_date = datetime.strptime(state['last_run_date'], '%Y-%m-%d %H:%M:%S')
+        # 后续运行：从上次爬取结束时间继续（添加 UTC 时区）
+        last_run_date = datetime.strptime(state['last_run_date'], '%Y-%m-%d %H:%M:%S').replace(tzinfo=timezone.utc)
         start_date = last_run_date
         print(f"从上次爬取结束时间 {start_date.strftime('%Y-%m-%d %H:%M:%S UTC')} 开始爬取")
     
-    end_date = datetime.utcnow()
+    end_date = datetime.now(timezone.utc)
     
     # 确保日期范围合理
     if start_date > end_date:
