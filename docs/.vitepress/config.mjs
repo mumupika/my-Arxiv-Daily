@@ -1,5 +1,52 @@
 import { defineConfig } from 'vitepress'
 import katex from 'markdown-it-katex'
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const docsDir = path.resolve(__dirname, '..')
+
+/**
+ * 自动扫描 docs 目录下的 YYYY-MM 文件夹，生成侧边栏配置
+ * 按年份分组，年份和月份均按倒序排列
+ * 最近的两个年份默认展开，更早的年份默认折叠
+ */
+function generateSidebar() {
+  const entries = fs.readdirSync(docsDir, { withFileTypes: true })
+
+  // 找出所有 YYYY-MM 格式的目录
+  const monthDirs = entries
+    .filter(d => d.isDirectory() && /^\d{4}-\d{2}$/.test(d.name))
+    .map(d => d.name)
+    .sort()
+    .reverse() // 最新的月份排在前面
+
+  // 按年份分组
+  const yearMap = new Map()
+  for (const month of monthDirs) {
+    const year = month.substring(0, 4)
+    if (!yearMap.has(year)) {
+      yearMap.set(year, [])
+    }
+    yearMap.get(year).push(month)
+  }
+
+  // 年份倒序排列
+  const years = [...yearMap.keys()].sort().reverse()
+
+  // 生成侧边栏 items
+  const items = years.map((year, index) => ({
+    text: `${year}年`,
+    collapsed: index >= 2, // 最近的两个年份展开，更早的折叠
+    items: yearMap.get(year).map(month => ({
+      text: month,
+      link: `/${month}/`
+    }))
+  }))
+
+  return items
+}
 
 export default defineConfig({
   base: '/my-Arxiv-Daily/',
@@ -35,45 +82,7 @@ export default defineConfig({
       {
         text: '论文归档',
         collapsed: false,
-        items: [
-          {
-            text: '2026年',
-            collapsed: false,
-            items: [
-              { text: '2026-03', link: '/2026-03/' },
-              { text: '2026-02', link: '/2026-02/' },
-              { text: '2026-01', link: '/2026-01/' }
-            ]
-          },
-          {
-            text: '2025年',
-            collapsed: false,
-            items: [
-              { text: '2025-12', link: '/2025-12/' },
-              { text: '2025-11', link: '/2025-11/' },
-              { text: '2025-10', link: '/2025-10/' },
-              { text: '2025-09', link: '/2025-09/' },
-              { text: '2025-08', link: '/2025-08/' },
-              { text: '2025-07', link: '/2025-07/' },
-              { text: '2025-06', link: '/2025-06/' },
-              { text: '2025-05', link: '/2025-05/' },
-              { text: '2025-04', link: '/2025-04/' },
-              { text: '2025-03', link: '/2025-03/' },
-              { text: '2025-02', link: '/2025-02/' },
-              { text: '2025-01', link: '/2025-01/' }
-            ]
-          },
-          {
-            text: '2024年',
-            collapsed: true,
-            items: [
-              { text: '2024-12', link: '/2024-12/' },
-              { text: '2024-11', link: '/2024-11/' },
-              { text: '2024-10', link: '/2024-10/' },
-              { text: '2024-09', link: '/2024-09/' }
-            ]
-          }
-        ]
+        items: generateSidebar()
       }
     ],
 
