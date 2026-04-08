@@ -12,13 +12,11 @@
 
 ## 支持的分类
 
-- cs.AI   Computer Science - Artificial Intelligence
 - cs.AR   Computer Science - Architecture
 - cs.DC   Computer Science - Distributed, Parallel, and Cluster Computing
 - cs.NI   Computer Science - Networking and Internet Architecture
 - cs.OS   Computer Science - Operating Systems
 - cs.PF   Computer Science - Performance
-- cs.LG   Computer Science - Machine Learning
 
 ## 使用方法
 

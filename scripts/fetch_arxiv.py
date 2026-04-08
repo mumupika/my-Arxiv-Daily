@@ -433,7 +433,7 @@ def main():
         # ArXiv API 使用条款：每次请求之间必须至少间隔 10 秒
         # 最后一个分类不需要等待
         if i < len(config['categories']) - 1:
-            print(f"  等待 10 秒以遵守 API 使用条款...")
+            print(f"  等待 30 秒以遵守 API 使用条款...")
             time.sleep(30)
     
     # 生成 Markdown（按日期分组）
