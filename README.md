@@ -31,13 +31,11 @@
 
 论文列表会每天自动更新，包含以下分类的论文：
 
-- cs.AI   Computer Science - Artificial Intelligence
-- cs.AR   Computer Science - Architecture
-- cs.DC   Computer Science - Distributed, Parallel, and Cluster Computing
-- cs.NI   Computer Science - Networking and Internet Architecture
-- cs.OS   Computer Science - Operating Systems
-- cs.PF   Computer Science - Performance
-- cs.LG   Computer Science - Machine Learning
+- cs.AR      # Computer Science - Architecture
+- cs.DC      # Computer Science - Distributed, Parallel, and Cluster Computing
+- cs.NI      # Computer Science - Networking and Internet Architecture
+- cs.OS      # Computer Science - Operating Systems
+- cs.PF      # Computer Science - Performance
 
 ## 📦 项目结构
 
