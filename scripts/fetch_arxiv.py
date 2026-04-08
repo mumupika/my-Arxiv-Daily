@@ -6,6 +6,7 @@ ArXiv Paper Fetcher
 
 import os
 import sys
+import re
 import yaml
 import arxiv
 import time
@@ -114,6 +115,18 @@ def filter_by_keywords(paper, keywords):
             return True
     
     return False
+
+
+def escape_html_in_md(text):
+    """Escape HTML special characters in markdown text to prevent Vue/VitePress parsing errors.
+    
+    In VitePress, markdown files are processed by Vue's template compiler, which treats
+    <...> as HTML tags. Angle brackets in paper titles/abstracts (e.g., Trust<T>, <SOG_k>)
+    cause 'Element is missing end tag' build errors.
+    """
+    text = text.replace('<', '\\<')
+    text = text.replace('>', '\\>')
+    return text
 
 
 def truncate_summary(summary, max_length):
@@ -298,17 +311,19 @@ def update_markdown_files_by_date(papers_by_date, config):
                 lines.append("| 标题 | 作者 | 发布日期 | PDF | 摘要 |")
                 lines.append("|------|------|----------|-----|------|")
                 for paper in papers:
-                    title_link = f"[{paper.title}](https://arxiv.org/abs/{paper.get_short_id()})"
+                    title = escape_html_in_md(paper.title)
+                    title_link = f"[{title}](https://arxiv.org/abs/{paper.get_short_id()})"
                     authors = ', '.join([str(author) for author in paper.authors])
                     published_date = paper.published.strftime('%Y-%m-%d')
                     pdf_link = f"[下载](https://arxiv.org/pdf/{paper.get_short_id()}.pdf)"
-                    summary = truncate_summary(paper.summary.replace('\n', ' ').replace('|', '\\|').replace('\r', ''), summary_max_length)
+                    summary = truncate_summary(escape_html_in_md(paper.summary.replace('\n', ' ').replace('|', '\\|').replace('\r', '')), summary_max_length)
                     lines.append(f"| {title_link} | {authors} | {published_date} | {pdf_link} | {summary} |")
             else:
                 lines.append("| 标题 | 作者 | 发布日期 | PDF |")
                 lines.append("|------|------|----------|-----|")
                 for paper in papers:
-                    title_link = f"[{paper.title}](https://arxiv.org/abs/{paper.get_short_id()})"
+                    title = escape_html_in_md(paper.title)
+                    title_link = f"[{title}](https://arxiv.org/abs/{paper.get_short_id()})"
                     authors = ', '.join([str(author) for author in paper.authors])
                     published_date = paper.published.strftime('%Y-%m-%d')
                     pdf_link = f"[下载](https://arxiv.org/pdf/{paper.get_short_id()}.pdf)"
