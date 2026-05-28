@@ -23,6 +23,9 @@ yarn.lock
 docs/.vitepress/cache/
 docs/.vitepress/dist/
 
+# 搜索索引（构建时自动生成）
+docs/public/search-index.json
+
 # IDE
 .vscode/
 .idea/

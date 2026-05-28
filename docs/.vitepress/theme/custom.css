@@ -1,6 +1,75 @@
 /* KaTeX数学公式样式 */
 @import 'katex/dist/katex.min.css';
 
+/* =========================================
+   品牌色与主题变量 (参考 OI Wiki 风格)
+   ========================================= */
+:root {
+  /* 主品牌色 - 深蓝紫科技感 */
+  --vp-c-brand-1: #4f46e5;
+  --vp-c-brand-2: #4338ca;
+  --vp-c-brand-3: #3730a3;
+  --vp-c-brand-soft: rgba(79, 70, 229, 0.14);
+
+  /* 品牌色对应的亮色变体 */
+  --vp-c-brand-light: #6366f1;
+  --vp-c-brand-lighter: #818cf8;
+  --vp-c-brand-dark: #4338ca;
+  --vp-c-brand-darker: #3730a3;
+
+  /* 首页 Hero 按钮 */
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: #fff;
+  --vp-button-brand-bg: #4f46e5;
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-hover-text: #fff;
+  --vp-button-brand-hover-bg: #4338ca;
+  --vp-button-brand-active-border: transparent;
+  --vp-button-brand-active-text: #fff;
+  --vp-button-brand-active-bg: #3730a3;
+
+  /* 侧栏背景色 */
+  --vp-sidebar-bg-color: var(--vp-c-bg) !important;
+}
+
+/* 暗色模式品牌色调整 */
+.dark {
+  --vp-c-brand-1: #818cf8;
+  --vp-c-brand-2: #6366f1;
+  --vp-c-brand-3: #4f46e5;
+  --vp-c-brand-soft: rgba(129, 140, 248, 0.14);
+
+  --vp-c-brand-light: #a5b4fc;
+  --vp-c-brand-lighter: #c7d2fe;
+  --vp-c-brand-dark: #6366f1;
+  --vp-c-brand-darker: #4f46e5;
+
+  --vp-button-brand-bg: #6366f1;
+  --vp-button-brand-hover-bg: #4f46e5;
+  --vp-button-brand-active-bg: #4338ca;
+}
+
+/* 搜索框样式优化 */
+.VPLocalSearchBox .search-input {
+  font-size: 16px !important;
+}
+
+.DocSearch-Button {
+  border-radius: 8px !important;
+}
+
+/* 导航栏搜索按钮增强 */
+.VPNavBarSearch .DocSearch-Button {
+  background: var(--vp-c-bg-soft) !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  transition: all 0.2s ease !important;
+}
+
+.VPNavBarSearch .DocSearch-Button:hover {
+  border-color: var(--vp-c-brand-1) !important;
+  box-shadow: 0 0 0 1px var(--vp-c-brand-soft) !important;
+}
+
 /* 减少侧栏宽度 */
 .VPSidebar {
   width: 260px !important;

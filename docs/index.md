@@ -1,31 +1,58 @@
-# ArXiv Daily Papers
+---
+layout: home
 
-欢迎来到 ArXiv Daily Papers！这里自动爬取和整理了来自 arXiv 的最新论文。
+hero:
+  name: "ArXiv Daily"
+  text: " Papers"
+  tagline: 自动爬取和整理 arXiv 最新论文，每日更新
+  actions:
+    - theme: brand
+      text: 开始浏览
+      link: /2024-01/
+    - theme: alt
+      text: GitHub
+      link: https://github.com/mumupika/my-Arxiv-Daily
 
-## 功能特点
+features:
+  - icon: 📅
+    title: 每日自动更新
+    details: 每天北京时间中午 12:00 自动爬取最新论文，确保你不会错过任何重要研究。
+  - icon: 🏷️
+    title: 分类管理
+    details: 按 arXiv 分类进行整理，包括 cs.AR、cs.DC、cs.NI、cs.OS、cs.PF 等多个方向。
+  - icon: 📊
+    title: 数据丰富
+    details: 包含标题、作者、摘要和 PDF 链接，一站式获取论文全部信息。
+  - icon: 🔍
+    title: 快速搜索
+    details: 内置本地搜索功能，输入关键词即可在所有论文中快速定位相关内容。
+  - icon: 📂
+    title: 按日期归档
+    details: 按年月归档，方便查找和回顾历史论文，结构清晰明了。
+  - icon: 🚀
+    title: 快速部署
+    details: 使用 VitePress 构建，加载速度极快，支持暗色模式，阅读体验一流。
+---
 
-- 📅 **每日自动更新**：每天自动爬取最新论文
-- 🏷️ **分类管理**：按 arXiv 分类进行整理
-- 📊 **数据丰富**：包含标题、作者、摘要和 PDF 链接
-- 🔍 **快速浏览**：按日期归档，方便查找历史论文
-- 🚀 **快速部署**：使用 VitePress 构建，加载速度极快
+<style>
+/* 首页自定义样式 */
+.VPHero .name {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-## 支持的分类
+.VPHero .text {
+  color: var(--vp-c-text-1);
+}
 
-- cs.AR   Computer Science - Architecture
-- cs.DC   Computer Science - Distributed, Parallel, and Cluster Computing
-- cs.NI   Computer Science - Networking and Internet Architecture
-- cs.OS   Computer Science - Operating Systems
-- cs.PF   Computer Science - Performance
+/* 特性卡片增强 */
+.VPFeature .icon {
+  font-size: 28px !important;
+}
 
-## 使用方法
-
-在左侧导航栏中选择年份和月份，即可查看对应日期的论文列表。
-
-## 项目地址
-
-[https://github.com/mumupika/my-Arxiv-Daily](https://github.com/mumupika/my-Arxiv-Daily)
-
-## 更新频率
-
-每天北京时间中午 12:00 自动更新
+.VPFeature:hover {
+  border-color: var(--vp-c-brand-1) !important;
+}
+</style>

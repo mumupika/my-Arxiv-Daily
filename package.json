@@ -4,8 +4,9 @@
   "description": "ArXiv Daily Papers - 自动爬取和整理 arXiv 论文",
   "type": "module",
   "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
+    "dev": "node scripts/build-search-index.mjs && vitepress dev docs",
+    "build": "node scripts/build-search-index.mjs && vitepress build docs",
+    "build:index": "node scripts/build-search-index.mjs",
     "preview": "vitepress preview docs"
   },
   "dependencies": {

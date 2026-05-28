@@ -1,9 +1,13 @@
 import DefaultTheme from 'vitepress/theme'
 import './custom.css'
+import SearchPage from './SearchPage.vue'
 
 export default {
   extends: DefaultTheme,
   enhanceApp({ app, router }) {
+    // 注册搜索页面组件
+    app.component('SearchPage', SearchPage)
+
     if (typeof document !== 'undefined') {
       
       // ==========================================
@@ -50,28 +54,14 @@ export default {
       // ==========================================
       // 3. 页面初始化
       // ==========================================
-      setTimeout(() => {
+      // 使用 router.onAfterRouteChanged 确保页面切换后也能初始化
+      const initPage = () => {
         document.body.appendChild(toggleBtn)
         document.body.classList.add('sidebar-visible')
-        
-        // 修复标题
-        fixNavBarTitle()
-      }, 100)
-    }
-  }
-}
+      }
 
-// ==========================================
-// 4. 修复顶栏与侧栏标题逻辑
-// ==========================================
-function fixNavBarTitle() {
-  const navBarTitle = document.querySelector('.VPNavBarTitle .title')
-  
-  if (navBarTitle) {
-    // 强制将顶栏文字修改为自定义标题
-    navBarTitle.textContent = 'arxiv daily papers'
-    
-    // 【关键修复】取消之前的 display: none，让顶栏左上角的字显示出来！
-    navBarTitle.style.display = 'flex' 
+      // 延迟初始化，确保 DOM 就绪
+      setTimeout(initPage, 100)
+    }
   }
 }

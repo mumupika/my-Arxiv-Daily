@@ -54,6 +54,9 @@ export default defineConfig({
   title: 'ArXiv Daily Papers',
   description: '自动爬取的 arxiv 论文汇总，按日期分类',
   
+  // 最后更新时间
+  lastUpdated: true,
+  
   // 配置LaTeX数学公式渲染
   markdown: {
     config: (md) => {
@@ -65,10 +68,16 @@ export default defineConfig({
   contentProps: {
     aside: true
   },
+
+  // 页面头部信息
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/my-Arxiv-Daily/logo.svg' }]
+  ],
   
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
+      { text: '🔍 搜索论文', link: '/search' },
       { text: 'GitHub', link: 'https://github.com/mumupika/my-Arxiv-Daily' }
     ],
 
@@ -86,9 +95,29 @@ export default defineConfig({
       }
     ],
 
+    // 编辑链接
+    editLink: {
+      pattern: 'https://github.com/mumupika/my-Arxiv-Daily/edit/main/docs/:path',
+      text: '在 GitHub 上编辑此页'
+    },
+
+    // 最后更新时间文字
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        dateStyle: 'full',
+        forceLocale: true
+      }
+    },
+
+    // 社交链接
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/mumupika/my-Arxiv-Daily' }
+    ],
+
     footer: {
-      message: '基于 VitePress 构建',
-      copyright: 'Copyright © 2024-present'
+      message: '基于 VitePress 构建 · 使用本地搜索查找论文',
+      copyright: 'Copyright © 2024-present ArXiv Daily Papers'
     }
   }
 })

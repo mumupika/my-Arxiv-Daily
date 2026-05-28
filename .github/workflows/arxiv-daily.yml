@@ -103,10 +103,19 @@ jobs:
             echo "ℹ️ No papers found or docs directory not created" >> $GITHUB_STEP_SUMMARY
           fi
       
-      - name: Build VitePress
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Build search index and VitePress site
         run: |
           npm ci
-          npm run build
+          echo "生成搜索索引..."
+          node scripts/build-search-index.mjs
+          echo "构建 VitePress 站点..."
+          npx vitepress build docs
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
