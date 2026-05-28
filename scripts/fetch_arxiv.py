@@ -12,6 +12,7 @@ import arxiv
 import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from arxiv import HTTPError
 
 # ArXiv 分类名称映射 - 完整的计算机科学分类
 CATEGORY_NAMES = {
@@ -144,8 +145,20 @@ def truncate_summary(summary, max_length):
         return truncated[:max_length] + '...'
 
 
-def fetch_papers_by_category(category, start_date, end_date, max_results, keywords):
-    """获取指定分类的论文，返回 (论文列表, 最新论文的提交时间)"""
+# ArXiv API 使用条款: 每次请求之间至少间隔 3 秒，限制为单个连接
+# https://info.arxiv.org/help/api/tou.html
+# 实际使用 10 秒间隔以进一步降低请求压力，避免触发 429
+ARXIV_API_DELAY = 10.0      # 请求间隔（秒），保守策略降低请求压力
+ARXIV_MAX_RETRIES = 5       # 429 错误最大重试次数
+ARXIV_RETRY_BACKOFF = 30.0  # 429 错误初始退避时间（秒），每次翻倍
+
+
+def fetch_papers_by_category(client, category, start_date, end_date, max_results, keywords):
+    """获取指定分类的论文，返回 (论文列表, 最新论文的提交时间)
+    
+    使用共享的 arxiv.Client 实例以确保全局速率限制。
+    内含 429 错误的指数退避重试机制。
+    """
     print(f"正在爬取分类: {category}")
     
     # 构建搜索查询
@@ -165,18 +178,35 @@ def fetch_papers_by_category(category, start_date, end_date, max_results, keywor
     
     papers = []
     latest_published = None
-    client = arxiv.Client()
     
-    try:
-        for result in client.results(search):
-            # 关键词过滤
-            if filter_by_keywords(result, keywords):
-                papers.append(result)
-                # 跟踪最新论文的提交时间（因为按降序排序，第一个就是最新的）
-                if latest_published is None or result.published > latest_published:
-                    latest_published = result.published
-    except Exception as e:
-        print(f"  警告: 爬取 {category} 时出错: {e}")
+    # 带有指数退避的重试机制，专门处理 429 (Too Many Requests) 错误
+    retry_delay = ARXIV_RETRY_BACKOFF
+    for attempt in range(ARXIV_MAX_RETRIES):
+        try:
+            for result in client.results(search):
+                # 关键词过滤
+                if filter_by_keywords(result, keywords):
+                    papers.append(result)
+                    # 跟踪最新论文的提交时间（因为按降序排序，第一个就是最新的）
+                    if latest_published is None or result.published > latest_published:
+                        latest_published = result.published
+            # 成功完成，跳出重试循环
+            break
+        except HTTPError as e:
+            if e.status == 429:
+                if attempt < ARXIV_MAX_RETRIES - 1:
+                    print(f"  警告: 收到 429 (请求过多)，第 {attempt + 1}/{ARXIV_MAX_RETRIES} 次重试，"
+                          f"等待 {retry_delay:.0f} 秒后重试...")
+                    time.sleep(retry_delay)
+                    retry_delay *= 2  # 指数退避
+                else:
+                    print(f"  错误: 爬取 {category} 时多次收到 429，已达到最大重试次数，跳过此分类")
+            else:
+                print(f"  警告: 爬取 {category} 时出错: HTTP {e.status} - {e}")
+                break
+        except Exception as e:
+            print(f"  警告: 爬取 {category} 时出错: {e}")
+            break
     
     print(f"  找到 {len(papers)} 篇论文")
     return papers, latest_published
@@ -428,6 +458,15 @@ def main():
         print("日期范围无效，退出")
         return
     
+    # 创建共享的 arXiv API 客户端
+    # ArXiv API 使用条款: 每次请求之间至少间隔 3 秒，限制为单个连接
+    # 使用单个 Client 实例确保全局遵守速率限制，实际间隔 10 秒以降低请求压力
+    client = arxiv.Client(
+        page_size=100,           # 每页结果数
+        delay_seconds=ARXIV_API_DELAY,  # 请求间隔 10 秒，保守策略
+        num_retries=ARXIV_MAX_RETRIES   # 重试次数
+    )
+    
     # 获取论文
     papers_by_category = {}
     max_results = config['output']['max_papers_per_category']
@@ -436,7 +475,7 @@ def main():
     
     for i, category in enumerate(config['categories']):
         papers, category_latest = fetch_papers_by_category(
-            category, start_date, end_date, max_results, keywords
+            client, category, start_date, end_date, max_results, keywords
         )
         papers_by_category[category] = papers
         
@@ -445,11 +484,12 @@ def main():
             if latest_paper_date is None or category_latest > latest_paper_date:
                 latest_paper_date = category_latest
         
-        # ArXiv API 使用条款：每次请求之间必须至少间隔 10 秒
+        # 分类之间额外等待，确保不超过 API 速率限制
+        # Client 内部已处理分页请求的间隔，这里额外等待是分类切换的安全缓冲
         # 最后一个分类不需要等待
         if i < len(config['categories']) - 1:
-            print(f"  等待 30 秒以遵守 API 使用条款...")
-            time.sleep(30)
+            print(f"  等待 {ARXIV_API_DELAY:.0f} 秒以遵守 API 使用条款...")
+            time.sleep(ARXIV_API_DELAY)
     
     # 生成 Markdown（按日期分组）
     papers_by_date, new_count = generate_markdown(
